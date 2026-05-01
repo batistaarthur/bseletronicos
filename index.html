@@ -4,104 +4,339 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BS Smart Tech - Smartphones e Acessórios</title>
+    <!-- Adicionando ícones do Google para as vantagens -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        /* Estilização Básica */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f4f4; }
-        header { background-color: #1a1a1a; color: white; padding: 1rem; text-align: center; }
-        
-        /* Container da Vitrine */
+        /* --- ESTILIZAÇÃO GERAL --- */
+        :root {
+            --primary-color: #1a1a1a; /* Preto da marca */
+            --accent-color: #27ae60;  /* Verde Preço */
+            --whatsapp-color: #25D366; /* Verde WhatsApp */
+            --background-body: #f7f9fc;
+            --text-main: #333;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            background-color: var(--background-body); 
+            color: var(--text-main);
+        }
+
+        /* --- CABEÇALHO PROFISSIONAL --- */
+        header { 
+            background-color: var(--primary-color); 
+            color: white; 
+            padding: 1rem 5%; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky; /* Fixa o topo */
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        header h1 { margin: 0; font-size: 1.5rem; }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ccc;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: white; }
+
+        /* --- SEÇÃO DE VANTAGENS (CONFIABILIDADE) --- */
+        .vantagens {
+            background-color: white;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        }
+
+        .vantagem-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .vantagem-item .material-icons {
+            color: var(--accent-color);
+            font-size: 2rem;
+        }
+
+        /* --- VITRINE --- */
         .vitrine {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            padding: 20px;
-            gap: 20px;
+            padding: 40px 5%;
+            gap: 25px;
         }
 
-        /* Card do Produto */
+        /* --- CARD DO PRODUTO --- */
         .produto-card {
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            width: 250px;
-            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            width: 280px;
+            padding: 20px;
             text-align: center;
-            transition: transform 0.2s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
         }
 
-        .produto-card:hover { transform: scale(1.05); }
+        .produto-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
 
+        /* Estilo para a imagem clicável */
         .produto-card img {
             max-width: 100%;
-            height: auto;
-            border-radius: 5px;
+            height: 220px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            cursor: pointer; /* Mostra a mãozinha */
+            transition: opacity 0.3s;
         }
 
-        .preco { color: #27ae60; font-size: 1.2rem; font-weight: bold; margin: 10px 0; }
+        .produto-card img:hover {
+            opacity: 0.8; /* Efeito de feedback ao passar o mouse */
+        }
+
+        h3 { font-size: 1.1rem; color: #333; margin: 10px 0; min-height: 55px; line-height: 1.4; }
+        .descricao { color: #777; font-size: 0.85rem; margin-bottom: 10px; min-height: 35px; }
+        .preco-de { text-decoration: line-through; color: #999; font-size: 0.9rem; margin-bottom: -5px; }
+        .preco { color: var(--accent-color); font-size: 1.4rem; font-weight: bold; margin: 5px 0; }
+        .parcelas { color: #888; font-size: 0.85rem; margin-bottom: 15px; }
         
-        /* Botão de Compra */
+        /* --- BOTÃO DE COMPRA WHATSAPP --- */
         .btn-comprar {
-            display: inline-block;
-            background-color: #007bff;
+            display: block;
+            background-color: var(--whatsapp-color);
             color: white;
-            padding: 10px 20px;
+            padding: 14px;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: bold;
+            font-size: 1rem;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: auto; /* Empurra para o final do card */
         }
 
-        .btn-comprar:hover { background-color: #0056b3; }
+        .btn-comprar:hover { 
+            background-color: #128C7E; 
+            transform: scale(1.03);
+        }
+
+        /* --- RODAPÉ (CONFIABILIDADE) --- */
+        footer {
+            background-color: var(--primary-color);
+            color: #bbb;
+            padding: 40px 5%;
+            margin-top: 40px;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        footer h4 { color: white; margin-bottom: 10px; }
+        .footer-info { margin-bottom: 20px; }
+        .footer-legal { border-top: 1px solid #333; padding-top: 20px; color: #777; }
+
+        /* --- ESTILO DO MODAL DE IMAGEM (ZOOM) --- */
+        .modal {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            z-index: 2000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9); /* Fundo preto transparente */
+            overflow: auto; /* Ativa rolagem se a imagem for maior que a tela */
+        }
+
+        .modal-content {
+            display: block;
+            margin: auto;
+            max-width: 90%;
+            max-height: 85vh; /* Altura máxima da imagem dentro do modal */
+            object-fit: contain;
+            border-radius: 8px;
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+
+        .fechar-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .fechar-modal:hover { color: #bbb; }
+
+        /* --- RESPONSIVIDADE PARA CELULAR --- */
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; gap: 10px; }
+            nav ul { font-size: 0.9rem; }
+            .vantagens { flex-direction: column; align-items: flex-start; padding-left: 10%; }
+        }
     </style>
 </head>
 <body>
 
+<!-- CABEÇALHO -->
 <header>
-    <h1>BS Smart Tech - Smartphones e Acessórios</h1>
-    <p>Os melhores smartphones e acessórios</p>
+    <h1>BS Smart Tech</h1>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#smartphones">Smartphones</a></li>
+            <li><a href="#acessorios">Acessórios</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
 </header>
 
-<div class="vitrine">
+<!-- SEÇÃO DE VANTAGENS/CONFIABILIDADE -->
+<div class="vantagens">
+    <div class="vantagem-item">
+        <span class="material-icons">local_shipping</span>
+        <div><b>Frete Seguro</b><br>Para todo o Brasil</div>
+    </div>
+    <div class="vantagem-item">
+        <span class="material-icons">verified_user</span>
+        <div><b>Garantia BS Tech</b><br>90 dias em todos os produtos</div>
+    </div>
+    <div class="vantagem-item">
+        <span class="material-icons">credit_card</span>
+        <div><b>Parcele no Cartão</b><br>Em até 12x</div>
+    </div>
+    <div class="vantagem-item">
+        <span class="material-icons">chat</span>
+        <div><b>Suporte Humano</b><br>Atendimento via WhatsApp</div>
+    </div>
+</div>
+
+<!-- VITRINE DE PRODUTOS -->
+<div class="vitrine" id="smartphones">
     <!-- Produto 1 -->
     <div class="produto-card">
-        <img src=iphone-17pro.jpeg alt="iphone-17pro.jpeg">
+        <!-- Imagem agora é clicável -->
+        <img src="iphone-17pro.jpeg" alt="iPhone 17 Pro" onclick="abrirZoom(this)">
         <h3>iPhone 17 Pro 256GB</h3>
-        <p>256GB, Silver</p>
+        <p class="descricao">Titânio Natural, Câmera Tripla</p>
+        <p class="preco-de">R$ 8.500,00</p>
         <div class="preco">R$ 7.899,00</div>
-        <p>ou 12x 749,90</p>
-        <a href="https://wa.me/5527992985369" class="btn-comprar">Comprar no WhatsApp</a>
+        <p class="parcelas">ou 12x de R$ 749,90</p>
+        <a href="https://wa.me/5527992985369?text=Olá! Tenho interesse no iPhone 17 Pro." class="btn-comprar">Comprar no WhatsApp</a>
     </div>
 
     <!-- Produto 2 -->
     <div class="produto-card">
-        <img src=Galaxy-S25Ultra-512.webp alt="Galaxy-S25Ultra-512.webp">
-        <h3>Celular Samsung Galaxy S25 Ultra 5G, 512GB, 12GB RAM, Câmera Quádrupla de 200+50+10+50, Tela Grande de 6.9"</h3>
-        <p>512GB, Cor Cinza</p>
+        <img src="Galaxy-S25Ultra-512.webp" alt="Galaxy S25 Ultra" onclick="abrirZoom(this)">
+        <h3>Samsung Galaxy S25 Ultra 5G</h3>
+        <p class="descricao">512GB, 12GB RAM, S-Pen</p>
+        <p class="preco-de">R$ 7.200,00</p>
         <div class="preco">R$ 6.699,90 no PIX</div>
-        <p>ou 12x 719,90</p>
-        <a href="https://wa.me/5527992985369" class="btn-comprar">Comprar no WhatsApp</a>
+        <p class="parcelas">ou 12x de R$ 719,90</p>
+        <a href="https://wa.me/5527992985369?text=Olá! Tenho interesse no Galaxy S25 Ultra." class="btn-comprar">Comprar no WhatsApp</a>
     </div>
 
     <!-- Produto 3 -->
     <div class="produto-card">
-        <img src=capa-magsafe-iphone-17pro.webp alt="Capa Magsafe Proteção Para iPhone 17 Pro">
-        <h3>Capa MagSafe</h3>
-        <p>Transparente para iPhone</p>
+        <img src="capa-magsafe-iphone-17pro.webp" alt="Capa MagSafe" onclick="abrirZoom(this)">
+        <h3>Capa MagSafe Premium iPhone</h3>
+        <p class="descricao">Silicone Case, Interior Aveludado</p>
         <div class="preco">R$ 105,90 no PIX</div>
-        <p>ou 3x 36,63</p>
-        <a href="https://wa.me/5527992985369" class="btn-comprar">Comprar no WhatsApp</a>
+        <p class="parcelas">ou 3x de R$ 36,63</p>
+        <a href="https://wa.me/5527992985369?text=Olá! Tenho interesse na Capa MagSafe." class="btn-comprar">Comprar no WhatsApp</a>
     </div>
 
-    
     <!-- Produto 4 -->
     <div class="produto-card">
-        <img src=capa-magsafe-iphone-17pro.webp alt="Capa Magsafe Proteção Para iPhone 17 Pro">
-        <h3>Capa MagSafe</h3>
-        <p>Transparente para iPhone</p>
-        <div class="preco">R$ 105,90</div>
-        <p>ou 3x 36,63</p>
-        <a href="https://wa.me/5527992985369" class="btn-comprar">Comprar no WhatsApp</a>
-    </div>                
+        <img src="carregador-20w.jpg" alt="Carregador 20W" onclick="abrirZoom(this)">
+        <h3>Carregador Rápido 20W USB-C</h3>
+        <p class="descricao">Compatível com iPhone e Samsung</p>
+        <div class="preco">R$ 99,00 no PIX</div>
+        <p class="parcelas">ou 2x de R$ 51,50</p>
+        <a href="https://wa.me/5527992985369?text=Olá! Tenho interesse no Carregador 20W." class="btn-comprar">Comprar no WhatsApp</a>
+    </div>                 
 </div>
+
+<!-- RODAPÉ -->
+<footer id="contato">
+    <div class="footer-info">
+        <h4>BS Smart Tech</h4>
+        <p>Atendimento: Segunda a Sexta, 9h às 18h<br>
+        WhatsApp: (27) 99298-5369<br>
+        E-mail: contato@bssmartech.com.br</p>
+    </div>
+    <div class="footer-legal">
+        <p>&copy; 2024 BS Smart Tech. Todos os direitos reservados.</p>
+        <p>CNPJ: 00.000.000/0000-00 | Rua Exemplo, 123, Vitória - ES</p>
+    </div>
+</footer>
+
+<!-- ESTRUTURA DO MODAL DE ZOOM -->
+<div id="modalZoom" class="modal">
+    <span class="fechar-modal" onclick="fecharZoom()">&times;</span>
+    <img class="modal-content" id="imgZoomada">
+</div>
+
+<!-- JAVASCRIPT PARA O ZOOM (O PULP DO GATO!) -->
+<script>
+    // Função para abrir o zoom
+    function abrirZoom(imagemClicada) {
+        var modal = document.getElementById("modalZoom");
+        var imgModal = document.getElementById("imgZoomada");
+        
+        modal.style.display = "block"; // Mostra o modal
+        imgModal.src = imagemClicada.src; // Copia o link da imagem clicada para o modal
+    }
+
+    // Função para fechar o zoom
+    function fecharZoom() {
+        var modal = document.getElementById("modalZoom");
+        modal.style.display = "none"; // Esconde o modal
+    }
+
+    // Fecha o modal se o usuário clicar fora da imagem
+    window.onclick = function(event) {
+        var modal = document.getElementById("modalZoom");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 
 </body>
 </html>
