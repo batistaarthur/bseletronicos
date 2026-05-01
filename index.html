@@ -2,10 +2,92 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Minha Loja de Smartphones</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Loja Tech - Smartphones e Acessórios</title>
+    <style>
+        /* Estilização Básica */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f4f4; }
+        header { background-color: #1a1a1a; color: white; padding: 1rem; text-align: center; }
+        
+        /* Container da Vitrine */
+        .vitrine {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        /* Card do Produto */
+        .produto-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 250px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .produto-card:hover { transform: scale(1.05); }
+
+        .produto-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .preco { color: #27ae60; font-size: 1.2rem; font-weight: bold; margin: 10px 0; }
+        
+        /* Botão de Compra */
+        .btn-comprar {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-comprar:hover { background-color: #0056b3; }
+    </style>
 </head>
 <body>
-    <h1>Bem-vindo à minha futura loja de celulares!</h1>
-    <p>Em breve, os melhores acessórios aqui.</p>
+
+<header>
+    <h1>Minha Loja Tech</h1>
+    <p>Os melhores smartphones e acessórios</p>
+</header>
+
+<div class="vitrine">
+    <!-- Produto 1 -->
+    <div class="produto-card">
+        <img src="https://via.placeholder.com/200x250" alt="Smartphone Modelo X">
+        <h3>iPhone 15 Pro</h3>
+        <p>128GB, Titânio Natural</p>
+        <div class="preco">R$ 6.499,00</div>
+        <a href="https://wa.me/SEUNUMERO" class="btn-comprar">Comprar no WhatsApp</a>
+    </div>
+
+    <!-- Produto 2 -->
+    <div class="produto-card">
+        <img src="https://via.placeholder.com/200x250" alt="Smartphone Modelo Y">
+        <h3>Samsung Galaxy S24</h3>
+        <p>256GB, Cor Cinza</p>
+        <div class="preco">R$ 4.899,00</div>
+        <a href="https://wa.me/SEUNUMERO" class="btn-comprar">Comprar no WhatsApp</a>
+    </div>
+
+    <!-- Produto 3 -->
+    <div class="produto-card">
+        <img src="https://via.placeholder.com/200x250" alt="Capa Protetora">
+        <h3>Capa MagSafe</h3>
+        <p>Transparente para iPhone</p>
+        <div class="preco">R$ 149,00</div>
+        <a href="https://wa.me/SEUNUMERO" class="btn-comprar">Comprar no WhatsApp</a>
+    </div>
+</div>
+
 </body>
 </html>
