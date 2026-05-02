@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>BS Smart Tech - Smartphones e Acessórios</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
@@ -10,116 +10,133 @@
             --primary-color: #1a1a1a;
             --accent-color: #27ae60;
             --whatsapp-color: #25D366;
-            /* ALTERE A COR DE FUNDO AQUI (Azul Claro) */
-            --background-body: #e3f2fd; 
+            --background-body: #e3f2fd; /* Azul Claro solicitado */
             --text-main: #333;
         }
+
+        * { box-sizing: border-box; }
 
         body { 
             font-family: 'Segoe UI', sans-serif; 
             margin: 0; 
             background-color: var(--background-body); 
             color: var(--text-main); 
-            scroll-behavior: smooth; 
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* HEADER */
+        /* HEADER OTIMIZADO */
         header { 
             background-color: var(--primary-color); 
             color: white; 
-            padding: 1rem 5%; 
-            display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            padding: 1rem; 
+            display: flex; 
+            flex-direction: column; /* Mobile first: empilhado */
+            align-items: center;
+            position: sticky; top: 0; z-index: 1000; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
-        header h1 { margin: 0; font-size: 1.5rem; letter-spacing: 1px; }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
-        nav a { text-decoration: none; color: #ccc; font-weight: 500; transition: 0.3s; }
-        nav a:hover { color: white; }
+        header h1 { margin: 0 0 10px 0; font-size: 1.3rem; letter-spacing: 1px; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 15px; }
+        nav a { text-decoration: none; color: #ccc; font-weight: 500; font-size: 0.9rem; }
 
-        /* HERO BANNER */
+        /* HERO BANNER ADAPTÁVEL */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1400&q=80');
             background-size: cover; background-position: center;
-            height: 300px; color: white; display: flex; flex-direction: column;
+            height: 200px; color: white; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center; padding: 0 20px;
         }
-        .hero h2 { font-size: 2.5rem; margin: 0; }
-        .hero p { font-size: 1.2rem; opacity: 0.9; }
+        .hero h2 { font-size: 1.5rem; margin: 0; }
+        .hero p { font-size: 1rem; opacity: 0.9; margin-top: 5px; }
 
-        /* VANTAGENS */
+        /* VANTAGENS - ROLAGEM LATERAL NO CELULAR */
         .vantagens {
-            background-color: white; padding: 25px 5%; display: flex;
-            justify-content: space-around; flex-wrap: wrap; gap: 15px;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            background-color: white; padding: 15px; 
+            display: flex; gap: 15px;
+            overflow-x: auto; /* Permite deslizar pro lado no celular */
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
         }
-        .vantagem-item { display: flex; align-items: center; gap: 10px; color: #555; font-size: 0.85rem; }
-        .vantagem-item .material-icons { color: var(--accent-color); font-size: 1.8rem; }
+        .vantagem-item { 
+            display: inline-flex; align-items: center; gap: 8px; 
+            color: #555; font-size: 0.8rem; flex-shrink: 0;
+        }
+        .vantagem-item .material-icons { color: var(--accent-color); font-size: 1.5rem; }
 
-        /* SEÇÕES */
-        .section-title { text-align: center; margin: 40px 0 20px; font-size: 1.8rem; color: #1a1a1a; }
+        /* VITRINE EM GRADE */
+        .section-title { text-align: center; margin: 30px 0 15px; font-size: 1.5rem; color: #1a1a1a; }
+        .vitrine { 
+            display: grid; 
+            grid-template-columns: 1fr; /* Uma coluna por padrão */
+            padding: 15px; 
+            gap: 20px; 
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-        /* VITRINE */
-        .vitrine { display: flex; flex-wrap: wrap; justify-content: center; padding: 0 5% 40px; gap: 25px; }
-
-        /* CARD */
+        /* CARD OTIMIZADO */
         .produto-card {
-            background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            width: 280px; padding: 20px; text-align: center; transition: 0.3s;
-            display: flex; flex-direction: column; border: 1px solid #eee;
+            background: white; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding: 15px; text-align: center; display: flex; flex-direction: column; border: 1px solid #eee;
         }
-        .produto-card:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .produto-card img { max-width: 100%; height: 220px; object-fit: contain; margin-bottom: 15px; cursor: pointer; }
+        .produto-card img { 
+            width: 100%; max-height: 200px; object-fit: contain; margin-bottom: 10px; 
+        }
         
-        h3 { font-size: 1rem; color: #333; margin: 10px 0; min-height: 50px; }
-        .descricao { color: #777; font-size: 0.85rem; margin-bottom: 10px; }
-        .preco-de { text-decoration: line-through; color: #999; font-size: 0.85rem; }
-        .preco { color: var(--accent-color); font-size: 1.4rem; font-weight: bold; margin: 5px 0; }
-        .parcelas { color: #888; font-size: 0.85rem; margin-bottom: 15px; }
+        h3 { font-size: 0.95rem; color: #333; margin: 10px 0; min-height: 40px; line-height: 1.2; }
+        .descricao { color: #777; font-size: 0.8rem; margin-bottom: 8px; }
+        .preco-de { text-decoration: line-through; color: #999; font-size: 0.75rem; }
+        .preco { color: var(--accent-color); font-size: 1.3rem; font-weight: bold; margin: 5px 0; }
+        .parcelas { color: #888; font-size: 0.8rem; margin-bottom: 15px; }
         
         .btn-comprar {
             display: block; background-color: var(--whatsapp-color); color: white;
-            padding: 14px; text-decoration: none; border-radius: 8px; font-weight: bold;
-            transition: 0.3s; margin-top: auto;
+            padding: 15px; text-decoration: none; border-radius: 10px; font-weight: bold;
+            font-size: 1rem; margin-top: auto;
         }
-        .btn-comprar:hover { background-color: #128C7E; }
 
-        /* WHATSAPP FIXO */
+        /* BOTÃO WHATSAPP FIXO MENOR NO MOBILE */
         .wpp-fixed {
-            position: fixed; bottom: 20px; right: 20px; background-color: var(--whatsapp-color);
-            color: white; width: 60px; height: 60px; border-radius: 50%;
+            position: fixed; bottom: 15px; right: 15px; background-color: var(--whatsapp-color);
+            color: white; width: 55px; height: 55px; border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1001; text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1001;
         }
 
         /* FOOTER */
-        footer { background-color: var(--primary-color); color: #bbb; padding: 40px 5%; text-align: center; }
-        .footer-legal { border-top: 1px solid #333; margin-top: 20px; padding-top: 20px; font-size: 0.8rem; }
+        footer { background-color: var(--primary-color); color: #bbb; padding: 30px 5%; text-align: center; }
+        .footer-legal { border-top: 1px solid #333; margin-top: 15px; padding-top: 15px; font-size: 0.75rem; }
 
-        /* MODAL ZOOM */
+        /* MODAL ZOOM OTIMIZADO PARA TOUCH */
         .modal {
-            display: none; position: fixed; z-index: 2000; padding-top: 50px;
-            left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.95);
+            align-items: center; justify-content: center;
         }
-        .modal-content { display: block; margin: auto; max-width: 90%; max-height: 80vh; object-fit: contain; animation: zoom 0.3s; }
-        @keyframes zoom { from {transform:scale(0.8)} to {transform:scale(1)} }
-        .fechar { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; cursor: pointer; }
+        .modal-content { max-width: 95%; max-height: 70vh; object-fit: contain; }
+        .fechar { position: absolute; top: 20px; right: 25px; color: white; font-size: 45px; cursor: pointer; }
 
-        @media (max-width: 768px) {
-            header { flex-direction: column; }
-            .hero h2 { font-size: 1.8rem; }
-            .vantagens { flex-direction: column; }
+        /* AJUSTES PARA COMPUTADOR/TABLET */
+        @media (min-width: 600px) {
+            header { flex-direction: row; padding: 1rem 5%; }
+            header h1 { margin: 0; }
+            .vitrine { grid-template-columns: repeat(2, 1fr); }
+            .hero { height: 300px; }
+            .hero h2 { font-size: 2.5rem; }
+        }
+
+        @media (min-width: 1000px) {
+            .vitrine { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <!-- 1. ALTERE O NOME DA LOJA ABAIXO -->
     <h1>BS SMART TECH</h1> 
-    
     <nav>
         <ul>
-            <!-- 2. ALTERE OS TEXTOS DO MENU ABAIXO -->
             <li><a href="#home">Início</a></li>
             <li><a href="#smartphones">Celulares</a></li>
             <li><a href="#acessorios">Acessórios</a></li>
@@ -129,20 +146,18 @@
 
 <section class="hero" id="home">
     <h2>Tecnologia ao seu alcance</h2>
-    <p>Os melhores preços de Linhares e região</p>
+    <p>Melhores preços de Linhares e região</p>
 </section>
 
 <div class="vantagens">
-    <div class="vantagem-item"><span class="material-icons">local_shipping</span><div><b>Envio Rápido</b><br>Para todo Brasil</div></div>
+    <div class="vantagem-item"><span class="material-icons">local_shipping</span><div><b>Entrega Rápida</b><br>Linhares e região</div></div>
     <div class="vantagem-item"><span class="material-icons">verified_user</span><div><b>Garantia Real</b><br>Produtos Originais</div></div>
-    <div class="vantagem-item"><span class="material-icons">credit_card</span><div><b>Até 12x</b><br>No cartão de crédito</div></div>
-    <div class="vantagem-item"><span class="material-icons">payments</span><div><b>Desconto no PIX</b><br>Melhor preço garantido</div></div>
+    <div class="vantagem-item"><span class="material-icons">credit_card</span><div><b>Até 12x</b><br>No cartão</div></div>
+    <div class="vantagem-item"><span class="material-icons">payments</span><div><b>Desconto PIX</b><br>Melhor preço</div></div>
 </div>
 
-<h2 class="section-title" id="smartphones">Smartphones em Destaque</h2>
+<h2 class="section-title" id="smartphones">Smartphones</h2>
 <div class="vitrine">
-    
-    <!-- Produto 1 -->
     <div class="produto-card">
         <img src="iphone-17pro.jpeg" alt="iPhone 17 Pro" onclick="abrirZoom(this)">
         <h3>iPhone 17 Pro 256GB</h3>
@@ -153,7 +168,6 @@
         <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 Pro" class="btn-comprar">Comprar Agora</a>
     </div>
 
-    <!-- Produto 2 -->
     <div class="produto-card">
         <img src="Galaxy-S25Ultra-512.webp" alt="Galaxy S25 Ultra" onclick="abrirZoom(this)">
         <h3>Samsung Galaxy S25 Ultra 5G</h3>
@@ -164,26 +178,14 @@
         <a href="https://wa.me/5527992985369?text=Olá! Quero o S25 Ultra" class="btn-comprar">Comprar Agora</a>
     </div>
 
-    <!-- Produto 3 -->
     <div class="produto-card">
-        <img src="iphone-16.avif" alt="iPhone 16 256GB" onclick="abrirZoom(this)">
-        <h3>iPhone 16 - Ultramarino</h3>
+        <img src="iphone-16.avif" alt="iPhone 16" onclick="abrirZoom(this)">
+        <h3>iPhone 16 Ultramarino</h3>
         <p class="descricao">Nova Cor, Processador A18</p>
         <p class="preco-de">R$ 5.599,00</p>
         <div class="preco">R$ 5.299,00</div>
         <p class="parcelas">ou 12x de R$ 528,50</p>
         <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 16" class="btn-comprar">Comprar Agora</a>
-    </div>
-
-    <!-- Produto 4 -->
-    <div class="produto-card">
-        <img src="iphone 17.avif" alt="iPhone 17 256GB" onclick="abrirZoom(this)">
-        <h3>iPhone 17 - Azul-névoa</h3>
-        <p class="descricao">Nova Cor, Processador A18</p>
-        <p class="preco-de">R$ 7.200,00</p>
-        <div class="preco">R$ 6.299,00</div>
-        <p class="parcelas">ou 12x de R$ 619,50</p>
-        <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 256GB" class="btn-comprar">Comprar Agora</a>
     </div>
 </div>
 
@@ -200,16 +202,16 @@
 </div>
 
 <a href="https://wa.me/5527992985369" class="wpp-fixed" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30" alt="WhatsApp">
 </a>
 
 <footer>
     <div>
         <h4>BS Smart Tech</h4>
-        <p>Atendimento: Seg a Sex, 09h às 18h<br>WhatsApp: (27) 99298-5369</p>
+        <p>Seg a Sex, 09h às 18h<br>WhatsApp: (27) 99298-5369</p>
     </div>
     <div class="footer-legal">
-        <p>&copy; 2026 BS Smart Tech. Rua Perrini, Lagoa Park, Linhares - ES</p>
+        <p>&copy; 2026 BS Smart Tech.<br>Rua Perrini, Lagoa Park, Linhares - ES</p>
     </div>
 </footer>
 
@@ -220,7 +222,7 @@
 
 <script>
     function abrirZoom(img) {
-        document.getElementById("modalZoom").style.display = "block";
+        document.getElementById("modalZoom").style.display = "flex";
         document.getElementById("imgZoomada").src = img.src;
     }
     function fecharZoom() {
