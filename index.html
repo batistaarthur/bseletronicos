@@ -59,7 +59,7 @@
 
         /* VITRINE EM GRADE RESPONSIVA */
         .section-title { text-align: center; margin: 35px 0 15px; font-size: 1.6rem; color: #1a1a1a; }
-        .vitrine { display: grid; grid-template-columns: 1fr; padding: 15px; gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .vitrine { display: grid; grid-template-columns: 1fr; padding: 15px; gap: 20px; max-width: 900px; margin: 0 auto; }
 
         /* CARD DO PRODUTO */
         .produto-card {
@@ -80,7 +80,7 @@
         .carrossel-slide::-webkit-scrollbar { display: none; /* Oculta a barra no Chrome/Safari */ }
         
         .carrossel-slide img {
-            flex: 0 0 100%; /* Cada foto ocupa 100% da largura do card */
+            flex: 0 0 80%; /* Cada foto ocupa 100% da largura do card */
             scroll-snap-align: center;
             height: 220px; 
             object-fit: contain; 
@@ -200,8 +200,14 @@
         <div class="carrossel-slide"> 
             <!-- Foto 1 -->
             <img src="iphone 17.avif" alt="iPhone 17 - Foto 1" 
-                 onclick="abrirGaleria([<img src='iphone 17.avif'>, <img src='iphone 17-1.avif'>, <img src='iphone 17-2.avif'>, <img src='iphone 17-3.avif'>, <img src='iphone 17-4.avif'>, <img src='iphone 17-5.avif'>, <img src='iphone 17-6.avif'>], 0)">
-            
+                 onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 0)">
+            <img src='iphone 17.avif'>
+            <img src='iphone 17-1.avif'>
+            <img src='iphone 17-2.avif'>
+            <img src='iphone 17-3.avif'>
+            <img src='iphone 17-4.avif'>
+            <img src='iphone 17-5.avif'>
+            <img src='iphone 17-6.avif'>
         </div>
         <span class="hint-fotos"><span class="material-icons">swipe</span> DESLIZE OU CLIQUE NAS FOTOS</span>
         
