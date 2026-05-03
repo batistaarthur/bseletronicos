@@ -144,7 +144,7 @@
             text-decoration: none;
             border-radius: 10px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-top: 10px; /* Alterado para criar espaço em cima, já que agora fica embaixo */
             cursor: pointer;
             border: none;
             width: 100%;
@@ -171,6 +171,10 @@
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 5px; }
         .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        
+        /* Grid para deixar os campos menores na mesma linha (Opcional, deixa o layout mais bonito) */
+        .form-row { display: flex; gap: 10px; }
+        .form-row .form-group { flex: 1; }
     </style>
 </head>
 <body>
@@ -181,7 +185,6 @@
         <ul>
             <li><a href="#home">Início</a></li>
             <li><a href="#smartphones">Smartphones</a></li>
-           <!-- <li><a href="#seminovos">Seminovos</a></li> -->
             <li><a href="#acessorios">Acessórios</a></li>
         </ul>
     </nav>
@@ -206,7 +209,6 @@
     <div class="produto-card">
         <div class="badge">LANÇAMENTO</div>
         <div class="carrossel-slide" id="galeria-17pro"> 
-            <!-- Para o Swipe funcionar, todas as fotos ficam aqui -->
             <img src="iphone-17pro.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 0)">
             <img src="iphone-17pro1.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 1)">
             <img src="iphone-17pro2.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 2)">
@@ -215,16 +217,16 @@
             <img src="iphone-17pro5.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 5)">
         </div>
         <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
-        
-        <!-- NOVO BOTÃO AZUL -->
-        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 Pro 256GB')">Finalizar Compra (Preencher Dados)</button>
 
         <h3>iPhone 17 Pro 256GB</h3>
         <p class="descricao">Silver</p>
         <p class="preco-de">R$ 8.500,00</p>
         <div class="preco">R$ 7.899,00</div>
         <p class="parcelas">ou 12x de R$ 759,90</p>
+        
         <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 Pro 256GB" class="btn-comprar">Comprar Agora</a>
+        <!-- BOTÃO AZUL REPOSICIONADO -->
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 Pro 256GB')">Comprar agora</button>
     </div>
 
     <!-- PRODUTO  2 - IPHONE 17 -->
@@ -239,16 +241,16 @@
             <img src="iphone 17-6.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 6)">
         </div>
         <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
-        
-        <!-- NOVO BOTÃO AZUL -->
-        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 256GB')">Finalizar Compra (Preencher Dados)</button>
 
         <h3>iPhone 17 256GB</h3>
         <p class="descricao">Azul-névoa</p>
         <p class="preco-de">R$ 7.200,00</p>
         <div class="preco">R$ 6.399,00</div>
         <p class="parcelas">ou 12x de R$ 599,99</p>
+        
         <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 256GB" class="btn-comprar">Comprar Agora</a>
+        <!-- BOTÃO AZUL REPOSICIONADO -->
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 256GB')">Comprar agora</button>
     </div>
 
     <!-- PRODUTO 3 - IPHONE 16 256-->
@@ -265,16 +267,16 @@
             <img src="iphone16-8.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 8)">
         </div>
         <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
-        
-        <!-- NOVO BOTÃO AZUL -->
-        <button class="btn-dados" onclick="abrirCheckout('iPhone 16 256GB')">Finalizar Compra (Preencher Dados)</button>
 
         <h3>iPhone 16 256GB</h3>
         <p class="descricao">Ultramarino</p>
         <p class="preco-de">R$ 6.899,00</p>
         <div class="preco">R$ 5.799,00</div>
         <p class="parcelas">ou 12x de R$ 605,50</p>
+        
         <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 16" class="btn-comprar">Comprar Agora</a>
+        <!-- BOTÃO AZUL REPOSICIONADO -->
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 16 256GB')">Comprar agora</button>
     </div>
 
  <!-- PRODUTO 4 - GALAXY S25 -->
@@ -284,16 +286,16 @@
             <img src="Galaxy-S25Ultra-512.webp" onclick="abrirGaleria(['Galaxy-S25Ultra-512.webp'], 0)">
         </div>
         <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">zoom_in</span> CLIQUE PARA AMPLIAR</span>
-        
-        <!-- NOVO BOTÃO AZUL -->
-        <button class="btn-dados" onclick="abrirCheckout('Galaxy S25 Ultra 5G')">Finalizar Compra (Preencher Dados)</button>
 
         <h3>Galaxy S25 Ultra 5G</h3>
         <p class="descricao">512GB, 12GB RAM, S-Pen Inclusa</p>
         <p class="preco-de">R$ 7.200,00</p>
         <div class="preco">R$ 6.699,90</div>
         <p class="parcelas">ou 12x de R$ 719,90</p>
+        
         <a href="https://wa.me/5527992985369?text=Olá! Quero o S25 Ultra" class="btn-comprar">Comprar Agora</a>
+        <!-- BOTÃO AZUL REPOSICIONADO -->
+        <button class="btn-dados" onclick="abrirCheckout('Galaxy S25 Ultra 5G')">Comprar agora</button>
     </div>
 </div>
 
@@ -305,14 +307,14 @@
             <img src="capa-magsafe-iphone-17pro.webp" onclick="abrirGaleria(['capa-magsafe-iphone-17pro.webp'], 0)">
         </div>
         
-        <!-- NOVO BOTÃO AZUL -->
-        <button class="btn-dados" onclick="abrirCheckout('Capa MagSafe Premium')">Finalizar Compra (Preencher Dados)</button>
-
         <h3>Capa MagSafe Premium</h3>
         <p class="descricao">Proteção Máxima para iPhone</p>
         <div class="preco">R$ 105,90</div>
         <p class="parcelas">ou 3x de R$ 36,63</p>
+        
         <a href="https://wa.me/5527992985369?text=Olá! Quero a Capa MagSafe" class="btn-comprar">Comprar Agora</a>
+        <!-- BOTÃO AZUL REPOSICIONADO -->
+        <button class="btn-dados" onclick="abrirCheckout('Capa MagSafe Premium')">Comprar agora</button>
     </div>
 </div>
 
@@ -348,13 +350,31 @@
         <h2 id="titulo-checkout">Finalizar Pedido</h2>
         
         <div class="form-group">
-            <label>Endereço Completo</label>
-            <input type="text" id="end_entrega" placeholder="Rua, número, bairro, cidade">
+            <label>CPF</label>
+            <input type="text" id="cpf_cliente" placeholder="000.000.000-00" maxlength="14" oninput="mascaraCPF(this)">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>CEP</label>
+                <input type="text" id="cep_cliente" placeholder="00000-000" maxlength="9">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group" style="flex: 2;">
+                <label>Nome da Rua</label>
+                <input type="text" id="rua_cliente" placeholder="Ex: Av. Principal">
+            </div>
+            <div class="form-group" style="flex: 1;">
+                <label>Número</label>
+                <input type="text" id="num_cliente" placeholder="Ex: 123">
+            </div>
         </div>
 
         <div class="form-group">
-            <label>CPF</label>
-            <input type="text" id="cpf_cliente" placeholder="000.000.000-00">
+            <label>Complemento</label>
+            <input type="text" id="comp_cliente" placeholder="Ex: Apto 101, Casa 2, Fundos (Opcional)">
         </div>
 
         <div class="form-group">
@@ -392,13 +412,13 @@
         fotosAtuais = listaFotos;
         indiceAtual = indexClicado;
         document.getElementById("modalGaleria").style.display = "flex";
-        document.body.style.overflow = "hidden"; // Trava o scroll da página
+        document.body.style.overflow = "hidden"; 
         atualizarSlide();
     }
 
     function fecharGaleria() {
         document.getElementById("modalGaleria").style.display = "none";
-        document.body.style.overflow = "auto"; // Libera o scroll
+        document.body.style.overflow = "auto"; 
     }
 
     function mudarFoto(direcao) {
@@ -423,7 +443,6 @@
         }
     }
 
-    // Fechar ao clicar fora (Modal Galeria e Modal Checkout)
     window.onclick = function(e) {
         if (e.target == document.getElementById("modalGaleria")) fecharGaleria();
         if (e.target == document.getElementById("modalCheckout")) {
@@ -432,7 +451,7 @@
     }
 
     // ------------------------------------------------------------------
-    // LÓGICA DO NOVO BOTÃO DE COMPRAR (CHECKOUT)
+    // LÓGICA DO NOVO BOTÃO DE COMPRAR (CHECKOUT) E MÁSCARAS
     // ------------------------------------------------------------------
     let produtoSelecionado = "";
 
@@ -442,19 +461,30 @@
         document.getElementById('modalCheckout').style.display = 'block';
     }
 
+    // Função para aplicar máscara automática no CPF
+    function mascaraCPF(input) {
+        let v = input.value.replace(/\D/g, ""); // Remove tudo o que não é dígito
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");  // Coloca ponto após os 3 primeiros dígitos
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");  // Coloca ponto após os 3 próximos dígitos
+        v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Coloca hífen antes dos 2 últimos dígitos
+        input.value = v;
+    }
+
     function processarPedido() {
-        const endereco = document.getElementById('end_entrega').value;
         const cpf = document.getElementById('cpf_cliente').value;
+        const cep = document.getElementById('cep_cliente').value;
+        const rua = document.getElementById('rua_cliente').value;
+        const num = document.getElementById('num_cliente').value;
         const cartao = document.getElementById('num_cartao').value;
 
-        if(endereco === "" || cpf === "" || cartao === "") {
-            alert("Por favor, preencha todos os dados antes de prosseguir.");
+        // Validação simples (o complemento é o único não obrigatório)
+        if(cpf === "" || cep === "" || rua === "" || num === "" || cartao === "") {
+            alert("Por favor, preencha todos os dados obrigatórios antes de prosseguir.");
             return;
         }
 
         // ===========================================================================
         // INSERIR SEU LINK DE PAGAMENTO AQUI EMBAIXO
-        // Substitua a frase 'COLOQUE_SEU_LINK_AQUI' pelo link do Mercado Pago/InfinitePay
         // ===========================================================================
         const linkPagamento = "COLOQUE_SEU_LINK_AQUI"; 
         
