@@ -12,7 +12,44 @@
             --whatsapp-color: #25D366;
             --background-body: #f4f7f6;
             --text-main: #333;
-        }
+/* Botão Azul de Checkout */
+.btn-dados {
+    display: block;
+    background-color: #007bff; /* Azul */
+    color: white;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+}
+
+/* Modal do Formulário */
+.modal-checkout {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    overflow-y: auto;
+    padding: 20px 10px;
+}
+.form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 500px;
+    margin: auto;
+    text-align: left;
+}
+.form-container h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 5px; }
+.form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+}
 
         * { box-sizing: border-box; }
 
@@ -185,6 +222,13 @@
         <div class="preco">R$ 7.899,00</div>
         <p class="parcelas">ou 12x de R$ 759,90</p>
         <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 Pro 256GB" class="btn-comprar">Comprar Agora</a>
+        <!-- Exemplo dentro do card do iPhone 17 Pro -->
+            span class="hint-fotos">...</span>
+
+<!-- ADICIONE ESTE BOTÃO AQUI -->
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 Pro 256GB')">Finalizar Compra (Preencher Dados)</button>
+
+        <h3>iPhone 17 Pro 256GB</h3>
     </div>
 
     <!-- PRODUTO  2 - IPHONE 17 -->
