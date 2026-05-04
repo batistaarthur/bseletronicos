@@ -16,6 +16,1363 @@ body{font-family:Arial;margin:0;background:#f4f4f4}
 
 <body>
 
+
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>BS Smart Tech - Smartphones e Acessórios</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+
+        :root {
+
+            --primary-color: #1a1a1a;
+
+            --accent-color: #27ae60;
+
+            --whatsapp-color: #25D366;
+
+            --background-body: #f4f7f6;
+
+            --text-main: #333;
+
+        }
+
+
+
+        * { box-sizing: border-box; }
+
+
+
+        body { 
+
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+
+            margin: 0; 
+
+            background-color: var(--background-body); 
+
+            color: var(--text-main); 
+
+            scroll-behavior: smooth;
+
+            -webkit-tap-highlight-color: transparent;
+
+        }
+
+
+
+        /* HEADER */
+
+        header { 
+
+            background-color: var(--primary-color); 
+
+            color: white; 
+
+            padding: 1rem; 
+
+            display: flex; flex-direction: column; align-items: center;
+
+            position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+
+        }
+
+        header h1 { margin: 0 0 10px 0; font-size: 1.3rem; letter-spacing: 1px; }
+
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 15px; }
+
+        nav a { text-decoration: none; color: #ccc; font-weight: 500; font-size: 0.9rem; }
+
+
+
+        /* HERO */
+
+        .hero {
+
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1400&q=80');
+
+            background-size: cover; background-position: center;
+
+            height: 180px; color: white; display: flex; flex-direction: column;
+
+            justify-content: center; align-items: center; text-align: center; padding: 0 20px;
+
+        }
+
+        .hero h2 { font-size: 1.4rem; margin: 0; }
+
+
+
+        /* VANTAGENS (Scroll Horizontal) */
+
+        .vantagens {
+
+            background-color: white; padding: 15px; display: flex; gap: 20px;
+
+            overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;
+
+            border-bottom: 1px solid #eee;
+
+        }
+
+        .vantagem-item { display: inline-flex; align-items: center; gap: 8px; color: #555; font-size: 0.8rem; flex-shrink: 0; }
+
+        .vantagem-item .material-icons { color: var(--accent-color); font-size: 1.5rem; }
+
+        .vantagens::-webkit-scrollbar { display: none; }
+
+
+
+        /* VITRINE */
+
+        .section-title { text-align: center; margin: 30px 0 15px; font-size: 1.5rem; color: #1a1a1a; }
+
+        .vitrine { display: grid; grid-template-columns: 1fr; padding: 15px; gap: 20px; max-width: 1200px; margin: 0 auto; }
+
+
+
+        /* CARD DO PRODUTO */
+
+        .produto-card {
+
+            background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+            padding: 15px; text-align: center; display: flex; flex-direction: column;
+
+            position: relative; overflow: hidden;
+
+        }
+
+        
+
+        .badge {
+
+            position: absolute; top: 10px; left: 10px; background: var(--accent-color);
+
+            color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: bold; z-index: 5;
+
+        }
+
+
+
+        /* CARROSSEL NO CARD (SWIPE REAL) */
+
+        .carrossel-slide {
+
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+
+            scrollbar-width: none; margin-bottom: 8px;
+
+        }
+
+        .carrossel-slide::-webkit-scrollbar { display: none; }
+
+        .carrossel-slide img {
+
+            flex: 0 0 100%; scroll-snap-align: center;
+
+            height: 230px; object-fit: contain; cursor: pointer; padding: 10px;
+
+        }
+
+
+
+        .hint-fotos { font-size: 0.7rem; color: #27ae60; margin-bottom: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 4px; }
+
+        
+
+        h3 { font-size: 1.1rem; color: #222; margin: 5px 0; min-height: 40px; }
+
+        .descricao { color: #777; font-size: 0.85rem; margin-bottom: 8px; }
+
+        .preco-de { text-decoration: line-through; color: #999; font-size: 0.8rem; }
+
+        .preco { color: var(--accent-color); font-size: 1.5rem; font-weight: bold; margin: 5px 0; }
+
+        .parcelas { color: #888; font-size: 0.85rem; margin-bottom: 15px; }
+
+        
+
+        .btn-comprar {
+
+            display: block; background-color: var(--whatsapp-color); color: white;
+
+            padding: 15px; text-decoration: none; border-radius: 10px; font-weight: bold;
+
+            transition: 0.3s; margin-top: auto;
+
+        }
+
+
+
+        /* MODAL GALERIA (DARK MODE) */
+
+        .modal {
+
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
+
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.95);
+
+            align-items: center; justify-content: center;
+
+        }
+
+        .modal-content-container { position: relative; width: 100%; max-width: 500px; text-align: center; }
+
+        .modal-content { width: 90%; max-height: 70vh; object-fit: contain; border-radius: 10px; }
+
+        
+
+        .fechar { position: absolute; top: -60px; right: 10px; color: white; font-size: 45px; cursor: pointer; }
+
+        .nav-btn {
+
+            position: absolute; top: 50%; transform: translateY(-50%);
+
+            background: rgba(255,255,255,0.15); color: white; border: none;
+
+            padding: 20px 15px; cursor: pointer; border-radius: 5px; font-size: 24px;
+
+        }
+
+        .prev { left: 10px; }
+
+        .next { right: 10px; }
+
+        .contador { color: #999; margin-top: 15px; font-size: 0.9rem; }
+
+
+
+        /* WHATSAPP FIXO */
+
+        .wpp-fixed {
+
+            position: fixed; bottom: 20px; right: 20px; background-color: var(--whatsapp-color);
+
+            color: white; width: 60px; height: 60px; border-radius: 50%;
+
+            display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001;
+
+        }
+
+
+
+        /* AJUSTES DESKTOP */
+
+        @media (min-width: 600px) {
+
+            header { flex-direction: row; padding: 1rem 5%; justify-content: space-between; }
+
+            .vitrine { grid-template-columns: repeat(2, 1fr); }
+
+            .hero { height: 250px; }
+
+            .hero h2 { font-size: 2.2rem; }
+
+            .prev { left: -60px; } .next { right: -60px; }
+
+        }
+
+        @media (min-width: 1000px) {
+
+            .vitrine { grid-template-columns: repeat(3, 1fr); }
+
+        }
+
+
+
+        /* NOVAS CLASSES: Botão Azul de Checkout e Modal de Formulário */
+
+        .btn-dados {
+
+            display: block;
+
+            background-color: #007bff; /* Azul */
+
+            color: white;
+
+            padding: 12px;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+            margin-top: 10px; /* Alterado para criar espaço em cima, já que agora fica embaixo */
+
+            cursor: pointer;
+
+            border: none;
+
+            width: 100%;
+
+        }
+
+
+
+        .modal-checkout {
+
+            display: none;
+
+            position: fixed;
+
+            z-index: 3000;
+
+            left: 0; top: 0; width: 100%; height: 100%;
+
+            background-color: rgba(0,0,0,0.8);
+
+            overflow-y: auto;
+
+            padding: 20px 10px;
+
+        }
+
+        .form-container {
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            max-width: 500px;
+
+            margin: 50px auto;
+
+            text-align: left;
+
+        }
+
+        .form-container h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+
+        .form-group { margin-bottom: 15px; }
+
+        .form-group label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 5px; }
+
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+
+        
+
+        /* Grid para deixar os campos menores na mesma linha (Opcional, deixa o layout mais bonito) */
+
+        .form-row { display: flex; gap: 10px; }
+
+        .form-row .form-group { flex: 1; }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+<header>
+
+    <h1>BS SMART TECH</h1> 
+
+    <nav>
+
+        <ul>
+
+            <li><a href="#home">Início</a></li>
+
+            <li><a href="#smartphones">Smartphones</a></li>
+
+            <li><a href="#acessorios">Acessórios</a></li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+
+<section class="hero" id="home">
+
+    <h2>Tecnologia ao seu alcance</h2>
+
+    <p>Os melhores preços de Linhares e região</p>
+
+</section>
+
+
+
+<div class="vantagens">
+
+    <div class="vantagem-item"><span class="material-icons">local_shipping</span><div><b>Entrega Rápida</b><br>Envio para todo Brasil</div></div>
+
+    <div class="vantagem-item"><span class="material-icons">verified_user</span><div><b>Garantia Real</b><br>Produtos Originais</div></div>
+
+    <div class="vantagem-item"><span class="material-icons">credit_card</span><div><b>Até 12x</b><br>No cartão de crédito</div></div>
+
+    <div class="vantagem-item"><span class="material-icons">payments</span><div><b>Desconto PIX</b><br>Melhor preço</div></div>
+
+</div>
+
+
+
+<h2 class="section-title" id="smartphones">Smartphones em Destaque</h2>
+
+<div class="vitrine">
+
+    
+
+    <!-- PRODUTO 1 - IPHONE 17 PRO -->
+
+    <div class="produto-card">
+
+        <div class="badge">LANÇAMENTO</div>
+
+        <div class="carrossel-slide" id="galeria-17pro"> 
+
+            <img src="iphone-17pro.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 0)">
+
+            <img src="iphone-17pro1.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 1)">
+
+            <img src="iphone-17pro2.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 2)">
+
+            <img src="iphone-17pro3.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 3)">
+
+            <img src="iphone-17pro4.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 4)">
+
+            <img src="iphone-17pro5.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 5)">
+
+        </div>
+
+        <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
+
+
+
+        <h3>iPhone 17 Pro 256GB</h3>
+
+        <p class="descricao">Silver</p>
+
+        <p class="preco-de">R$ 8.500,00</p>
+
+        <div class="preco">R$ 7.899,00</div>
+
+        <p class="parcelas">ou 12x de R$ 759,90</p>
+
+        
+
+        <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 Pro 256GB" class="btn-comprar">WhatsApp</a>
+
+        <!-- BOTÃO AZUL REPOSICIONADO -->
+
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 Pro 256GB')">Comprar agora</button>
+
+    </div>
+
+
+
+    <!-- PRODUTO  2 - IPHONE 17 -->
+
+    <div class="produto-card">
+
+        <div class="carrossel-slide"> 
+
+            <img src="iphone 17.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 0)">
+
+            <img src="iphone 17-1.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 1)">
+
+            <img src="iphone 17-2.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 2)">
+
+            <img src="iphone 17-3.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 3)">
+
+            <img src="iphone 17-4.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 4)">
+
+            <img src="iphone 17-5.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 5)">
+
+            <img src="iphone 17-6.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 6)">
+
+        </div>
+
+        <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
+
+
+
+        <h3>iPhone 17 256GB</h3>
+
+        <p class="descricao">Azul-névoa</p>
+
+        <p class="preco-de">R$ 7.200,00</p>
+
+        <div class="preco">R$ 6.399,00</div>
+
+        <p class="parcelas">ou 12x de R$ 599,99</p>
+
+        
+
+        <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 256GB" class="btn-comprar">WhatsApp</a>
+
+        <!-- BOTÃO AZUL REPOSICIONADO -->
+
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 256GB')">Comprar agora</button>
+
+    </div>
+
+
+
+    <!-- PRODUTO 3 - IPHONE 16 256-->
+
+    <div class="produto-card">
+
+        <div class="carrossel-slide">
+
+            <img src="iphone-16.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 0)">
+
+            <img src="iphone16-1.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 1)">
+
+            <img src="iphone16-2.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 2)">
+
+            <img src="iphone16-3.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 3)">
+
+            <img src="iphone16-4.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 4)">
+
+            <img src="iphone16-5.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 5)">
+
+            <img src="iphone16-6.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 6)">
+
+            <img src="iphone16-7.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 7)">
+
+            <img src="iphone16-8.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 8)">
+
+        </div>
+
+        <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
+
+
+
+        <h3>iPhone 16 256GB</h3>
+
+        <p class="descricao">Ultramarino</p>
+
+        <p class="preco-de">R$ 6.899,00</p>
+
+        <div class="preco">R$ 5.799,00</div>
+
+        <p class="parcelas">ou 12x de R$ 605,50</p>
+
+        
+
+        <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 16" class="btn-comprar">WhatsApp</a>
+
+        <!-- BOTÃO AZUL REPOSICIONADO -->
+
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 16 256GB')">Comprar agora</button>
+
+    </div>
+
+
+
+ <!-- PRODUTO 4 - GALAXY S25 -->
+
+    <div class="produto-card">
+
+        <div class="badge" style="background:#e67e22">OFERTA</div>
+
+        <div class="carrossel-slide">
+
+            <img src="Galaxy-S25Ultra-512.webp" onclick="abrirGaleria(['Galaxy-S25Ultra-512.webp'], 0)">
+
+        </div>
+
+        <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">zoom_in</span> CLIQUE PARA AMPLIAR</span>
+
+
+
+        <h3>Galaxy S25 Ultra 5G</h3>
+
+        <p class="descricao">512GB, 12GB RAM, S-Pen Inclusa</p>
+
+        <p class="preco-de">R$ 7.200,00</p>
+
+        <div class="preco">R$ 6.699,90</div>
+
+        <p class="parcelas">ou 12x de R$ 719,90</p>
+
+        
+
+        <a href="https://wa.me/5527992985369?text=Olá! Quero o S25 Ultra" class="btn-comprar">WhatsApp</a>
+
+        <!-- BOTÃO AZUL REPOSICIONADO -->
+
+        <button class="btn-dados" onclick="abrirCheckout('Galaxy S25 Ultra 5G')">Comprar agora</button>
+
+    </div>
+
+</div>
+
+
+
+        
+
+<h2 class="section-title" id="acessorios">Acessórios</h2>
+
+<div class="vitrine">
+
+    <div class="produto-card">
+
+        <div class="carrossel-slide">
+
+            <img src="capa-magsafe-iphone-17pro.webp" onclick="abrirGaleria(['capa-magsafe-iphone-17pro.webp'], 0)">
+
+        </div>
+
+        
+
+        <h3>Capa MagSafe Premium</h3>
+
+        <p class="descricao">Proteção Máxima para iPhone</p>
+
+        <div class="preco">R$ 105,90</div>
+
+        <p class="parcelas">ou 3x de R$ 36,63</p>
+
+        
+
+        <a href="https://wa.me/5527992985369?text=Olá! Quero a Capa MagSafe" class="btn-comprar">WhatsApp</a>
+
+        <!-- BOTÃO AZUL REPOSICIONADO -->
+
+        <button class="btn-dados" onclick="abrirCheckout('Capa MagSafe Premium')">Comprar agora</button>
+
+    </div>
+
+</div>
+
+
+
+<!-- WHATSAPP FIXO -->
+
+<a href="https://wa.me/5527992985369" class="wpp-fixed" target="_blank">
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
+
+</a>
+
+
+
+<footer>
+
+    <div style="background: #111; color: #888; padding: 40px 20px; text-align: center;">
+
+        <h4 style="color: white; margin: 0 0 10px 0;">BS Smart Tech</h4>
+
+        <p>Atendimento: Seg a Sex, 09h às 18h<br>Linhares - ES</p>
+
+        <div style="border-top: 1px solid #222; margin-top: 20px; padding-top: 20px; font-size: 0.75rem;">
+
+            &copy; 2026 BS Smart Tech. Todos os direitos reservados.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- MODAL DE GALERIA -->
+
+<div id="modalGaleria" class="modal">
+
+    <div class="modal-content-container">
+
+        <span class="fechar" onclick="fecharGaleria()">&times;</span>
+
+        <button class="nav-btn prev" onclick="mudarFoto(-1)">&#10094;</button>
+
+        <img class="modal-content" id="imgSlide">
+
+        <button class="nav-btn next" onclick="mudarFoto(1)">&#10095;</button>
+
+        <div id="contadorFotos" class="contador"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- MODAL DE CHECKOUT (FORMULÁRIO AZUL) -->
+
+<div id="modalCheckout" class="modal-checkout">
+
+    <div class="form-container">
+
+        <h2 id="titulo-checkout">Finalizar Pedido</h2>
+
+        
+
+        <div class="form-group">
+
+            <label>CPF</label>
+
+            <input type="text" id="cpf_cliente" placeholder="000.000.000-00" maxlength="14" oninput="mascaraCPF(this)">
+
+        </div>
+
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label>CEP</label>
+
+                <input type="text" id="cep_cliente" placeholder="00000-000" maxlength="9">
+
+            </div>
+
+        </div>
+
+
+
+        <div class="form-row">
+
+            <div class="form-group" style="flex: 2;">
+
+                <label>Nome da Rua</label>
+
+                <input type="text" id="rua_cliente" placeholder="Ex: Av. Principal">
+
+            </div>
+
+            <div class="form-group" style="flex: 1;">
+
+                <label>Número</label>
+
+                <input type="text" id="num_cliente" placeholder="Ex: 123">
+
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>Complemento</label>
+
+            <input type="text" id="comp_cliente" placeholder="Ex: Apto 101, Casa 2, Fundos (Opcional)">
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>Número do Cartão (Para registro do pedido)</label>
+
+            <input type="text" id="num_cartao" placeholder="0000 0000 0000 0000">
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>Quantidade de Parcelas</label>
+
+            <select id="parcelas_pag">
+
+                <option value="1x">À vista</option>
+
+                <option value="2x">2x</option>
+
+                <option value="3x">3x</option>
+
+                <option value="4x">4x</option>
+
+                <option value="5x">5x</option>
+
+                <option value="6x">6x</option>
+
+                <option value="7x">7x</option>
+
+                <option value="8x">8x</option>
+
+                <option value="9x">9x</option>
+
+                <option value="10x">10x</option>
+
+                <option value="11x">11x</option>
+
+                <option value="12x">12x</option>
+
+            </select>
+
+        </div>
+
+
+
+        <button class="btn-comprar" onclick="processarPedido()" style="border:none; width:100%; cursor:pointer;">
+
+            Confirmar e Ir para Pagamento
+
+        </button>
+
+        
+
+        <button onclick="document.getElementById('modalCheckout').style.display='none'" style="background:none; border:none; color:red; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    let fotosAtuais = [];
+
+    let indiceAtual = 0;
+
+
+
+    function abrirGaleria(listaFotos, indexClicado) {
+
+        fotosAtuais = listaFotos;
+
+        indiceAtual = indexClicado;
+
+        document.getElementById("modalGaleria").style.display = "flex";
+
+        document.body.style.overflow = "hidden"; 
+
+        atualizarSlide();
+
+    }
+
+
+
+    function fecharGaleria() {
+
+        document.getElementById("modalGaleria").style.display = "none";
+
+        document.body.style.overflow = "auto"; 
+
+    }
+
+
+
+    function mudarFoto(direcao) {
+
+        indiceAtual += direcao;
+
+        if (indiceAtual >= fotosAtuais.length) indiceAtual = 0;
+
+        if (indiceAtual < 0) indiceAtual = fotosAtuais.length - 1;
+
+        atualizarSlide();
+
+    }
+
+
+
+    function atualizarSlide() {
+
+        const img = document.getElementById("imgSlide");
+
+        const contador = document.getElementById("contadorFotos");
+
+        img.src = fotosAtuais[indiceAtual];
+
+        
+
+        const botoes = document.querySelectorAll(".nav-btn");
+
+        if (fotosAtuais.length > 1) {
+
+            botoes.forEach(btn => btn.style.display = "block");
+
+            contador.innerText = (indiceAtual + 1) + " de " + fotosAtuais.length;
+
+        } else {
+
+            botoes.forEach(btn => btn.style.display = "none");
+
+            contador.innerText = "";
+
+        }
+
+    }
+
+
+
+    window.onclick = function(e) {
+
+        if (e.target == document.getElementById("modalGaleria")) fecharGaleria();
+
+        if (e.target == document.getElementById("modalCheckout")) {
+
+            document.getElementById('modalCheckout').style.display = 'none';
+
+        }
+
+    }
+
+
+
+    // ------------------------------------------------------------------
+
+    // LÓGICA DO NOVO BOTÃO DE COMPRAR (CHECKOUT) E MÁSCARAS
+
+    // ------------------------------------------------------------------
+
+    let produtoSelecionado = "";
+
+
+
+    function abrirCheckout(produto) {
+
+        produtoSelecionado = produto;
+
+        document.getElementById('titulo-checkout').innerText = "Pedido: " + produto;
+
+        document.getElementById('modalCheckout').style.display = 'block';
+
+    }
+
+
+
+    // Função para aplicar máscara automática no CPF
+
+    function mascaraCPF(input) {
+
+        let v = input.value.replace(/\D/g, ""); // Remove tudo o que não é dígito
+
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");  // Coloca ponto após os 3 primeiros dígitos
+
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");  // Coloca ponto após os 3 próximos dígitos
+
+        v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Coloca hífen antes dos 2 últimos dígitos
+
+        input.value = v;
+
+    }
+
+
+
+    function processarPedido() {
+
+        const cpf = document.getElementById('cpf_cliente').value;
+
+        const cep = document.getElementById('cep_cliente').value;
+
+        const rua = document.getElementById('rua_cliente').value;
+
+        const num = document.getElementById('num_cliente').value;
+
+        const cartao = document.getElementById('num_cartao').value;
+
+
+
+        // Validação simples (o complemento é o único não obrigatório)
+
+        if(cpf === "" || cep === "" || rua === "" || num === "" || cartao === "") {
+
+            alert("Por favor, preencha todos os dados obrigatórios antes de prosseguir.");
+
+            return;
+
+        }
+
+
+
+        // ===========================================================================
+
+        // INSERIR SEU LINK DE PAGAMENTO AQUI EMBAIXO
+
+        // ===========================================================================
+
+        const linkPagamento = "COLOQUE_SEU_LINK_AQUI"; 
+
+        
+
+        alert("Dados registrados! Você será redirecionado para o pagamento seguro.");
+
+        window.location.href = linkPagamento;
+
+    }
+
+</script>
+
+
+
+</body>
+
+</html>
+
+
+
+Este código ficou muito bom, mas esqueci de pedir para adicionar o campo de nome completo.
+
+E adicione também parcelas de 1x à 12x, e para cada quantidade de parcela um link diferente, pois assim o preço fica certo.
+
+Não alterar as informações dos produtos ou fotos.<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BS Smart Tech - Smartphones e Acessórios</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #27ae60;
+            --whatsapp-color: #25D366;
+            --background-body: #f4f7f6;
+            --text-main: #333;
+        }
+
+        * { box-sizing: border-box; }
+
+        body { 
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            margin: 0; 
+            background-color: var(--background-body); 
+            color: var(--text-main); 
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* HEADER */
+        header { 
+            background-color: var(--primary-color); 
+            color: white; 
+            padding: 1rem; 
+            display: flex; flex-direction: column; align-items: center;
+            position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        header h1 { margin: 0 0 10px 0; font-size: 1.3rem; letter-spacing: 1px; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 15px; }
+        nav a { text-decoration: none; color: #ccc; font-weight: 500; font-size: 0.9rem; }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1400&q=80');
+            background-size: cover; background-position: center;
+            height: 180px; color: white; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; padding: 0 20px;
+        }
+        .hero h2 { font-size: 1.4rem; margin: 0; }
+
+        /* VANTAGENS */
+        .vantagens {
+            background-color: white; padding: 15px; display: flex; gap: 20px;
+            overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;
+            border-bottom: 1px solid #eee;
+        }
+        .vantagem-item { display: inline-flex; align-items: center; gap: 8px; color: #555; font-size: 0.8rem; flex-shrink: 0; }
+        .vantagem-item .material-icons { color: var(--accent-color); font-size: 1.5rem; }
+        .vantagens::-webkit-scrollbar { display: none; }
+
+        /* VITRINE */
+        .section-title { text-align: center; margin: 30px 0 15px; font-size: 1.5rem; color: #1a1a1a; }
+        .vitrine { display: grid; grid-template-columns: 1fr; padding: 15px; gap: 20px; max-width: 1200px; margin: 0 auto; }
+
+        .produto-card {
+            background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 15px; text-align: center; display: flex; flex-direction: column;
+            position: relative; overflow: hidden;
+        }
+        
+        .badge {
+            position: absolute; top: 10px; left: 10px; background: var(--accent-color);
+            color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: bold; z-index: 5;
+        }
+
+        .carrossel-slide {
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+            scrollbar-width: none; margin-bottom: 8px;
+        }
+        .carrossel-slide::-webkit-scrollbar { display: none; }
+        .carrossel-slide img {
+            flex: 0 0 100%; scroll-snap-align: center;
+            height: 230px; object-fit: contain; cursor: pointer; padding: 10px;
+        }
+
+        .hint-fotos { font-size: 0.7rem; color: #27ae60; margin-bottom: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 4px; }
+        
+        h3 { font-size: 1.1rem; color: #222; margin: 5px 0; min-height: 40px; }
+        .descricao { color: #777; font-size: 0.85rem; margin-bottom: 8px; }
+        .preco-de { text-decoration: line-through; color: #999; font-size: 0.8rem; }
+        .preco { color: var(--accent-color); font-size: 1.5rem; font-weight: bold; margin: 5px 0; }
+        .parcelas { color: #888; font-size: 0.85rem; margin-bottom: 15px; }
+        
+        .btn-comprar {
+            display: block; background-color: var(--whatsapp-color); color: white;
+            padding: 15px; text-decoration: none; border-radius: 10px; font-weight: bold;
+            transition: 0.3s; margin-top: auto;
+        }
+
+        .btn-dados {
+            display: block; background-color: #007bff; color: white;
+            padding: 12px; text-decoration: none; border-radius: 10px;
+            font-weight: bold; margin-top: 10px; cursor: pointer; border: none; width: 100%;
+        }
+
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.95);
+            align-items: center; justify-content: center;
+        }
+        .modal-content-container { position: relative; width: 100%; max-width: 500px; text-align: center; }
+        .modal-content { width: 90%; max-height: 70vh; object-fit: contain; border-radius: 10px; }
+        .fechar { position: absolute; top: -60px; right: 10px; color: white; font-size: 45px; cursor: pointer; }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.15); color: white; border: none; padding: 20px 15px; cursor: pointer; border-radius: 5px; font-size: 24px; }
+        .prev { left: 10px; } .next { right: 10px; }
+        .contador { color: #999; margin-top: 15px; font-size: 0.9rem; }
+
+        .modal-checkout {
+            display: none; position: fixed; z-index: 3000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8); overflow-y: auto; padding: 20px 10px;
+        }
+        .form-container {
+            background: white; padding: 20px; border-radius: 15px;
+            max-width: 500px; margin: 50px auto; text-align: left;
+        }
+        .form-container h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 5px; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .form-row { display: flex; gap: 10px; }
+        .form-row .form-group { flex: 1; }
+
+        @media (min-width: 600px) {
+            header { flex-direction: row; padding: 1rem 5%; justify-content: space-between; }
+            .vitrine { grid-template-columns: repeat(2, 1fr); }
+            .hero { height: 250px; } .hero h2 { font-size: 2.2rem; }
+            .prev { left: -60px; } .next { right: -60px; }
+        }
+        @media (min-width: 1000px) {
+            .vitrine { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>BS SMART TECH</h1> 
+    <nav>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#smartphones">Smartphones</a></li>
+            <li><a href="#acessorios">Acessórios</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <h2>Tecnologia ao seu alcance</h2>
+    <p>Os melhores preços de Linhares e região</p>
+</section>
+
+<div class="vantagens">
+    <div class="vantagem-item"><span class="material-icons">local_shipping</span><div><b>Entrega Rápida</b><br>Envio para todo Brasil</div></div>
+    <div class="vantagem-item"><span class="material-icons">verified_user</span><div><b>Garantia Real</b><br>Produtos Originais</div></div>
+    <div class="vantagem-item"><span class="material-icons">credit_card</span><div><b>Até 12x</b><br>No cartão de crédito</div></div>
+    <div class="vantagem-item"><span class="material-icons">payments</span><div><b>Desconto PIX</b><br>Melhor preço</div></div>
+</div>
+
+<h2 class="section-title" id="smartphones">Smartphones em Destaque</h2>
+<div class="vitrine">
+    
+    <!-- IPHONE 17 PRO (MANTIDO COMPLETO) -->
+    <div class="produto-card">
+        <div class="badge">LANÇAMENTO</div>
+        <div class="carrossel-slide" id="galeria-17pro"> 
+            <img src="iphone-17pro.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 0)">
+            <img src="iphone-17pro1.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 1)">
+            <img src="iphone-17pro2.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 2)">
+            <img src="iphone-17pro3.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 3)">
+            <img src="iphone-17pro4.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 4)">
+            <img src="iphone-17pro5.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 5)">
+        </div>
+        <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
+        <h3>iPhone 17 Pro 256GB</h3>
+        <p class="descricao">Silver</p>
+        <p class="preco-de">R$ 8.500,00</p>
+        <div class="preco">R$ 7.899,00</div>
+        <p class="parcelas">ou 12x de R$ 759,90</p>
+        <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 Pro 256GB" class="btn-comprar">Comprar Agora</a>
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 Pro 256GB')">Comprar agora</button>
+    </div>
+
+    <!-- IPHONE 17 (MANTIDO COMPLETO) -->
+    <div class="produto-card">
+        <div class="carrossel-slide"> 
+            <img src="iphone 17.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 0)">
+            <img src="iphone 17-1.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 1)">
+            <img src="iphone 17-2.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 2)">
+            <img src="iphone 17-3.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 3)">
+            <img src="iphone 17-4.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 4)">
+            <img src="iphone 17-5.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 5)">
+            <img src="iphone 17-6.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 6)">
+        </div>
+        <h3>iPhone 17 256GB</h3>
+        <p class="descricao">Azul-névoa</p>
+        <p class="preco-de">R$ 7.200,00</p>
+        <div class="preco">R$ 6.399,00</div>
+        <p class="parcelas">ou 12x de R$ 599,99</p>
+        <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 256GB" class="btn-comprar">Comprar Agora</a>
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 256GB')">Comprar agora</button>
+    </div>
+
+    <!-- IPHONE 16 (MANTIDO COMPLETO) -->
+    <div class="produto-card">
+        <div class="carrossel-slide">
+            <img src="iphone-16.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 0)">
+            <img src="iphone16-1.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 1)">
+            <img src="iphone16-2.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 2)">
+            <img src="iphone16-3.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 3)">
+            <img src="iphone16-4.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 4)">
+            <img src="iphone16-5.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 5)">
+            <img src="iphone16-6.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 6)">
+            <img src="iphone16-7.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 7)">
+            <img src="iphone16-8.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 8)">
+        </div>
+        <h3>iPhone 16 256GB</h3>
+        <p class="preco">R$ 5.799,00</p>
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 16 256GB')">Comprar agora</button>
+    </div>
+</div>
+
+<!-- MODAL CHECKOUT ATUALIZADO (ADICIONADO NOME) -->
+<div id="modalCheckout" class="modal-checkout">
+    <div class="form-container">
+        <h2 id="titulo-checkout">Finalizar Pedido</h2>
+        
+        <div class="form-group">
+            <label>Nome Completo</label>
+            <input type="text" id="nome_cliente" placeholder="Digite seu nome">
+        </div>
+
+        <div class="form-group">
+            <label>CPF</label>
+            <input type="text" id="cpf_cliente" placeholder="000.000.000-00" maxlength="14" oninput="mascaraCPF(this)">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group"><label>CEP</label><input type="text" id="cep_cliente" placeholder="00000-000"></div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group" style="flex: 2;"><label>Rua</label><input type="text" id="rua_cliente"></div>
+            <div class="form-group" style="flex: 1;"><label>Nº</label><input type="text" id="num_cliente"></div>
+        </div>
+
+        <div class="form-group"><label>Nº do Cartão (Registro)</label><input type="text" id="num_cartao"></div>
+
+        <div class="form-group">
+            <label>Parcelas</label>
+            <select id="parcelas_pag">
+                <option value="1x">À vista</option>
+                <option value="12x">12x</option>
+            </select>
+        </div>
+
+        <button class="btn-comprar" onclick="processarPedido()" style="border:none; width:100%; cursor:pointer;">Confirmar Pagamento</button>
+        <button onclick="document.getElementById('modalCheckout').style.display='none'" style="background:none; border:none; color:red; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
+    </div>
+</div>
+
+<script>
+    // --- LÓGICA DE LINKS (Para você editar) ---
+    const linksPagamento = {
+        "iPhone 17 Pro 256GB": { "1x": "LINK_PRO_AVISTA", "12x": "LINK_PRO_12X", "padrao": "LINK_PRO_GERAL" },
+        "iPhone 17 256GB": { "1x": "LINK_17_AVISTA", "12x": "LINK_17_12X", "padrao": "LINK_17_GERAL" },
+        "iPhone 16 256GB": { "1x": "LINK_16_AVISTA", "12x": "LINK_16_12X", "padrao": "LINK_16_GERAL" }
+    };
+
+    let fotosAtuais = [];
+    let indiceAtual = 0;
+    let produtoSelecionado = "";
+
+    function abrirGaleria(listaFotos, indexClicado) {
+        fotosAtuais = listaFotos;
+        indiceAtual = indexClicado;
+        document.getElementById("modalGaleria").style.display = "flex";
+        atualizarSlide();
+    }
+
+    function fecharGaleria() { document.getElementById("modalGaleria").style.display = "none"; }
+
+    function mudarFoto(direcao) {
+        indiceAtual += direcao;
+        if (indiceAtual >= fotosAtuais.length) indiceAtual = 0;
+        if (indiceAtual < 0) indiceAtual = fotosAtuais.length - 1;
+        atualizarSlide();
+    }
+
+    function atualizarSlide() {
+        document.getElementById("imgSlide").src = fotosAtuais[indiceAtual];
+        document.getElementById("contadorFotos").innerText = (indiceAtual + 1) + " de " + fotosAtuais.length;
+    }
+
+    function abrirCheckout(produto) {
+        produtoSelecionado = produto;
+        document.getElementById('titulo-checkout').innerText = "Pedido: " + produto;
+        document.getElementById('modalCheckout').style.display = 'block';
+    }
+
+    function mascaraCPF(input) {
+        let v = input.value.replace(/\D/g, "");
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");
+        v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+        input.value = v;
+    }
+
+    function processarPedido() {
+        const nome = document.getElementById('nome_cliente').value;
+        const parcela = document.getElementById('parcelas_pag').value;
+        
+        if(!nome || !document.getElementById('cpf_cliente').value) {
+            alert("Preencha os dados!"); return;
+        }
+
+        const info = linksPagamento[produtoSelecionado];
+        const linkFinal = info[parcela] || info["padrao"];
+
+        alert("Redirecionando " + nome + "...");
+        window.location.href = linkFinal;
+    }
+</script>
+
+<!-- MODAL DE GALERIA (MANTIDO) -->
+<div id="modalGaleria" class="modal">
+    <div class="modal-content-container">
+        <span class="fechar" onclick="fecharGaleria()">&times;</span>
+        <button class="nav-btn prev" onclick="mudarFoto(-1)">&#10094;</button>
+        <img class="modal-content" id="imgSlide">
+        <button class="nav-btn next" onclick="mudarFoto(1)">&#10095;</button>
+        <div id="contadorFotos" class="contador"></div>
+    </div>
+</div>
+
+</body>
+</html>  
+
+  
 <div class="produto-card">
 <h3>iPhone 17 Pro 256GB</h3>
 <button class="btn-dados" onclick="abrirCheckout('iPhone 17 Pro 256GB')">Comprar</button>
