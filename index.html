@@ -384,7 +384,7 @@
 
 <section class="hero" id="home">
 
-    <h2>Tecnologia ao seu alcance</h2>
+    <h2>Tecnologia e Qualidade ao seu alcance</h2>
 
     <p>Os melhores preços de Linhares e região</p>
 
@@ -416,7 +416,7 @@
 
     <div class="produto-card">
 
-        <div class="badge">LANÇAMENTO</div>
+     <!--   <div class="badge">LANÇAMENTO</div> -->
 
         <div class="carrossel-slide" id="galeria-17pro"> 
 
@@ -496,8 +496,8 @@
 
         <p class="parcelas">ou 12x de R$ 599,99</p>
 
-        
 
+        
         <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 256GB" class="btn-comprar">WhatsApp</a>
 
         <!-- BOTÃO AZUL REPOSICIONADO -->
@@ -770,34 +770,23 @@
 
             <label>Quantidade de Parcelas</label>
 
-            <select id="parcelas_pag">
+            
+<select id="parcelas_pag">
+    <option value="1x">À vista (1x)</option>
+    <option value="2x">2x</option>
+    <option value="3x">3x</option>
+    <option value="4x">4x</option>
+    <option value="5x">5x</option>
+    <option value="6x">6x</option>
+    <option value="7x">7x</option>
+    <option value="8x">8x</option>
+    <option value="9x">9x</option>
+    <option value="10x">10x</option>
+    <option value="11x">11x</option>
+    <option value="12x">12x</option>
+</select>
 
-                <option value="1x">À vista</option>
-
-                <option value="2x">2x</option>
-
-                <option value="3x">3x</option>
-
-                <option value="4x">4x</option>
-
-                <option value="5x">5x</option>
-
-                <option value="6x">6x</option>
-
-                <option value="7x">7x</option>
-
-                <option value="8x">8x</option>
-
-                <option value="9x">9x</option>
-
-                <option value="10x">10x</option>
-
-                <option value="11x">11x</option>
-
-                <option value="12x">12x</option>
-
-            </select>
-
+            
         </div>
 
 
@@ -1277,12 +1266,54 @@ Não alterar as informações dos produtos ou fotos.<!DOCTYPE html>
 
 <script>
     // --- LÓGICA DE LINKS (Para você editar) ---
-    const linksPagamento = {
-        "iPhone 17 Pro 256GB": { "1x": "LINK_PRO_AVISTA", "12x": "LINK_PRO_12X", "padrao": "LINK_PRO_GERAL" },
-        "iPhone 17 256GB": { "1x": "LINK_17_AVISTA", "12x": "LINK_17_12X", "padrao": "LINK_17_GERAL" },
-        "iPhone 16 256GB": { "1x": "LINK_16_AVISTA", "12x": "LINK_16_12X", "padrao": "LINK_16_GERAL" }
-    };
+    
+const linksPagamento = {
+    "iPhone 17 Pro 256GB": {
+        "1x": "LINK_PRO_1X",
+        "2x": "LINK_PRO_2X",
+        "3x": "LINK_PRO_3X",
+        "4x": "LINK_PRO_4X",
+        "5x": "LINK_PRO_5X",
+        "6x": "LINK_PRO_6X",
+        "7x": "LINK_PRO_7X",
+        "8x": "LINK_PRO_8X",
+        "9x": "LINK_PRO_9X",
+        "10x": "LINK_PRO_10X",
+        "11x": "LINK_PRO_11X",
+        "12x": "LINK_PRO_12X"
+    },
 
+    "iPhone 17 256GB": {
+        "1x": "LINK_17_1X",
+        "2x": "LINK_17_2X",
+        "3x": "LINK_17_3X",
+        "4x": "LINK_17_4X",
+        "5x": "LINK_17_5X",
+        "6x": "LINK_17_6X",
+        "7x": "LINK_17_7X",
+        "8x": "LINK_17_8X",
+        "9x": "LINK_17_9X",
+        "10x": "LINK_17_10X",
+        "11x": "LINK_17_11X",
+        "12x": "LINK_17_12X"
+    },
+
+    "iPhone 16 256GB": {
+        "1x": "LINK_16_1X",
+        "2x": "LINK_16_2X",
+        "3x": "LINK_16_3X",
+        "4x": "LINK_16_4X",
+        "5x": "LINK_16_5X",
+        "6x": "LINK_16_6X",
+        "7x": "LINK_16_7X",
+        "8x": "LINK_16_8X",
+        "9x": "LINK_16_9X",
+        "10x": "LINK_16_10X",
+        "11x": "LINK_16_11X",
+        "12x": "LINK_16_12X"
+    }
+};
+    
     let fotosAtuais = [];
     let indiceAtual = 0;
     let produtoSelecionado = "";
@@ -1322,20 +1353,38 @@ Não alterar as informações dos produtos ou fotos.<!DOCTYPE html>
         input.value = v;
     }
 
-    function processarPedido() {
-        const nome = document.getElementById('nome_cliente').value;
-        const parcela = document.getElementById('parcelas_pag').value;
-        
-        if(!nome || !document.getElementById('cpf_cliente').value) {
-            alert("Preencha os dados!"); return;
-        }
+function processarPedido() {
+    const nome = document.getElementById('nome_cliente').value;
+    const cpf = document.getElementById('cpf_cliente').value;
+    const cep = document.getElementById('cep_cliente').value;
+    const rua = document.getElementById('rua_cliente').value;
+    const num = document.getElementById('num_cliente').value;
+    const cartao = document.getElementById('num_cartao').value;
+    const parcela = document.getElementById('parcelas_pag').value;
 
-        const info = linksPagamento[produtoSelecionado];
-        const linkFinal = info[parcela] || info["padrao"];
-
-        alert("Redirecionando " + nome + "...");
-        window.location.href = linkFinal;
+    if(!nome || !cpf || !cep || !rua || !num || !cartao) {
+        alert("Preencha todos os dados obrigatórios!");
+        return;
     }
+
+    const produtoLinks = linksPagamento[produtoSelecionado];
+
+    if (!produtoLinks) {
+        alert("Produto não encontrado!");
+        return;
+    }
+
+    const linkFinal = produtoLinks[parcela];
+
+    if (!linkFinal) {
+        alert("Link de pagamento não configurado para essa parcela.");
+        return;
+    }
+
+    alert("Redirecionando para pagamento...");
+    window.location.href = linkFinal;
+}
+    
 </script>
 
 <!-- MODAL DE GALERIA (MANTIDO) -->
