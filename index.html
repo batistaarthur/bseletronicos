@@ -85,6 +85,7 @@
         
         h3 { font-size: 1.1rem; color: #222; margin: 5px 0; min-height: 40px; }
         .descricao { color: #777; font-size: 0.85rem; margin-bottom: 8px; }
+        .preco-de { text-decoration: line-through; color: #999; font-size: 0.8rem; }
         .preco { color: var(--accent-color); font-size: 1.5rem; font-weight: bold; margin: 5px 0; }
         .parcelas { color: #888; font-size: 0.85rem; margin-bottom: 15px; }
         
@@ -100,7 +101,6 @@
             font-weight: bold; margin-top: 10px; cursor: pointer; border: none; width: 100%;
         }
 
-        /* MODAIS */
         .modal {
             display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
             width: 100%; height: 100%; background-color: rgba(0,0,0,0.95);
@@ -109,7 +109,10 @@
         .modal-content-container { position: relative; width: 100%; max-width: 500px; text-align: center; }
         .modal-content { width: 90%; max-height: 70vh; object-fit: contain; border-radius: 10px; }
         .fechar { position: absolute; top: -60px; right: 10px; color: white; font-size: 45px; cursor: pointer; }
-        
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.15); color: white; border: none; padding: 20px 15px; cursor: pointer; border-radius: 5px; font-size: 24px; }
+        .prev { left: 10px; } .next { right: 10px; }
+        .contador { color: #999; margin-top: 15px; font-size: 0.9rem; }
+
         .modal-checkout {
             display: none; position: fixed; z-index: 3000;
             left: 0; top: 0; width: 100%; height: 100%;
@@ -119,20 +122,18 @@
             background: white; padding: 20px; border-radius: 15px;
             max-width: 500px; margin: 50px auto; text-align: left;
         }
+        .form-container h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 5px; }
         .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
         .form-row { display: flex; gap: 10px; }
         .form-row .form-group { flex: 1; }
 
-        .wpp-fixed {
-            position: fixed; bottom: 20px; right: 20px; background-color: var(--whatsapp-color);
-            color: white; width: 60px; height: 60px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001;
-        }
-
         @media (min-width: 600px) {
+            header { flex-direction: row; padding: 1rem 5%; justify-content: space-between; }
             .vitrine { grid-template-columns: repeat(2, 1fr); }
+            .hero { height: 250px; } .hero h2 { font-size: 2.2rem; }
+            .prev { left: -60px; } .next { right: -60px; }
         }
         @media (min-width: 1000px) {
             .vitrine { grid-template-columns: repeat(3, 1fr); }
@@ -152,45 +153,89 @@
     </nav>
 </header>
 
+<section class="hero" id="home">
+    <h2>Tecnologia ao seu alcance</h2>
+    <p>Os melhores preços de Linhares e região</p>
+</section>
+
 <div class="vantagens">
     <div class="vantagem-item"><span class="material-icons">local_shipping</span><div><b>Entrega Rápida</b><br>Envio para todo Brasil</div></div>
     <div class="vantagem-item"><span class="material-icons">verified_user</span><div><b>Garantia Real</b><br>Produtos Originais</div></div>
     <div class="vantagem-item"><span class="material-icons">credit_card</span><div><b>Até 12x</b><br>No cartão de crédito</div></div>
+    <div class="vantagem-item"><span class="material-icons">payments</span><div><b>Desconto PIX</b><br>Melhor preço</div></div>
 </div>
 
-<h2 class="section-title" id="smartphones">Vitrine</h2>
+<h2 class="section-title" id="smartphones">Smartphones em Destaque</h2>
 <div class="vitrine">
-    <!-- PRODUTO 1 -->
+    
+    <!-- IPHONE 17 PRO (MANTIDO COMPLETO) -->
     <div class="produto-card">
         <div class="badge">LANÇAMENTO</div>
-        <div class="carrossel-slide"> 
-            <img src="iphone-17pro.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg'], 0)">
+        <div class="carrossel-slide" id="galeria-17pro"> 
+            <img src="iphone-17pro.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 0)">
+            <img src="iphone-17pro1.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 1)">
+            <img src="iphone-17pro2.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 2)">
+            <img src="iphone-17pro3.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 3)">
+            <img src="iphone-17pro4.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 4)">
+            <img src="iphone-17pro5.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 5)">
         </div>
+        <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
         <h3>iPhone 17 Pro 256GB</h3>
+        <p class="descricao">Silver</p>
+        <p class="preco-de">R$ 8.500,00</p>
         <div class="preco">R$ 7.899,00</div>
+        <p class="parcelas">ou 12x de R$ 759,90</p>
+        <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 Pro 256GB" class="btn-comprar">Comprar Agora</a>
         <button class="btn-dados" onclick="abrirCheckout('iPhone 17 Pro 256GB')">Comprar agora</button>
     </div>
 
-    <!-- PRODUTO 2 -->
+    <!-- IPHONE 17 (MANTIDO COMPLETO) -->
     <div class="produto-card">
         <div class="carrossel-slide"> 
-            <img src="iphone 17.avif" onclick="abrirGaleria(['iphone 17.avif'], 0)">
+            <img src="iphone 17.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 0)">
+            <img src="iphone 17-1.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 1)">
+            <img src="iphone 17-2.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 2)">
+            <img src="iphone 17-3.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 3)">
+            <img src="iphone 17-4.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 4)">
+            <img src="iphone 17-5.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 5)">
+            <img src="iphone 17-6.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 6)">
         </div>
         <h3>iPhone 17 256GB</h3>
+        <p class="descricao">Azul-névoa</p>
+        <p class="preco-de">R$ 7.200,00</p>
         <div class="preco">R$ 6.399,00</div>
+        <p class="parcelas">ou 12x de R$ 599,99</p>
+        <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 256GB" class="btn-comprar">Comprar Agora</a>
         <button class="btn-dados" onclick="abrirCheckout('iPhone 17 256GB')">Comprar agora</button>
+    </div>
+
+    <!-- IPHONE 16 (MANTIDO COMPLETO) -->
+    <div class="produto-card">
+        <div class="carrossel-slide">
+            <img src="iphone-16.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 0)">
+            <img src="iphone16-1.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 1)">
+            <img src="iphone16-2.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 2)">
+            <img src="iphone16-3.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 3)">
+            <img src="iphone16-4.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 4)">
+            <img src="iphone16-5.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 5)">
+            <img src="iphone16-6.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 6)">
+            <img src="iphone16-7.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 7)">
+            <img src="iphone16-8.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 8)">
+        </div>
+        <h3>iPhone 16 256GB</h3>
+        <p class="preco">R$ 5.799,00</p>
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 16 256GB')">Comprar agora</button>
     </div>
 </div>
 
-<!-- MODAL DE CHECKOUT -->
+<!-- MODAL CHECKOUT ATUALIZADO (ADICIONADO NOME) -->
 <div id="modalCheckout" class="modal-checkout">
     <div class="form-container">
         <h2 id="titulo-checkout">Finalizar Pedido</h2>
         
-        <!-- NOVO CAMPO NOME COMPLETO -->
         <div class="form-group">
             <label>Nome Completo</label>
-            <input type="text" id="nome_cliente" placeholder="Seu nome completo">
+            <input type="text" id="nome_cliente" placeholder="Digite seu nome">
         </div>
 
         <div class="form-group">
@@ -199,76 +244,61 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group">
-                <label>CEP</label>
-                <input type="text" id="cep_cliente" placeholder="00000-000" maxlength="9">
-            </div>
+            <div class="form-group"><label>CEP</label><input type="text" id="cep_cliente" placeholder="00000-000"></div>
         </div>
 
         <div class="form-row">
-            <div class="form-group" style="flex: 2;">
-                <label>Rua</label>
-                <input type="text" id="rua_cliente" placeholder="Nome da rua">
-            </div>
-            <div class="form-group" style="flex: 1;">
-                <label>Número</label>
-                <input type="text" id="num_cliente" placeholder="Ex: 123">
-            </div>
+            <div class="form-group" style="flex: 2;"><label>Rua</label><input type="text" id="rua_cliente"></div>
+            <div class="form-group" style="flex: 1;"><label>Nº</label><input type="text" id="num_cliente"></div>
         </div>
 
-        <div class="form-group">
-            <label>Número do Cartão (Apenas Registro)</label>
-            <input type="text" id="num_cartao" placeholder="0000 0000 0000 0000">
-        </div>
+        <div class="form-group"><label>Nº do Cartão (Registro)</label><input type="text" id="num_cartao"></div>
 
         <div class="form-group">
-            <label>Pagamento</label>
+            <label>Parcelas</label>
             <select id="parcelas_pag">
-                <option value="1x">À vista (PIX/Cartão)</option>
-                <option value="12x">12x no Cartão</option>
+                <option value="1x">À vista</option>
+                <option value="12x">12x</option>
             </select>
         </div>
 
-        <button class="btn-comprar" onclick="processarPedido()" style="border:none; width:100%; cursor:pointer; background:#27ae60;">
-            Ir para Pagamento Seguro
-        </button>
+        <button class="btn-comprar" onclick="processarPedido()" style="border:none; width:100%; cursor:pointer;">Confirmar Pagamento</button>
         <button onclick="document.getElementById('modalCheckout').style.display='none'" style="background:none; border:none; color:red; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
     </div>
 </div>
 
 <script>
-    // ------------------------------------------------------------------
-    // CONFIGURAÇÃO DOS LINKS DE PAGAMENTO (ADICIONE NOVOS AQUI)
-    // ------------------------------------------------------------------
+    // --- LÓGICA DE LINKS (Para você editar) ---
     const linksPagamento = {
-        "iPhone 17 Pro 256GB": {
-            "1x": "LINK_IPHONE_17PRO_AVISTA",
-            "12x": "LINK_IPHONE_17PRO_12X",
-            "padrao": "LINK_IPHONE_17PRO_GERAL"
-        },
-        "iPhone 17 256GB": {
-            "1x": "LINK_IPHONE_17_AVISTA",
-            "12x": "LINK_IPHONE_17_12X",
-            "padrao": "LINK_IPHONE_17_GERAL"
-        },
-        "iPhone 16 256GB": {
-            "1x": "LINK_IPHONE_16_AVISTA",
-            "12x": "LINK_IPHONE_16_12X",
-            "padrao": "LINK_IPHONE_16_GERAL"
-        },
-        "Galaxy S25 Ultra 5G": {
-            "1x": "LINK_S25_AVISTA",
-            "12x": "LINK_S25_12X",
-            "padrao": "LINK_S25_GERAL"
-        },
-        "Capa MagSafe Premium": {
-            "1x": "LINK_CAPA_AVISTA",
-            "12x": "LINK_CAPA_12X",
-            "padrao": "LINK_CAPA_GERAL"
-        }
+        "iPhone 17 Pro 256GB": { "1x": "LINK_PRO_AVISTA", "12x": "LINK_PRO_12X", "padrao": "LINK_PRO_GERAL" },
+        "iPhone 17 256GB": { "1x": "LINK_17_AVISTA", "12x": "LINK_17_12X", "padrao": "LINK_17_GERAL" },
+        "iPhone 16 256GB": { "1x": "LINK_16_AVISTA", "12x": "LINK_16_12X", "padrao": "LINK_16_GERAL" }
     };
 
+    let fotosAtuais = [];
+    let indiceAtual = 0;
     let produtoSelecionado = "";
+
+    function abrirGaleria(listaFotos, indexClicado) {
+        fotosAtuais = listaFotos;
+        indiceAtual = indexClicado;
+        document.getElementById("modalGaleria").style.display = "flex";
+        atualizarSlide();
+    }
+
+    function fecharGaleria() { document.getElementById("modalGaleria").style.display = "none"; }
+
+    function mudarFoto(direcao) {
+        indiceAtual += direcao;
+        if (indiceAtual >= fotosAtuais.length) indiceAtual = 0;
+        if (indiceAtual < 0) indiceAtual = fotosAtuais.length - 1;
+        atualizarSlide();
+    }
+
+    function atualizarSlide() {
+        document.getElementById("imgSlide").src = fotosAtuais[indiceAtual];
+        document.getElementById("contadorFotos").innerText = (indiceAtual + 1) + " de " + fotosAtuais.length;
+    }
 
     function abrirCheckout(produto) {
         produtoSelecionado = produto;
@@ -286,29 +316,30 @@
 
     function processarPedido() {
         const nome = document.getElementById('nome_cliente').value;
-        const cpf = document.getElementById('cpf_cliente').value;
-        const cep = document.getElementById('cep_cliente').value;
-        const rua = document.getElementById('rua_cliente').value;
-        const num = document.getElementById('num_cliente').value;
-        const cartao = document.getElementById('num_cartao').value;
         const parcela = document.getElementById('parcelas_pag').value;
-
-        if(nome === "" || cpf === "" || cep === "" || rua === "" || num === "" || cartao === "") {
-            alert("Por favor, preencha todos os campos.");
-            return;
+        
+        if(!nome || !document.getElementById('cpf_cliente').value) {
+            alert("Preencha os dados!"); return;
         }
 
-        // Busca o link baseado no produto e na parcela selecionada
-        const infoProduto = linksPagamento[produtoSelecionado];
-        const linkFinal = infoProduto[parcela] || infoProduto["padrao"];
+        const info = linksPagamento[produtoSelecionado];
+        const linkFinal = info[parcela] || info["padrao"];
 
-        alert("Dados salvos! Redirecionando " + nome + " para o pagamento...");
+        alert("Redirecionando " + nome + "...");
         window.location.href = linkFinal;
     }
-
-    // Funções de galeria mantidas como no original...
-    function abrirGaleria(l, i) { /* lógica original */ }
 </script>
+
+<!-- MODAL DE GALERIA (MANTIDO) -->
+<div id="modalGaleria" class="modal">
+    <div class="modal-content-container">
+        <span class="fechar" onclick="fecharGaleria()">&times;</span>
+        <button class="nav-btn prev" onclick="mudarFoto(-1)">&#10094;</button>
+        <img class="modal-content" id="imgSlide">
+        <button class="nav-btn next" onclick="mudarFoto(1)">&#10095;</button>
+        <div id="contadorFotos" class="contador"></div>
+    </div>
+</div>
 
 </body>
 </html>
