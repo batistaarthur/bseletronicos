@@ -46,7 +46,7 @@
         }
         .hero h2 { font-size: 1.4rem; margin: 0; }
 
-        /* VANTAGENS (Scroll Horizontal) */
+        /* VANTAGENS */
         .vantagens {
             background-color: white; padding: 15px; display: flex; gap: 20px;
             overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;
@@ -60,7 +60,6 @@
         .section-title { text-align: center; margin: 30px 0 15px; font-size: 1.5rem; color: #1a1a1a; }
         .vitrine { display: grid; grid-template-columns: 1fr; padding: 15px; gap: 20px; max-width: 1200px; margin: 0 auto; }
 
-        /* CARD DO PRODUTO */
         .produto-card {
             background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             padding: 15px; text-align: center; display: flex; flex-direction: column;
@@ -72,7 +71,6 @@
             color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: bold; z-index: 5;
         }
 
-        /* CARROSSEL NO CARD */
         .carrossel-slide {
             display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
             scrollbar-width: none; margin-bottom: 8px;
@@ -87,7 +85,6 @@
         
         h3 { font-size: 1.1rem; color: #222; margin: 5px 0; min-height: 40px; }
         .descricao { color: #777; font-size: 0.85rem; margin-bottom: 8px; }
-        .preco-de { text-decoration: line-through; color: #999; font-size: 0.8rem; }
         .preco { color: var(--accent-color); font-size: 1.5rem; font-weight: bold; margin: 5px 0; }
         .parcelas { color: #888; font-size: 0.85rem; margin-bottom: 15px; }
         
@@ -103,7 +100,7 @@
             font-weight: bold; margin-top: 10px; cursor: pointer; border: none; width: 100%;
         }
 
-        /* MODAL */
+        /* MODAIS */
         .modal {
             display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
             width: 100%; height: 100%; background-color: rgba(0,0,0,0.95);
@@ -155,34 +152,22 @@
     </nav>
 </header>
 
-<section class="hero" id="home">
-    <h2>Tecnologia ao seu alcance</h2>
-    <p>Os melhores preços de Linhares e região</p>
-</section>
-
 <div class="vantagens">
     <div class="vantagem-item"><span class="material-icons">local_shipping</span><div><b>Entrega Rápida</b><br>Envio para todo Brasil</div></div>
     <div class="vantagem-item"><span class="material-icons">verified_user</span><div><b>Garantia Real</b><br>Produtos Originais</div></div>
     <div class="vantagem-item"><span class="material-icons">credit_card</span><div><b>Até 12x</b><br>No cartão de crédito</div></div>
-    <div class="vantagem-item"><span class="material-icons">payments</span><div><b>Desconto PIX</b><br>Melhor preço</div></div>
 </div>
 
-<h2 class="section-title" id="smartphones">Smartphones em Destaque</h2>
+<h2 class="section-title" id="smartphones">Vitrine</h2>
 <div class="vitrine">
-    
     <!-- PRODUTO 1 -->
     <div class="produto-card">
         <div class="badge">LANÇAMENTO</div>
         <div class="carrossel-slide"> 
             <img src="iphone-17pro.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg'], 0)">
         </div>
-        <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
         <h3>iPhone 17 Pro 256GB</h3>
-        <p class="descricao">Silver</p>
-        <p class="preco-de">R$ 8.500,00</p>
         <div class="preco">R$ 7.899,00</div>
-        <p class="parcelas">ou 12x de R$ 759,90</p>
-        <a href="https://wa.me/5527992985369" class="btn-comprar">WhatsApp</a>
         <button class="btn-dados" onclick="abrirCheckout('iPhone 17 Pro 256GB')">Comprar agora</button>
     </div>
 
@@ -192,7 +177,6 @@
             <img src="iphone 17.avif" onclick="abrirGaleria(['iphone 17.avif'], 0)">
         </div>
         <h3>iPhone 17 256GB</h3>
-        <p class="descricao">Azul-névoa</p>
         <div class="preco">R$ 6.399,00</div>
         <button class="btn-dados" onclick="abrirCheckout('iPhone 17 256GB')">Comprar agora</button>
     </div>
@@ -203,10 +187,10 @@
     <div class="form-container">
         <h2 id="titulo-checkout">Finalizar Pedido</h2>
         
-        <!-- CAMPO NOME COMPLETO ADICIONADO -->
+        <!-- NOVO CAMPO NOME COMPLETO -->
         <div class="form-group">
             <label>Nome Completo</label>
-            <input type="text" id="nome_cliente" placeholder="Digite seu nome completo">
+            <input type="text" id="nome_cliente" placeholder="Seu nome completo">
         </div>
 
         <div class="form-group">
@@ -223,8 +207,8 @@
 
         <div class="form-row">
             <div class="form-group" style="flex: 2;">
-                <label>Nome da Rua</label>
-                <input type="text" id="rua_cliente" placeholder="Ex: Av. Principal">
+                <label>Rua</label>
+                <input type="text" id="rua_cliente" placeholder="Nome da rua">
             </div>
             <div class="form-group" style="flex: 1;">
                 <label>Número</label>
@@ -233,37 +217,54 @@
         </div>
 
         <div class="form-group">
-            <label>Número do Cartão (Para registro)</label>
+            <label>Número do Cartão (Apenas Registro)</label>
             <input type="text" id="num_cartao" placeholder="0000 0000 0000 0000">
         </div>
 
         <div class="form-group">
-            <label>Quantidade de Parcelas</label>
+            <label>Pagamento</label>
             <select id="parcelas_pag">
-                <option value="1x">À vista</option>
-                <option value="12x">12x</option>
+                <option value="1x">À vista (PIX/Cartão)</option>
+                <option value="12x">12x no Cartão</option>
             </select>
         </div>
 
         <button class="btn-comprar" onclick="processarPedido()" style="border:none; width:100%; cursor:pointer; background:#27ae60;">
-            Confirmar e Ir para Pagamento
+            Ir para Pagamento Seguro
         </button>
         <button onclick="document.getElementById('modalCheckout').style.display='none'" style="background:none; border:none; color:red; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
     </div>
 </div>
 
 <script>
-    // 1. CONFIGURAÇÃO DE LINKS (Adicione novos produtos aqui)
-    const linksProdutos = {
+    // ------------------------------------------------------------------
+    // CONFIGURAÇÃO DOS LINKS DE PAGAMENTO (ADICIONE NOVOS AQUI)
+    // ------------------------------------------------------------------
+    const linksPagamento = {
         "iPhone 17 Pro 256GB": {
             "1x": "LINK_IPHONE_17PRO_AVISTA",
             "12x": "LINK_IPHONE_17PRO_12X",
-            "padrao": "LINK_GERAL_PRO_17"
+            "padrao": "LINK_IPHONE_17PRO_GERAL"
         },
         "iPhone 17 256GB": {
             "1x": "LINK_IPHONE_17_AVISTA",
             "12x": "LINK_IPHONE_17_12X",
-            "padrao": "LINK_GERAL_17"
+            "padrao": "LINK_IPHONE_17_GERAL"
+        },
+        "iPhone 16 256GB": {
+            "1x": "LINK_IPHONE_16_AVISTA",
+            "12x": "LINK_IPHONE_16_12X",
+            "padrao": "LINK_IPHONE_16_GERAL"
+        },
+        "Galaxy S25 Ultra 5G": {
+            "1x": "LINK_S25_AVISTA",
+            "12x": "LINK_S25_12X",
+            "padrao": "LINK_S25_GERAL"
+        },
+        "Capa MagSafe Premium": {
+            "1x": "LINK_CAPA_AVISTA",
+            "12x": "LINK_CAPA_12X",
+            "padrao": "LINK_CAPA_GERAL"
         }
     };
 
@@ -297,15 +298,16 @@
             return;
         }
 
-        const dadosProduto = linksProdutos[produtoSelecionado];
-        const linkFinal = dadosProduto[parcela] || dadosProduto["padrao"];
+        // Busca o link baseado no produto e na parcela selecionada
+        const infoProduto = linksPagamento[produtoSelecionado];
+        const linkFinal = infoProduto[parcela] || infoProduto["padrao"];
 
-        alert("Pedido de " + nome + " processado. Redirecionando para pagamento seguro...");
+        alert("Dados salvos! Redirecionando " + nome + " para o pagamento...");
         window.location.href = linkFinal;
     }
 
-    // Lógica básica de galeria mantida
-    function abrirGaleria(lista, index) { /* Sua função original */ }
+    // Funções de galeria mantidas como no original...
+    function abrirGaleria(l, i) { /* lógica original */ }
 </script>
 
 </body>
