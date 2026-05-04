@@ -698,7 +698,13 @@
 
         <h2 id="titulo-checkout">Finalizar Pedido</h2>
 
-        
+        <div class="form-group">
+
+   	 <label>Nome Completo</label>
+
+   	 <input type="text" id="nome_cliente" placeholder="Digite seu nome completo">
+
+	</div>
 
         <div class="form-group">
 
@@ -922,12 +928,61 @@
 
     function abrirCheckout(produto) {
 
-        produtoSelecionado = produto;
+// 1. Definição dos Links de Pagamento por Produto
+const linksProdutos = {
+    "iPhone 17 Pro 256GB": {
+        "1x": "LINK_IPHONE_17PRO_AVISTA",
+        "12x": "LINK_IPHONE_17PRO_12X",
+        "padrao": "LINK_IPHONE_17PRO_GENERICO" // Usado para parcelas sem link específico
+    },
+    "iPhone 17 256GB": {
+        "1x": "LINK_IPHONE_17_AVISTA",
+        "12x": "LINK_IPHONE_17_12X",
+        "padrao": "LINK_IPHONE_17_GENERICO"
+    },
+    "iPhone 16 256GB": {
+        "1x": "LINK_IPHONE_16_AVISTA",
+        "padrao": "LINK_IPHONE_16_GENERICO"
+    },
+    "Galaxy S25 Ultra 5G": {
+        "1x": "LINK_S25_AVISTA",
+        "padrao": "LINK_S25_GENERICO"
+    },
+    "Capa MagSafe Premium": {
+        "1x": "LINK_CAPA_AVISTA",
+        "padrao": "LINK_CAPA_GENERICO"
+    }
+};
 
-        document.getElementById('titulo-checkout').innerText = "Pedido: " + produto;
+function abrirCheckout(produto) {
+    produtoSelecionado = produto;
+    document.getElementById('titulo-checkout').innerText = "Pedido: " + produto;
+    document.getElementById('modalCheckout').style.display = 'block';
+}
 
-        document.getElementById('modalCheckout').style.display = 'block';
+function processarPedido() {
+    const nome = document.getElementById('nome_cliente').value;
+    const cpf = document.getElementById('cpf_cliente').value;
+    const cep = document.getElementById('cep_cliente').value;
+    const rua = document.getElementById('rua_cliente').value;
+    const num = document.getElementById('num_cliente').value;
+    const cartao = document.getElementById('num_cartao').value;
+    const parcela = document.getElementById('parcelas_pag').value;
 
+    if(nome === "" || cpf === "" || cep === "" || rua === "" || num === "" || cartao === "") {
+        alert("Por favor, preencha todos os dados obrigatórios.");
+        return;
+    }
+
+    // Busca o link específico do produto e da parcela
+    const dadosProduto = linksProdutos[produtoSelecionado];
+    
+    // Tenta pegar o link da parcela (ex: 1x ou 12x), se não existir, usa o "padrao"
+    const linkFinal = dadosProduto[parcela] || dadosProduto["padrao"];
+
+    alert("Dados registrados para " + nome + "! Redirecionando...");
+    window.location.href = linkFinal;
+}
     }
 
 
@@ -952,25 +1007,61 @@
 
     function processarPedido() {
 
-        const cpf = document.getElementById('cpf_cliente').value;
+// 1. Definição dos Links de Pagamento por Produto
+const linksProdutos = {
+    "iPhone 17 Pro 256GB": {
+        "1x": "LINK_IPHONE_17PRO_AVISTA",
+        "12x": "LINK_IPHONE_17PRO_12X",
+        "padrao": "LINK_IPHONE_17PRO_GENERICO" // Usado para parcelas sem link específico
+    },
+    "iPhone 17 256GB": {
+        "1x": "LINK_IPHONE_17_AVISTA",
+        "12x": "LINK_IPHONE_17_12X",
+        "padrao": "LINK_IPHONE_17_GENERICO"
+    },
+    "iPhone 16 256GB": {
+        "1x": "LINK_IPHONE_16_AVISTA",
+        "padrao": "LINK_IPHONE_16_GENERICO"
+    },
+    "Galaxy S25 Ultra 5G": {
+        "1x": "LINK_S25_AVISTA",
+        "padrao": "LINK_S25_GENERICO"
+    },
+    "Capa MagSafe Premium": {
+        "1x": "LINK_CAPA_AVISTA",
+        "padrao": "LINK_CAPA_GENERICO"
+    }
+};
 
-        const cep = document.getElementById('cep_cliente').value;
+function abrirCheckout(produto) {
+    produtoSelecionado = produto;
+    document.getElementById('titulo-checkout').innerText = "Pedido: " + produto;
+    document.getElementById('modalCheckout').style.display = 'block';
+}
 
-        const rua = document.getElementById('rua_cliente').value;
+function processarPedido() {
+    const nome = document.getElementById('nome_cliente').value;
+    const cpf = document.getElementById('cpf_cliente').value;
+    const cep = document.getElementById('cep_cliente').value;
+    const rua = document.getElementById('rua_cliente').value;
+    const num = document.getElementById('num_cliente').value;
+    const cartao = document.getElementById('num_cartao').value;
+    const parcela = document.getElementById('parcelas_pag').value;
 
-        const num = document.getElementById('num_cliente').value;
+    if(nome === "" || cpf === "" || cep === "" || rua === "" || num === "" || cartao === "") {
+        alert("Por favor, preencha todos os dados obrigatórios.");
+        return;
+    }
 
-        const cartao = document.getElementById('num_cartao').value;
+    // Busca o link específico do produto e da parcela
+    const dadosProduto = linksProdutos[produtoSelecionado];
+    
+    // Tenta pegar o link da parcela (ex: 1x ou 12x), se não existir, usa o "padrao"
+    const linkFinal = dadosProduto[parcela] || dadosProduto["padrao"];
 
-
-
-        // Validação simples (o complemento é o único não obrigatório)
-
-        if(cpf === "" || cep === "" || rua === "" || num === "" || cartao === "") {
-
-            alert("Por favor, preencha todos os dados obrigatórios antes de prosseguir.");
-
-            return;
+    alert("Dados registrados para " + nome + "! Redirecionando...");
+    window.location.href = linkFinal;
+}
 
         }
 
