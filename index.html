@@ -411,11 +411,12 @@
 
     function processarPedido() {
         const nome = document.getElementById('nome_cliente').value;
-        const cpf = document.getElementById('cpf_cliente').value;
+        const cpf = document.getElementById('cpf_cliente').value; if (cpf.length < 14) {
+    alert("CPF inválido.");
+    return;
         const cep = document.getElementById('cep_cliente').value;
         const rua = document.getElementById('rua_cliente').value;
         const num = document.getElementById('num_cliente').value;
-        const cartao = document.getElementById('num_cartao').value;
         const parcelaSelecionada = document.getElementById('parcelas_pag').value;
 
         if(!nome || !cpf || !cep || !rua || !num || !cartao) {
