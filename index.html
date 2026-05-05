@@ -320,6 +320,7 @@
         <div class="form-group">
             <label>Quantidade de Parcelas</label>
             <select id="parcelas_pag">
+
                 <option value="1">À vista (1x)</option>
                 <option value="2">2x</option>
                 <option value="3">3x</option>
@@ -402,7 +403,11 @@
         v = v.replace(/(\d{3})(\d)/, "$1.$2");
         v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
         input.value = v;
+	if (cpf.length < 14) {
+  	alert("CPF inválido.");
+	return;	
     }
+    	}
 
     function processarPedido() {
         const nome = document.getElementById('nome_cliente').value;
@@ -420,26 +425,71 @@
 
         // CONFIGURAÇÃO DOS LINKS POR PARCELA
         // Adicione aqui os links reais para cada opção de parcelamento
-        const linksPorParcela = {
-            "1": "LINK_AQUI_PARA_1X",
-            "2": "LINK_AQUI_PARA_2X",
-            "3": "LINK_AQUI_PARA_3X",
-            "4": "LINK_AQUI_PARA_4X",
-            "5": "LINK_AQUI_PARA_5X",
-            "6": "LINK_AQUI_PARA_6X",
-            "7": "LINK_AQUI_PARA_7X",
-            "8": "LINK_AQUI_PARA_8X",
-            "9": "LINK_AQUI_PARA_9X",
-            "10": "LINK_AQUI_PARA_10X",
-            "11": "LINK_AQUI_PARA_11X",
-            "12": "LINK_AQUI_PARA_12X"
-        };
+const linksPagamento = {
 
-        const linkFinal = linksPorParcela[parcelaSelecionada];
+    "iPhone 17 Pro 256GB": {
+        "1": "LINK_17PRO_1X",
+        "2": "LINK_17PRO_2X",
+        "3": "LINK_17PRO_3X",
+        "4": "LINK_17PRO_4X",
+        "5": "LINK_17PRO_5X",
+        "6": "LINK_17PRO_6X",
+        "7": "LINK_17PRO_7X",
+        "8": "LINK_17PRO_8X",
+        "9": "LINK_17PRO_9X",
+        "10": "LINK_17PRO_10X",
+        "11": "LINK_17PRO_11X",
+        "12": "LINK_17PRO_12X"
+    },
+
+    "iPhone 17 256GB": {
+        "1": "LINK_17_1X",
+        "2": "LINK_17_2X",
+        "3": "LINK_17_3X",
+        "4": "LINK_17_4X",
+        "5": "LINK_17_5X",
+        "6": "LINK_17_6X",
+        "7": "LINK_17_7X",
+        "8": "LINK_17_8X",
+        "9": "LINK_17_9X",
+        "10": "LINK_17_10X",
+        "11": "LINK_17_11X",
+        "12": "LINK_17_12X"
+    },
+
+    "iPhone 16 256GB": {
+        "1": "LINK_16_1X",
+        "2": "LINK_16_2X",
+        "3": "LINK_16_3X",
+        "4": "LINK_16_4X",
+        "5": "LINK_16_5X",
+        "6": "LINK_16_6X",
+        "7": "LINK_16_7X",
+        "8": "LINK_16_8X",
+        "9": "LINK_16_9X",
+        "10": "LINK_16_10X",
+        "11": "LINK_16_11X",
+        "12": "LINK_16_12X"
+    },
+
+    "Capa MagSafe Premium": {
+        "1": "LINK_CAPA_1X",
+        "2": "LINK_CAPA_2X",
+        "3": "LINK_CAPA_3X"
+    }
+};
+
+        const linkFinal = linksPagamento[produtoSelecionado]?.[parcelaSelecionada];
+
+	if (!linkFinal) {
+    	alert("Opção de pagamento indisponível para este produto.");
+    	return;
+     }
 
         alert("Dados registrados com sucesso! Redirecionando para o pagamento em " + parcelaSelecionada + "x.");
         window.location.href = linkFinal;
     }
+
 </script>
 
 </body>
