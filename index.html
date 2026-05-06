@@ -397,99 +397,98 @@
         document.getElementById('modalCheckout').style.display = 'block';
     }
 
-    function mascaraCPF(input) {
-        let v = input.value.replace(/\D/g, "");
-        v = v.replace(/(\d{3})(\d)/, "$1.$2");
-        v = v.replace(/(\d{3})(\d)/, "$1.$2");
-        v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-        input.value = v;
-	if (cpf.length < 14) {
-  	alert("CPF inválido.");
-	return;	
+function mascaraCPF(input) {
+    let v = input.value.replace(/\D/g, "");
+    v = v.replace(/(\d{3})(\d)/, "$1.$2");
+    v = v.replace(/(\d{3})(\d)/, "$1.$2");
+    v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    input.value = v;
+}
+
+function processarPedido() {
+    const nome = document.getElementById('nome_cliente').value;
+    const cpf = document.getElementById('cpf_cliente').value;
+    const cep = document.getElementById('cep_cliente').value;
+    const rua = document.getElementById('rua_cliente').value;
+    const num = document.getElementById('num_cliente').value;
+    const cartao = document.getElementById('num_cartao').value;
+    const parcelaSelecionada = document.getElementById('parcelas_pag').value;
+
+    // Validação básica
+    if (!nome || !cpf || !cep || !rua || !num || !cartao) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
+        return;
     }
-    	}
 
-    function processarPedido() {
-        const nome = document.getElementById('nome_cliente').value;
-        const cpf = document.getElementById('cpf_cliente').value; if (cpf.length < 14) {
-    alert("CPF inválido.");
-    return;
-        const cep = document.getElementById('cep_cliente').value;
-        const rua = document.getElementById('rua_cliente').value;
-        const num = document.getElementById('num_cliente').value;
-        const parcelaSelecionada = document.getElementById('parcelas_pag').value;
+    if (cpf.length < 14) {
+        alert("CPF inválido.");
+        return;
+    }
 
-        if(!nome || !cpf || !cep || !rua || !num || !cartao) {
-            alert("Por favor, preencha todos os campos obrigatórios.");
-            return;
+    // LINKS DE PAGAMENTO
+    const linksPagamento = {
+        "iPhone 17 Pro 256GB": {
+            "1": "LINK_17PRO_1X",
+            "2": "LINK_17PRO_2X",
+            "3": "LINK_17PRO_3X",
+            "4": "LINK_17PRO_4X",
+            "5": "LINK_17PRO_5X",
+            "6": "LINK_17PRO_6X",
+            "7": "LINK_17PRO_7X",
+            "8": "LINK_17PRO_8X",
+            "9": "LINK_17PRO_9X",
+            "10": "LINK_17PRO_10X",
+            "11": "LINK_17PRO_11X",
+            "12": "LINK_17PRO_12X"
+        },
+
+        "iPhone 17 256GB": {
+            "1": "LINK_17_1X",
+            "2": "LINK_17_2X",
+            "3": "LINK_17_3X",
+            "4": "LINK_17_4X",
+            "5": "LINK_17_5X",
+            "6": "LINK_17_6X",
+            "7": "LINK_17_7X",
+            "8": "LINK_17_8X",
+            "9": "LINK_17_9X",
+            "10": "LINK_17_10X",
+            "11": "LINK_17_11X",
+            "12": "LINK_17_12X"
+        },
+
+        "iPhone 16 256GB": {
+            "1": "LINK_16_1X",
+            "2": "LINK_16_2X",
+            "3": "LINK_16_3X",
+            "4": "LINK_16_4X",
+            "5": "LINK_16_5X",
+            "6": "LINK_16_6X",
+            "7": "LINK_16_7X",
+            "8": "LINK_16_8X",
+            "9": "LINK_16_9X",
+            "10": "LINK_16_10X",
+            "11": "LINK_16_11X",
+            "12": "LINK_16_12X"
+        },
+
+        "Capa MagSafe Premium": {
+            "1": "LINK_CAPA_1X",
+            "2": "LINK_CAPA_2X",
+            "3": "LINK_CAPA_3X"
         }
+    };
 
-        // CONFIGURAÇÃO DOS LINKS POR PARCELA
-        // Adicione aqui os links reais para cada opção de parcelamento
-const linksPagamento = {
+    const linkFinal = linksPagamento[produtoSelecionado]?.[parcelaSelecionada];
 
-    "iPhone 17 Pro 256GB": {
-        "1": "LINK_17PRO_1X",
-        "2": "LINK_17PRO_2X",
-        "3": "LINK_17PRO_3X",
-        "4": "LINK_17PRO_4X",
-        "5": "LINK_17PRO_5X",
-        "6": "LINK_17PRO_6X",
-        "7": "LINK_17PRO_7X",
-        "8": "LINK_17PRO_8X",
-        "9": "LINK_17PRO_9X",
-        "10": "LINK_17PRO_10X",
-        "11": "LINK_17PRO_11X",
-        "12": "LINK_17PRO_12X"
-    },
-
-    "iPhone 17 256GB": {
-        "1": "LINK_17_1X",
-        "2": "LINK_17_2X",
-        "3": "LINK_17_3X",
-        "4": "LINK_17_4X",
-        "5": "LINK_17_5X",
-        "6": "LINK_17_6X",
-        "7": "LINK_17_7X",
-        "8": "LINK_17_8X",
-        "9": "LINK_17_9X",
-        "10": "LINK_17_10X",
-        "11": "LINK_17_11X",
-        "12": "LINK_17_12X"
-    },
-
-    "iPhone 16 256GB": {
-        "1": "LINK_16_1X",
-        "2": "LINK_16_2X",
-        "3": "LINK_16_3X",
-        "4": "LINK_16_4X",
-        "5": "LINK_16_5X",
-        "6": "LINK_16_6X",
-        "7": "LINK_16_7X",
-        "8": "LINK_16_8X",
-        "9": "LINK_16_9X",
-        "10": "LINK_16_10X",
-        "11": "LINK_16_11X",
-        "12": "LINK_16_12X"
-    },
-
-    "Capa MagSafe Premium": {
-        "1": "LINK_CAPA_1X",
-        "2": "LINK_CAPA_2X",
-        "3": "LINK_CAPA_3X"
+    if (!linkFinal) {
+        alert("Opção de pagamento indisponível para este produto.");
+        return;
     }
-};
 
-        const linkFinal = linksPagamento[produtoSelecionado]?.[parcelaSelecionada];
-
-	if (!linkFinal) {
-    	alert("Opção de pagamento indisponível para este produto.");
-    	return;
-     }
-
-        alert("Dados registrados com sucesso! Redirecionando para o pagamento em " + parcelaSelecionada + "x.");
-        window.location.href = linkFinal;
-    }
+    alert("Pedido confirmado! Redirecionando para pagamento...");
+    window.location.href = linkFinal;
+}
 
 </script>
 
