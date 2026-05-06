@@ -67,11 +67,6 @@
             position: relative; overflow: hidden;
         }
         
-        .badge {
-            position: absolute; top: 10px; left: 10px; background: var(--accent-color);
-            color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: bold; z-index: 5;
-        }
-
         .carrossel-slide {
             display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
             scrollbar-width: none; margin-bottom: 8px;
@@ -79,7 +74,8 @@
         .carrossel-slide::-webkit-scrollbar { display: none; }
         .carrossel-slide img {
             flex: 0 0 100%; scroll-snap-align: center;
-            height: 230px; object-fit: contain; cursor: pointer; padding: 10px;
+            height: 230px; width: 100%; object-fit: contain; cursor: pointer; padding: 10px;
+            background-color: #fff;
         }
 
         .hint-fotos { font-size: 0.7rem; color: #27ae60; margin-bottom: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 4px; }
@@ -93,14 +89,17 @@
         .btn-comprar {
             display: block; background-color: var(--whatsapp-color); color: white;
             padding: 15px; text-decoration: none; border-radius: 10px; font-weight: bold;
-            transition: 0.3s; margin-top: auto;
+            transition: 0.3s; margin-top: auto; border: none; text-align: center;
         }
+        .btn-comprar:active { transform: scale(0.98); opacity: 0.9; }
 
         .btn-dados {
             display: block; background-color: #007bff; color: white;
             padding: 12px; text-decoration: none; border-radius: 10px;
             font-weight: bold; margin-top: 10px; cursor: pointer; border: none; width: 100%;
+            transition: 0.3s;
         }
+        .btn-dados:active { transform: scale(0.98); background-color: #0056b3; }
 
         /* MODAIS */
         .modal, .modal-checkout {
@@ -108,16 +107,18 @@
             width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);
             align-items: center; justify-content: center;
         }
-        .modal-checkout { z-index: 3000; overflow-y: auto; display: none; align-items: flex-start; }
+        .modal-checkout { z-index: 3000; overflow-y: auto; align-items: flex-start; background-color: rgba(0,0,0,0.6); }
 
         .form-container {
             background: white; padding: 20px; border-radius: 15px;
             width: 95%; max-width: 500px; margin: 30px auto; text-align: left;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
         .form-container h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 4px; }
-        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; outline: none; }
+        .form-group input:focus { border-color: #007bff; }
         .form-row { display: flex; gap: 10px; }
         .form-row .form-group { flex: 1; }
 
@@ -281,7 +282,7 @@
         
         <div class="form-group">
             <label>Nome Completo</label>
-            <input type="text" id="nome_cliente" placeholder="Digite seu nome completo" autocomplete="name">
+            <input type="text" id="nome_cliente" placeholder="Digite seu nome completo">
         </div>
 
         <div class="form-group">
@@ -292,7 +293,11 @@
         <div class="form-row">
             <div class="form-group">
                 <label>CEP</label>
-                <input type="text" id="cep_cliente" placeholder="00000-000" maxlength="9">
+                <input type="text" id="cep_cliente" placeholder="00000-000" maxlength="9" oninput="mascaraCEP(this)">
+            </div>
+            <div class="form-group" style="flex: 2;">
+                <label>Cidade/UF</label>
+                <input type="text" id="cidade_cliente" placeholder="Cidade - UF" readonly style="background:#f9f9f9; cursor:not-allowed;">
             </div>
         </div>
 
@@ -308,19 +313,13 @@
         </div>
 
         <div class="form-group">
-            <label>Complemento</label>
+            <label>Complemento / Bairro</label>
             <input type="text" id="comp_cliente" placeholder="Apto, Bloco, etc. (Opcional)">
-        </div>
-
-        <div class="form-group">
-            <label>Número do Cartão (Para registro)</label>
-            <input type="text" id="num_cartao" placeholder="0000 0000 0000 0000">
         </div>
 
         <div class="form-group">
             <label>Quantidade de Parcelas</label>
             <select id="parcelas_pag">
-
                 <option value="1">À vista (1x)</option>
                 <option value="2">2x</option>
                 <option value="3">3x</option>
@@ -347,6 +346,29 @@
 <script>
     let fotosAtuais = [];
     let indiceAtual = 0;
+    let produtoSelecionado = "";
+
+    // CONFIGURAÇÃO DOS LINKS (SEM MEXER NOS SEUS PRODUTOS)
+    const linksPagamento = {
+        "iPhone 17 Pro 256GB": {
+            "1": "LINK_17PRO_1X", "2": "LINK_17PRO_2X", "3": "LINK_17PRO_3X", "4": "LINK_17PRO_4X",
+            "5": "LINK_17PRO_5X", "6": "LINK_17PRO_6X", "7": "LINK_17PRO_7X", "8": "LINK_17PRO_8X",
+            "9": "LINK_17PRO_9X", "10": "LINK_17PRO_10X", "11": "LINK_17PRO_11X", "12": "LINK_17PRO_12X"
+        },
+        "iPhone 17 256GB": {
+            "1": "LINK_17_1X", "2": "LINK_17_2X", "3": "LINK_17_3X", "4": "LINK_17_4X",
+            "5": "LINK_17_5X", "6": "LINK_17_6X", "7": "LINK_17_7X", "8": "LINK_17_8X",
+            "9": "LINK_17_9X", "10": "LINK_17_10X", "11": "LINK_17_11X", "12": "LINK_17_12X"
+        },
+        "iPhone 16 256GB": {
+            "1": "LINK_16_1X", "2": "LINK_16_2X", "3": "LINK_16_3X", "4": "LINK_16_4X",
+            "5": "LINK_16_5X", "6": "LINK_16_6X", "7": "LINK_16_7X", "8": "LINK_16_8X",
+            "9": "LINK_16_9X", "10": "LINK_16_10X", "11": "LINK_16_11X", "12": "LINK_16_12X"
+        },
+        "Capa MagSafe Premium": {
+            "1": "LINK_CAPA_1X", "2": "LINK_CAPA_2X", "3": "LINK_CAPA_3X"
+        }
+    };
 
     function abrirGaleria(listaFotos, indexClicado) {
         fotosAtuais = listaFotos;
@@ -382,114 +404,70 @@
         }
     }
 
-    window.onclick = function(e) {
-        if (e.target == document.getElementById("modalGaleria")) fecharGaleria();
-        if (e.target == document.getElementById("modalCheckout")) {
-            document.getElementById('modalCheckout').style.display = 'none';
-        }
-    }
-
-    let produtoSelecionado = "";
-
     function abrirCheckout(produto) {
         produtoSelecionado = produto;
         document.getElementById('titulo-checkout').innerText = "Pedido: " + produto;
         document.getElementById('modalCheckout').style.display = 'block';
     }
 
-function mascaraCPF(input) {
-    let v = input.value.replace(/\D/g, "");
-    v = v.replace(/(\d{3})(\d)/, "$1.$2");
-    v = v.replace(/(\d{3})(\d)/, "$1.$2");
-    v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-    input.value = v;
-}
-
-function processarPedido() {
-    const nome = document.getElementById('nome_cliente').value;
-    const cpf = document.getElementById('cpf_cliente').value;
-    const cep = document.getElementById('cep_cliente').value;
-    const rua = document.getElementById('rua_cliente').value;
-    const num = document.getElementById('num_cliente').value;
-    const cartao = document.getElementById('num_cartao').value;
-    const parcelaSelecionada = document.getElementById('parcelas_pag').value;
-
-    // Validação básica
-    if (!nome || !cpf || !cep || !rua || !num || !cartao) {
-        alert("Por favor, preencha todos os campos obrigatórios.");
-        return;
+    // MÁSCARAS
+    function mascaraCPF(input) {
+        let v = input.value.replace(/\D/g, "");
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");
+        v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+        input.value = v;
     }
 
-    if (cpf.length < 14) {
-        alert("CPF inválido.");
-        return;
+    function mascaraCEP(input) {
+        let v = input.value.replace(/\D/g, "");
+        v = v.replace(/(\d{5})(\d)/, "$1-$2");
+        input.value = v;
+        if (v.length === 9) buscarCEP(v.replace("-", ""));
     }
 
-    // LINKS DE PAGAMENTO
-    const linksPagamento = {
-        "iPhone 17 Pro 256GB": {
-            "1": "LINK_17PRO_1X",
-            "2": "LINK_17PRO_2X",
-            "3": "LINK_17PRO_3X",
-            "4": "LINK_17PRO_4X",
-            "5": "LINK_17PRO_5X",
-            "6": "LINK_17PRO_6X",
-            "7": "LINK_17PRO_7X",
-            "8": "LINK_17PRO_8X",
-            "9": "LINK_17PRO_9X",
-            "10": "LINK_17PRO_10X",
-            "11": "LINK_17PRO_11X",
-            "12": "LINK_17PRO_12X"
-        },
+    // API VIACEP
+    function buscarCEP(cep) {
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(res => res.json())
+            .then(dados => {
+                if (!dados.erro) {
+                    document.getElementById('rua_cliente').value = dados.logradouro;
+                    document.getElementById('cidade_cliente').value = dados.localidade + " - " + dados.uf;
+                    document.getElementById('comp_cliente').value = dados.bairro;
+                }
+            });
+    }
 
-        "iPhone 17 256GB": {
-            "1": "LINK_17_1X",
-            "2": "LINK_17_2X",
-            "3": "LINK_17_3X",
-            "4": "LINK_17_4X",
-            "5": "LINK_17_5X",
-            "6": "LINK_17_6X",
-            "7": "LINK_17_7X",
-            "8": "LINK_17_8X",
-            "9": "LINK_17_9X",
-            "10": "LINK_17_10X",
-            "11": "LINK_17_11X",
-            "12": "LINK_17_12X"
-        },
+    function processarPedido() {
+        const campos = ['nome_cliente', 'cpf_cliente', 'cep_cliente', 'rua_cliente', 'num_cliente'];
+        let erro = false;
 
-        "iPhone 16 256GB": {
-            "1": "LINK_16_1X",
-            "2": "LINK_16_2X",
-            "3": "LINK_16_3X",
-            "4": "LINK_16_4X",
-            "5": "LINK_16_5X",
-            "6": "LINK_16_6X",
-            "7": "LINK_16_7X",
-            "8": "LINK_16_8X",
-            "9": "LINK_16_9X",
-            "10": "LINK_16_10X",
-            "11": "LINK_16_11X",
-            "12": "LINK_16_12X"
-        },
+        campos.forEach(id => {
+            let el = document.getElementById(id);
+            if (!el.value) { el.style.borderColor = "red"; erro = true; } 
+            else { el.style.borderColor = "#ccc"; }
+        });
 
-        "Capa MagSafe Premium": {
-            "1": "LINK_CAPA_1X",
-            "2": "LINK_CAPA_2X",
-            "3": "LINK_CAPA_3X"
+        if (erro) { alert("Por favor, preencha todos os campos obrigatórios."); return; }
+
+        const parcelaSelecionada = document.getElementById('parcelas_pag').value;
+        const linkFinal = linksPagamento[produtoSelecionado]?.[parcelaSelecionada];
+
+        if (!linkFinal) {
+            alert("Opção de pagamento indisponível para este produto.");
+            return;
         }
-    };
 
-    const linkFinal = linksPagamento[produtoSelecionado]?.[parcelaSelecionada];
-
-    if (!linkFinal) {
-        alert("Opção de pagamento indisponível para este produto.");
-        return;
+        alert("Pedido confirmado! Redirecionando para o ambiente seguro de pagamento...");
+        window.location.href = linkFinal;
     }
 
-    alert("Pedido confirmado! Redirecionando para pagamento...");
-    window.location.href = linkFinal;
-}
-
+    // FECHAR MODAIS CLICANDO FORA
+    window.onclick = function(e) {
+        if (e.target.id == "modalGaleria") fecharGaleria();
+        if (e.target.id == "modalCheckout") document.getElementById('modalCheckout').style.display = 'none';
+    }
 </script>
 
 </body>
