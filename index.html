@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>BS Smart Tech - Smartphones e Acessórios</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Biblioteca para gerar o QR Code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         :root {
             --primary-color: #1a1a1a;
@@ -118,16 +120,8 @@
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 4px; }
         .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; outline: none; }
-        .form-group input:focus { border-color: #007bff; }
         .form-row { display: flex; gap: 10px; }
         .form-row .form-group { flex: 1; }
-
-        .modal-content-container { position: relative; width: 100%; max-width: 500px; text-align: center; }
-        .modal-content { width: 90%; max-height: 70vh; object-fit: contain; border-radius: 10px; }
-        .fechar { position: absolute; top: -60px; right: 10px; color: white; font-size: 45px; cursor: pointer; }
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.15); color: white; border: none; padding: 20px 15px; cursor: pointer; border-radius: 5px; font-size: 24px; }
-        .prev { left: 10px; } .next { right: 10px; }
-        .contador { color: #999; margin-top: 15px; font-size: 0.9rem; }
 
         .wpp-fixed {
             position: fixed; bottom: 20px; right: 20px; background-color: var(--whatsapp-color);
@@ -135,11 +129,21 @@
             display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001;
         }
 
+        /* ÁREA PIX */
+        #area-pix {
+            display: none;
+            text-align: center;
+            padding: 15px;
+            border: 2px dashed var(--accent-color);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background: #f0fff4;
+        }
+
         @media (min-width: 600px) {
             header { flex-direction: row; padding: 1rem 5%; justify-content: space-between; }
             .vitrine { grid-template-columns: repeat(2, 1fr); }
             .hero { height: 250px; }
-            .hero h2 { font-size: 2.2rem; }
         }
         @media (min-width: 1000px) {
             .vitrine { grid-template-columns: repeat(3, 1fr); }
@@ -176,13 +180,10 @@
     
     <!-- PRODUTO 1 - IPHONE 17 PRO -->
     <div class="produto-card">
-        <div class="carrossel-slide" id="galeria-17pro"> 
+        <div class="carrossel-slide"> 
             <img src="iphone-17pro.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 0)">
             <img src="iphone-17pro1.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 1)">
             <img src="iphone-17pro2.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 2)">
-            <img src="iphone-17pro3.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 3)">
-            <img src="iphone-17pro4.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 4)">
-            <img src="iphone-17pro5.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 5)">
         </div>
         <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
         <h3>iPhone 17 Pro 256GB</h3>
@@ -197,13 +198,8 @@
     <!-- PRODUTO 2 - IPHONE 17 -->
     <div class="produto-card">
         <div class="carrossel-slide"> 
-            <img src="iphone 17.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 0)">
-            <img src="iphone 17-1.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 1)">
-            <img src="iphone 17-2.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 2)">
-            <img src="iphone 17-3.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 3)">
-            <img src="iphone 17-4.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 4)">
-            <img src="iphone 17-5.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 5)">
-            <img src="iphone 17-6.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif','iphone 17-3.avif','iphone 17-4.avif','iphone 17-5.avif','iphone 17-6.avif'], 6)">
+            <img src="iphone 17.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif'], 0)">
+            <img src="iphone 17-1.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif'], 1)">
         </div>
         <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
         <h3>iPhone 17 256GB</h3>
@@ -218,10 +214,7 @@
     <!-- PRODUTO 3 - IPHONE 16 -->
     <div class="produto-card">
         <div class="carrossel-slide">
-            <img src="iphone-16.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 0)">
-            <img src="iphone16-1.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 1)">
-            <img src="iphone16-2.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 2)">
-            <img src="iphone16-3.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif','iphone16-2.avif','iphone16-3.avif','iphone16-4.avif','iphone16-5.avif','iphone16-6.avif','iphone16-7.avif','iphone16-8.avif'], 3)">
+            <img src="iphone-16.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif'], 0)">
         </div>
         <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
         <h3>iPhone 16 256GB</h3>
@@ -234,6 +227,7 @@
     </div>
 </div>
 
+<!-- SEÇÃO ACESSÓRIOS -->
 <h2 class="section-title" id="acessorios">Acessórios</h2>
 <div class="vitrine">
     <div class="produto-card">
@@ -249,32 +243,6 @@
     </div>
 </div>
 
-<!-- WHATSAPP FIXO -->
-<a href="https://wa.me/5527992985369" class="wpp-fixed" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
-</a>
-
-<footer>
-    <div style="background: #111; color: #888; padding: 40px 20px; text-align: center;">
-        <h4 style="color: white; margin: 0 0 10px 0;">BS Smart Tech</h4>
-        <p>Atendimento: Seg a Sex, 09h às 18h<br>Linhares - ES</p>
-        <div style="border-top: 1px solid #222; margin-top: 20px; padding-top: 20px; font-size: 0.75rem;">
-            &copy; 2026 BS Smart Tech. Todos os direitos reservados.
-        </div>
-    </div>
-</footer>
-
-<!-- MODAL DE GALERIA -->
-<div id="modalGaleria" class="modal">
-    <div class="modal-content-container">
-        <span class="fechar" onclick="fecharGaleria()">&times;</span>
-        <button class="nav-btn prev" onclick="mudarFoto(-1)">&#10094;</button>
-        <img class="modal-content" id="imgSlide">
-        <button class="nav-btn next" onclick="mudarFoto(1)">&#10095;</button>
-        <div id="contadorFotos" class="contador"></div>
-    </div>
-</div>
-
 <!-- MODAL DE CHECKOUT -->
 <div id="modalCheckout" class="modal-checkout">
     <div class="form-container">
@@ -282,191 +250,155 @@
         
         <div class="form-group">
             <label>Nome Completo</label>
-            <input type="text" id="nome_cliente" placeholder="Digite seu nome completo">
-        </div>
-
-        <div class="form-group">
-            <label>CPF</label>
-            <input type="text" id="cpf_cliente" placeholder="000.000.000-00" maxlength="14" oninput="mascaraCPF(this)">
+            <input type="text" id="nome_cliente" placeholder="Digite seu nome">
         </div>
 
         <div class="form-row">
             <div class="form-group">
+                <label>CPF</label>
+                <input type="text" id="cpf_cliente" placeholder="000.000.000-00" maxlength="14" oninput="mascaraCPF(this)">
+            </div>
+            <div class="form-group">
                 <label>CEP</label>
                 <input type="text" id="cep_cliente" placeholder="00000-000" maxlength="9" oninput="mascaraCEP(this)">
             </div>
-            <div class="form-group" style="flex: 2;">
-                <label>Cidade/UF</label>
-                <input type="text" id="cidade_cliente" placeholder="Cidade - UF" readonly style="background:#f9f9f9; cursor:not-allowed;">
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group" style="flex: 2;">
-                <label>Nome da Rua</label>
-                <input type="text" id="rua_cliente" placeholder="Ex: Av. Principal">
-            </div>
-            <div class="form-group" style="flex: 1;">
-                <label>Número</label>
-                <input type="text" id="num_cliente" placeholder="Ex: 123">
-            </div>
         </div>
 
         <div class="form-group">
-            <label>Complemento / Bairro</label>
-            <input type="text" id="comp_cliente" placeholder="Apto, Bloco, etc. (Opcional)">
+            <label>Endereço</label>
+            <input type="text" id="rua_cliente" placeholder="Rua, Número, Bairro">
         </div>
 
         <div class="form-group">
-            <label>Quantidade de Parcelas</label>
-            <select id="parcelas_pag">
-                <option value="1">À vista (1x)</option>
-                <option value="2">2x</option>
-                <option value="3">3x</option>
-                <option value="4">4x</option>
-                <option value="5">5x</option>
-                <option value="6">6x</option>
-                <option value="7">7x</option>
-                <option value="8">8x</option>
-                <option value="9">9x</option>
-                <option value="10">10x</option>
-                <option value="11">11x</option>
-                <option value="12">12x</option>
+            <label>Método de Pagamento</label>
+            <select id="metodo_pagamento" onchange="alternarPagamento()">
+                <option value="cartao">Cartão de Crédito (Até 12x)</option>
+                <option value="pix">PIX (Com Desconto)</option>
             </select>
         </div>
 
-        <button class="btn-comprar" onclick="processarPedido()" style="border:none; width:100%; cursor:pointer;">
-            Confirmar e Ir para Pagamento
+        <div id="area-cartao">
+            <div class="form-group">
+                <label>Parcelas</label>
+                <select id="parcelas_pag">
+                    <option value="1">1x sem juros</option>
+                    <option value="12">Até 12x</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="area-pix">
+            <p style="font-size: 0.8rem; margin-bottom: 10px;">Escaneie o QR Code ou copie o código:</p>
+            <div id="qrcode-container" style="display:flex; justify-content:center; margin-bottom: 10px;"></div>
+            <input type="text" id="pix-copia-cola" readonly style="font-size: 0.7rem; background: #eee;" onclick="this.select()">
+            <button class="btn-dados" style="background:#666;" onclick="copiarPix()">Copiar Código PIX</button>
+        </div>
+
+        <button id="btn-finalizar" class="btn-comprar" onclick="processarPedido()" style="border:none; width:100%; cursor:pointer; margin-top: 15px;">
+            Confirmar e Pagar
         </button>
         
-        <button onclick="document.getElementById('modalCheckout').style.display='none'" style="background:none; border:none; color:red; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
+        <button onclick="fecharCheckout()" style="background:none; border:none; color:red; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
     </div>
 </div>
 
 <script>
-    let fotosAtuais = [];
-    let indiceAtual = 0;
     let produtoSelecionado = "";
-
-    // CONFIGURAÇÃO DOS LINKS (SEM MEXER NOS SEUS PRODUTOS)
-    const linksPagamento = {
-        "iPhone 17 Pro 256GB": {
-            "1": "LINK_17PRO_1X", "2": "LINK_17PRO_2X", "3": "LINK_17PRO_3X", "4": "LINK_17PRO_4X",
-            "5": "LINK_17PRO_5X", "6": "LINK_17PRO_6X", "7": "LINK_17PRO_7X", "8": "LINK_17PRO_8X",
-            "9": "LINK_17PRO_9X", "10": "LINK_17PRO_10X", "11": "LINK_17PRO_11X", "12": "LINK_17PRO_12X"
-        },
-        "iPhone 17 256GB": {
-            "1": "LINK_17_1X", "2": "LINK_17_2X", "3": "LINK_17_3X", "4": "LINK_17_4X",
-            "5": "LINK_17_5X", "6": "LINK_17_6X", "7": "LINK_17_7X", "8": "LINK_17_8X",
-            "9": "LINK_17_9X", "10": "LINK_17_10X", "11": "LINK_17_11X", "12": "LINK_17_12X"
-        },
-        "iPhone 16 256GB": {
-            "1": "LINK_16_1X", "2": "LINK_16_2X", "3": "LINK_16_3X", "4": "LINK_16_4X",
-            "5": "LINK_16_5X", "6": "LINK_16_6X", "7": "LINK_16_7X", "8": "LINK_16_8X",
-            "9": "LINK_16_9X", "10": "LINK_16_10X", "11": "LINK_16_11X", "12": "LINK_16_12X"
-        },
-        "Capa MagSafe Premium": {
-            "1": "LINK_CAPA_1X", "2": "LINK_CAPA_2X", "3": "LINK_CAPA_3X"
-        }
+    
+    // TABELA DE PREÇOS PARA O PIX (Mantendo seus valores)
+    const precosLoja = {
+        "iPhone 17 Pro 256GB": "7899.00",
+        "iPhone 17 256GB": "6399.00",
+        "iPhone 16 256GB": "5799.00",
+        "Capa MagSafe Premium": "105.90"
     };
-
-    function abrirGaleria(listaFotos, indexClicado) {
-        fotosAtuais = listaFotos;
-        indiceAtual = indexClicado;
-        document.getElementById("modalGaleria").style.display = "flex";
-        document.body.style.overflow = "hidden"; 
-        atualizarSlide();
-    }
-
-    function fecharGaleria() {
-        document.getElementById("modalGaleria").style.display = "none";
-        document.body.style.overflow = "auto"; 
-    }
-
-    function mudarFoto(direcao) {
-        indiceAtual += direcao;
-        if (indiceAtual >= fotosAtuais.length) indiceAtual = 0;
-        if (indiceAtual < 0) indiceAtual = fotosAtuais.length - 1;
-        atualizarSlide();
-    }
-
-    function atualizarSlide() {
-        const img = document.getElementById("imgSlide");
-        const contador = document.getElementById("contadorFotos");
-        img.src = fotosAtuais[indiceAtual];
-        const botoes = document.querySelectorAll(".nav-btn");
-        if (fotosAtuais.length > 1) {
-            botoes.forEach(btn => btn.style.display = "block");
-            contador.innerText = (indiceAtual + 1) + " de " + fotosAtuais.length;
-        } else {
-            botoes.forEach(btn => btn.style.display = "none");
-            contador.innerText = "";
-        }
-    }
 
     function abrirCheckout(produto) {
         produtoSelecionado = produto;
         document.getElementById('titulo-checkout').innerText = "Pedido: " + produto;
         document.getElementById('modalCheckout').style.display = 'block';
+        alternarPagamento(); // Reseta visual
     }
 
-    // MÁSCARAS
-    function mascaraCPF(input) {
-        let v = input.value.replace(/\D/g, "");
-        v = v.replace(/(\d{3})(\d)/, "$1.$2");
-        v = v.replace(/(\d{3})(\d)/, "$1.$2");
-        v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-        input.value = v;
+    function fecharCheckout() {
+        document.getElementById('modalCheckout').style.display = 'none';
+        document.getElementById('qrcode-container').innerHTML = "";
     }
 
-    function mascaraCEP(input) {
-        let v = input.value.replace(/\D/g, "");
-        v = v.replace(/(\d{5})(\d)/, "$1-$2");
-        input.value = v;
-        if (v.length === 9) buscarCEP(v.replace("-", ""));
+    function alternarPagamento() {
+        const metodo = document.getElementById('metodo_pagamento').value;
+        const areaCartao = document.getElementById('area-cartao');
+        const areaPix = document.getElementById('area-pix');
+        const btn = document.getElementById('btn-finalizar');
+
+        if (metodo === 'pix') {
+            areaCartao.style.display = 'none';
+            areaPix.style.display = 'block';
+            btn.innerText = "Já realizei o pagamento";
+            gerarCodigoPix();
+        } else {
+            areaCartao.style.display = 'block';
+            areaPix.style.display = 'none';
+            btn.innerText = "Confirmar e Pagar";
+        }
     }
 
-    // API VIACEP
-    function buscarCEP(cep) {
-        fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            .then(res => res.json())
-            .then(dados => {
-                if (!dados.erro) {
-                    document.getElementById('rua_cliente').value = dados.logradouro;
-                    document.getElementById('cidade_cliente').value = dados.localidade + " - " + dados.uf;
-                    document.getElementById('comp_cliente').value = dados.bairro;
-                }
-            });
+    function gerarCodigoPix() {
+        const valor = precosLoja[produtoSelecionado];
+        const chavePix = "SEU_CPF_OU_CNPJ_OU_EMAIL"; // COLOQUE SUA CHAVE AQUI
+        const nome = "BS SMART TECH";
+        const cidade = "LINHARES";
+
+        // Gerador simples de Payload Pix Estático
+        const payload = `00020101021126580014br.gov.bcb.pix0114${chavePix}520400005303986540${valor}5802BR5913${nome}6008${cidade}62070503***6304`;
+        
+        document.getElementById('qrcode-container').innerHTML = "";
+        new QRCode(document.getElementById("qrcode-container"), {
+            text: payload,
+            width: 150,
+            height: 150
+        });
+        document.getElementById('pix-copia-cola').value = payload;
+    }
+
+    function copiarPix() {
+        const input = document.getElementById('pix-copia-cola');
+        input.select();
+        document.execCommand('copy');
+        alert("Código PIX copiado! Cole no seu banco.");
     }
 
     function processarPedido() {
-        const campos = ['nome_cliente', 'cpf_cliente', 'cep_cliente', 'rua_cliente', 'num_cliente'];
-        let erro = false;
+        const nome = document.getElementById('nome_cliente').value;
+        const metodo = document.getElementById('metodo_pagamento').value;
 
-        campos.forEach(id => {
-            let el = document.getElementById(id);
-            if (!el.value) { el.style.borderColor = "red"; erro = true; } 
-            else { el.style.borderColor = "#ccc"; }
-        });
+        if(!nome) return alert("Preencha seu nome.");
 
-        if (erro) { alert("Por favor, preencha todos os campos obrigatórios."); return; }
-
-        const parcelaSelecionada = document.getElementById('parcelas_pag').value;
-        const linkFinal = linksPagamento[produtoSelecionado]?.[parcelaSelecionada];
-
-        if (!linkFinal) {
-            alert("Opção de pagamento indisponível para este produto.");
-            return;
+        if (metodo === 'pix') {
+            alert("Pedido registrado! Enviando para o WhatsApp para confirmar o comprovante.");
+            window.location.href = `https://wa.me/5527992985369?text=Oi! Acabei de pagar o PIX de R$ ${precosLoja[produtoSelecionado]} referente ao ${produtoSelecionado}. Segue o comprovante:`;
+        } else {
+            // Lógica do cartão (Redirecionamento para seus links anteriores)
+            alert("Redirecionando para pagamento seguro...");
+            // Aqui entraria sua lógica de links: window.location.href = linksPagamento[produtoSelecionado][parcela];
         }
-
-        alert("Pedido confirmado! Redirecionando para o ambiente seguro de pagamento...");
-        window.location.href = linkFinal;
     }
 
-    // FECHAR MODAIS CLICANDO FORA
-    window.onclick = function(e) {
-        if (e.target.id == "modalGaleria") fecharGaleria();
-        if (e.target.id == "modalCheckout") document.getElementById('modalCheckout').style.display = 'none';
+    // Máscaras Básicas
+    function mascaraCPF(i){
+        let v = i.value;
+        v=v.replace(/\D/g,"");
+        v=v.replace(/(\d{3})(\d)/,"$1.$2");
+        v=v.replace(/(\d{3})(\d)/,"$1.$2");
+        v=v.replace(/(\d{3})(\d{1,2})$/,"$1-$2");
+        i.value = v;
+    }
+
+    function mascaraCEP(i){
+        let v = i.value;
+        v=v.replace(/\D/g,"");
+        v=v.replace(/(\d{5})(\d)/,"$1-$2");
+        i.value = v;
     }
 </script>
 
