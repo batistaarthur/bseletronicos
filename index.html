@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>BS Smart Tech - Smartphones e Acessórios</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Biblioteca para gerar o QR Code -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         :root {
@@ -17,137 +16,30 @@
         }
 
         * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; margin: 0; background-color: var(--background-body); color: var(--text-main); scroll-behavior: smooth; }
 
-        body { 
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
-            margin: 0; 
-            background-color: var(--background-body); 
-            color: var(--text-main); 
-            scroll-behavior: smooth;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* HEADER */
-        header { 
-            background-color: var(--primary-color); 
-            color: white; 
-            padding: 1rem; 
-            display: flex; flex-direction: column; align-items: center;
-            position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        header h1 { margin: 0 0 10px 0; font-size: 1.3rem; letter-spacing: 1px; }
+        header { background-color: var(--primary-color); color: white; padding: 1rem; display: flex; flex-direction: column; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        header h1 { margin: 0 0 10px 0; font-size: 1.3rem; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 15px; }
-        nav a { text-decoration: none; color: #ccc; font-weight: 500; font-size: 0.9rem; }
+        nav a { text-decoration: none; color: #ccc; font-size: 0.9rem; }
 
-        /* HERO */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1400&q=80');
-            background-size: cover; background-position: center;
-            height: 180px; color: white; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center; padding: 0 20px;
-        }
-        .hero h2 { font-size: 1.4rem; margin: 0; }
-
-        /* VANTAGENS */
-        .vantagens {
-            background-color: white; padding: 15px; display: flex; gap: 20px;
-            overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;
-            border-bottom: 1px solid #eee;
-        }
-        .vantagem-item { display: inline-flex; align-items: center; gap: 8px; color: #555; font-size: 0.8rem; flex-shrink: 0; }
-        .vantagem-item .material-icons { color: var(--accent-color); font-size: 1.5rem; }
-        .vantagens::-webkit-scrollbar { display: none; }
-
-        /* VITRINE */
-        .section-title { text-align: center; margin: 30px 0 15px; font-size: 1.5rem; color: #1a1a1a; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1400&q=80'); height: 180px; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        
         .vitrine { display: grid; grid-template-columns: 1fr; padding: 15px; gap: 20px; max-width: 1200px; margin: 0 auto; }
-
-        /* CARD DO PRODUTO */
-        .produto-card {
-            background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            padding: 15px; text-align: center; display: flex; flex-direction: column;
-            position: relative; overflow: hidden;
-        }
+        .produto-card { background: white; border-radius: 15px; padding: 15px; text-align: center; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         
-        .carrossel-slide {
-            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-            scrollbar-width: none; margin-bottom: 8px;
-        }
-        .carrossel-slide::-webkit-scrollbar { display: none; }
-        .carrossel-slide img {
-            flex: 0 0 100%; scroll-snap-align: center;
-            height: 230px; width: 100%; object-fit: contain; cursor: pointer; padding: 10px;
-            background-color: #fff;
-        }
+        .btn-comprar { display: block; background-color: var(--whatsapp-color); color: white; padding: 15px; text-decoration: none; border-radius: 10px; font-weight: bold; margin-top: 10px; }
+        .btn-dados { display: block; background-color: #007bff; color: white; padding: 12px; border-radius: 10px; font-weight: bold; margin-top: 10px; border: none; width: 100%; cursor: pointer; }
 
-        .hint-fotos { font-size: 0.7rem; color: #27ae60; margin-bottom: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .modal-checkout { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); overflow-y: auto; }
+        .form-container { background: white; padding: 20px; border-radius: 15px; width: 95%; max-width: 500px; margin: 30px auto; }
         
-        h3 { font-size: 1.1rem; color: #222; margin: 5px 0; min-height: 40px; }
-        .descricao { color: #777; font-size: 0.85rem; margin-bottom: 8px; }
-        .preco-de { text-decoration: line-through; color: #999; font-size: 0.8rem; }
-        .preco { color: var(--accent-color); font-size: 1.5rem; font-weight: bold; margin: 5px 0; }
-        .parcelas { color: #888; font-size: 0.85rem; margin-bottom: 15px; }
-        
-        .btn-comprar {
-            display: block; background-color: var(--whatsapp-color); color: white;
-            padding: 15px; text-decoration: none; border-radius: 10px; font-weight: bold;
-            transition: 0.3s; margin-top: auto; border: none; text-align: center;
-        }
-        .btn-comprar:active { transform: scale(0.98); opacity: 0.9; }
-
-        .btn-dados {
-            display: block; background-color: #007bff; color: white;
-            padding: 12px; text-decoration: none; border-radius: 10px;
-            font-weight: bold; margin-top: 10px; cursor: pointer; border: none; width: 100%;
-            transition: 0.3s;
-        }
-        .btn-dados:active { transform: scale(0.98); background-color: #0056b3; }
-
-        /* MODAIS */
-        .modal, .modal-checkout {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0; 
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);
-            align-items: center; justify-content: center;
-        }
-        .modal-checkout { z-index: 3000; overflow-y: auto; align-items: flex-start; background-color: rgba(0,0,0,0.6); }
-
-        .form-container {
-            background: white; padding: 20px; border-radius: 15px;
-            width: 95%; max-width: 500px; margin: 30px auto; text-align: left;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-        .form-container h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
-        .form-group { margin-bottom: 12px; }
+        .form-group { margin-bottom: 12px; text-align: left; }
         .form-group label { display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 4px; }
-        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; outline: none; }
-        .form-row { display: flex; gap: 10px; }
-        .form-row .form-group { flex: 1; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; }
 
-        .wpp-fixed {
-            position: fixed; bottom: 20px; right: 20px; background-color: var(--whatsapp-color);
-            color: white; width: 60px; height: 60px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001;
-        }
-
-        /* ÁREA PIX */
-        #area-pix {
-            display: none;
-            text-align: center;
-            padding: 15px;
-            border: 2px dashed var(--accent-color);
-            border-radius: 10px;
-            margin-bottom: 15px;
-            background: #f0fff4;
-        }
-
-        @media (min-width: 600px) {
-            header { flex-direction: row; padding: 1rem 5%; justify-content: space-between; }
-            .vitrine { grid-template-columns: repeat(2, 1fr); }
-            .hero { height: 250px; }
-        }
-        @media (min-width: 1000px) {
-            .vitrine { grid-template-columns: repeat(3, 1fr); }
-        }
+        #area-pix { display: none; text-align: center; padding: 15px; border: 2px dashed var(--accent-color); background: #f0fff4; border-radius: 10px; }
+        #qrcode-container img { margin: 0 auto; }
     </style>
 </head>
 <body>
@@ -163,83 +55,19 @@
     </nav>
 </header>
 
-<section class="hero" id="home">
-    <h2>Tecnologia e Qualidade ao seu alcance</h2>
-    <p>Os melhores preços de Linhares e região</p>
-</section>
-
-<div class="vantagens">
-    <div class="vantagem-item"><span class="material-icons">local_shipping</span><div><b>Entrega Rápida</b><br>Envio para todo Brasil</div></div>
-    <div class="vantagem-item"><span class="material-icons">verified_user</span><div><b>Garantia Real</b><br>Produtos Originais</div></div>
-    <div class="vantagem-item"><span class="material-icons">credit_card</span><div><b>Até 12x</b><br>No cartão de crédito</div></div>
-    <div class="vantagem-item"><span class="material-icons">payments</span><div><b>Desconto PIX</b><br>Melhor preço</div></div>
-</div>
-
-<h2 class="section-title" id="smartphones">Smartphones em Destaque</h2>
-<div class="vitrine">
-    
-    <!-- PRODUTO 1 - IPHONE 17 PRO -->
+<div class="vitrine" id="smartphones">
+    <!-- Produto 1 -->
     <div class="produto-card">
-        <div class="carrossel-slide"> 
-            <img src="iphone-17pro.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 0)">
-            <img src="iphone-17pro1.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 1)">
-            <img src="iphone-17pro2.jpeg" onclick="abrirGaleria(['iphone-17pro.jpeg', 'iphone-17pro1.jpeg', 'iphone-17pro2.jpeg', 'iphone-17pro3.jpeg', 'iphone-17pro4.jpeg', 'iphone-17pro5.jpeg'], 2)">
-        </div>
-        <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
         <h3>iPhone 17 Pro 256GB</h3>
-        <p class="descricao">Silver</p>
-        <p class="preco-de">R$ 8.500,00</p>
         <div class="preco">R$ 7.899,00</div>
-        <p class="parcelas">ou 12x de R$ 759,90</p>
-        <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 Pro 256GB" class="btn-comprar">WhatsApp</a>
-        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 Pro 256GB')">Comprar agora</button>
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 Pro 256GB')">Comprar com Cartão / PIX</button>
     </div>
 
-    <!-- PRODUTO 2 - IPHONE 17 -->
+    <!-- Produto 2 -->
     <div class="produto-card">
-        <div class="carrossel-slide"> 
-            <img src="iphone 17.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif'], 0)">
-            <img src="iphone 17-1.avif" onclick="abrirGaleria(['iphone 17.avif','iphone 17-1.avif','iphone 17-2.avif'], 1)">
-        </div>
-        <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
         <h3>iPhone 17 256GB</h3>
-        <p class="descricao">Azul-névoa</p>
-        <p class="preco-de">R$ 7.200,00</p>
         <div class="preco">R$ 6.399,00</div>
-        <p class="parcelas">ou 12x de R$ 599,99</p>
-        <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 17 256GB" class="btn-comprar">WhatsApp</a>
-        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 256GB')">Comprar agora</button>
-    </div>
-
-    <!-- PRODUTO 3 - IPHONE 16 -->
-    <div class="produto-card">
-        <div class="carrossel-slide">
-            <img src="iphone-16.avif" onclick="abrirGaleria(['iphone-16.avif','iphone16-1.avif'], 0)">
-        </div>
-        <span class="hint-fotos"><span class="material-icons" style="font-size: 16px;">swipe</span> DESLIZE PARA VER MAIS</span>
-        <h3>iPhone 16 256GB</h3>
-        <p class="descricao">Ultramarino</p>
-        <p class="preco-de">R$ 6.899,00</p>
-        <div class="preco">R$ 5.799,00</div>
-        <p class="parcelas">ou 12x de R$ 605,50</p>
-        <a href="https://wa.me/5527992985369?text=Olá! Quero o iPhone 16" class="btn-comprar">WhatsApp</a>
-        <button class="btn-dados" onclick="abrirCheckout('iPhone 16 256GB')">Comprar agora</button>
-    </div>
-</div>
-
-<!-- SEÇÃO ACESSÓRIOS -->
-<h2 class="section-title" id="acessorios">Acessórios</h2>
-<div class="vitrine">
-    <div class="produto-card">
-        <div class="carrossel-slide">
-            <img src="capa-magsafe-iphone-17pro.webp" onclick="abrirGaleria(['capa-magsafe-iphone-17pro.webp'], 0)">
-        </div>
-        <h3>Capa MagSafe Premium</h3>
-        <p class="descricao">Proteção Máxima para iPhone</p>
-        <div class="preco">R$ 105,90</div>
-        <p class="parcelas">ou 3x de R$ 36,63</p>
-        <a href="https://wa.me/5527992985369?text=Olá! Quero a Capa MagSafe" class="btn-comprar">WhatsApp</a>
-        <button class="btn-dados" onclick="abrirCheckout('Capa MagSafe Premium')">Comprar agora</button>
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 256GB')">Comprar com Cartão / PIX</button>
     </div>
 </div>
 
@@ -250,52 +78,45 @@
         
         <div class="form-group">
             <label>Nome Completo</label>
-            <input type="text" id="nome_cliente" placeholder="Digite seu nome">
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label>CPF</label>
-                <input type="text" id="cpf_cliente" placeholder="000.000.000-00" maxlength="14" oninput="mascaraCPF(this)">
-            </div>
-            <div class="form-group">
-                <label>CEP</label>
-                <input type="text" id="cep_cliente" placeholder="00000-000" maxlength="9" oninput="mascaraCEP(this)">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Endereço</label>
-            <input type="text" id="rua_cliente" placeholder="Rua, Número, Bairro">
+            <input type="text" id="nome_cliente" placeholder="Seu nome">
         </div>
 
         <div class="form-group">
             <label>Método de Pagamento</label>
             <select id="metodo_pagamento" onchange="alternarPagamento()">
-                <option value="cartao">Cartão de Crédito (Até 12x)</option>
+                <option value="cartao">Cartão de Crédito</option>
                 <option value="pix">PIX (Com Desconto)</option>
             </select>
         </div>
 
         <div id="area-cartao">
             <div class="form-group">
-                <label>Parcelas</label>
+                <label>Selecione o Parcelamento</label>
                 <select id="parcelas_pag">
-                    <option value="1">1x sem juros</option>
-                    <option value="12">Até 12x</option>
+                    <option value="1">1x à vista</option>
+                    <option value="2">2x sem juros</option>
+                    <option value="3">3x sem juros</option>
+                    <option value="4">4x</option>
+                    <option value="5">5x</option>
+                    <option value="6">6x</option>
+                    <option value="7">7x</option>
+                    <option value="8">8x</option>
+                    <option value="9">9x</option>
+                    <option value="10">10x</option>
+                    <option value="11">11x</option>
+                    <option value="12">12x</option>
                 </select>
             </div>
         </div>
 
         <div id="area-pix">
-            <p style="font-size: 0.8rem; margin-bottom: 10px;">Escaneie o QR Code ou copie o código:</p>
-            <div id="qrcode-container" style="display:flex; justify-content:center; margin-bottom: 10px;"></div>
-            <input type="text" id="pix-copia-cola" readonly style="font-size: 0.7rem; background: #eee;" onclick="this.select()">
-            <button class="btn-dados" style="background:#666;" onclick="copiarPix()">Copiar Código PIX</button>
+            <div id="qrcode-container"></div>
+            <input type="text" id="pix-copia-cola" readonly style="width:100%; margin-top:10px; font-size:10px;">
+            <button class="btn-dados" style="background:#666" onclick="copiarPix()">Copiar Código PIX</button>
         </div>
 
-        <button id="btn-finalizar" class="btn-comprar" onclick="processarPedido()" style="border:none; width:100%; cursor:pointer; margin-top: 15px;">
-            Confirmar e Pagar
+        <button id="btn-finalizar" class="btn-comprar" style="width:100%; border:none; cursor:pointer;" onclick="processarPedido()">
+            Confirmar Pagamento
         </button>
         
         <button onclick="fecharCheckout()" style="background:none; border:none; color:red; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
@@ -305,59 +126,57 @@
 <script>
     let produtoSelecionado = "";
     
-    // TABELA DE PREÇOS PARA O PIX (Mantendo seus valores)
+    // CADASTRE SEUS LINKS AQUI
+    const linksPagamento = {
+        "iPhone 17 Pro 256GB": {
+            "1": "https://link-da-parcela-1.com",
+            "2": "https://link-da-parcela-2.com",
+            "3": "https://link-da-parcela-3.com",
+            "4": "https://link...", // e assim por diante até o 12
+            "12": "https://link-da-parcela-12.com"
+        },
+        "iPhone 17 256GB": {
+            "1": "https://link-iphone17-1x.com",
+            "12": "https://link-iphone17-12x.com"
+        }
+    };
+
     const precosLoja = {
         "iPhone 17 Pro 256GB": "7899.00",
-        "iPhone 17 256GB": "6399.00",
-        "iPhone 16 256GB": "5799.00",
-        "Capa MagSafe Premium": "105.90"
+        "iPhone 17 256GB": "6399.00"
     };
 
     function abrirCheckout(produto) {
         produtoSelecionado = produto;
-        document.getElementById('titulo-checkout').innerText = "Pedido: " + produto;
+        document.getElementById('titulo-checkout').innerText = produto;
         document.getElementById('modalCheckout').style.display = 'block';
-        alternarPagamento(); // Reseta visual
+        alternarPagamento();
     }
 
     function fecharCheckout() {
         document.getElementById('modalCheckout').style.display = 'none';
-        document.getElementById('qrcode-container').innerHTML = "";
     }
 
     function alternarPagamento() {
         const metodo = document.getElementById('metodo_pagamento').value;
-        const areaCartao = document.getElementById('area-cartao');
-        const areaPix = document.getElementById('area-pix');
-        const btn = document.getElementById('btn-finalizar');
-
-        if (metodo === 'pix') {
-            areaCartao.style.display = 'none';
-            areaPix.style.display = 'block';
-            btn.innerText = "Já realizei o pagamento";
-            gerarCodigoPix();
-        } else {
-            areaCartao.style.display = 'block';
-            areaPix.style.display = 'none';
-            btn.innerText = "Confirmar e Pagar";
-        }
+        document.getElementById('area-cartao').style.display = (metodo === 'cartao') ? 'block' : 'none';
+        document.getElementById('area-pix').style.display = (metodo === 'pix') ? 'block' : 'none';
+        
+        if(metodo === 'pix') gerarCodigoPix();
     }
 
     function gerarCodigoPix() {
         const valor = precosLoja[produtoSelecionado];
-        const chavePix = "130.728.617-81"; // COLOQUE SUA CHAVE AQUI
-        const nome = "BS SMART TECH";
+        const chavePix = "8ec0e358-4d5e-40c8-9660-afbe089c76f6"; 
+        const nome = "ARTHUR BATISTA DA SILVA";
         const cidade = "LINHARES";
 
-        // Gerador simples de Payload Pix Estático
+        // Correção da String do Payload (Template Strings)
         const payload = `00020101021126580014br.gov.bcb.pix0114${chavePix}520400005303986540${valor}5802BR5913${nome}6008${cidade}62070503***6304`;
         
-        document.getElementById('qrcode-container').innerHTML = "";
-        new QRCode(document.getElementById("qrcode-container"), {
-            text: payload,
-            width: 150,
-            height: 150
-        });
+        const container = document.getElementById("qrcode-container");
+        container.innerHTML = "";
+        new QRCode(container, { text: payload, width: 150, height: 150 });
         document.getElementById('pix-copia-cola').value = payload;
     }
 
@@ -365,40 +184,27 @@
         const input = document.getElementById('pix-copia-cola');
         input.select();
         document.execCommand('copy');
-        alert("Código PIX copiado! Cole no seu banco.");
+        alert("Código copiado!");
     }
 
     function processarPedido() {
         const nome = document.getElementById('nome_cliente').value;
         const metodo = document.getElementById('metodo_pagamento').value;
 
-        if(!nome) return alert("Preencha seu nome.");
+        if(!nome) return alert("Por favor, digite seu nome.");
 
         if (metodo === 'pix') {
-            alert("Pedido registrado! Enviando para o WhatsApp para confirmar o comprovante.");
-            window.location.href = `https://wa.me/5527992985369?text=Oi! Acabei de pagar o PIX de R$ ${precosLoja[produtoSelecionado]} referente ao ${produtoSelecionado}. Segue o comprovante:`;
+            window.location.href = `https://wa.me/5527992985369?text=Oi! Paguei o PIX do ${produtoSelecionado}. Nome: ${nome}`;
         } else {
-            // Lógica do cartão (Redirecionamento para seus links anteriores)
-            alert("Redirecionando para pagamento seguro...");
-            // Aqui entraria sua lógica de links: window.location.href = linksPagamento[produtoSelecionado][parcela];
+            const parcela = document.getElementById('parcelas_pag').value;
+            const link = linksPagamento[produtoSelecionado][parcela];
+            
+            if(link && link !== "https://link...") {
+                window.location.href = link;
+            } else {
+                alert("Link de pagamento para " + parcela + "x ainda não configurado.");
+            }
         }
-    }
-
-    // Máscaras Básicas
-    function mascaraCPF(i){
-        let v = i.value;
-        v=v.replace(/\D/g,"");
-        v=v.replace(/(\d{3})(\d)/,"$1.$2");
-        v=v.replace(/(\d{3})(\d)/,"$1.$2");
-        v=v.replace(/(\d{3})(\d{1,2})$/,"$1-$2");
-        i.value = v;
-    }
-
-    function mascaraCEP(i){
-        let v = i.value;
-        v=v.replace(/\D/g,"");
-        v=v.replace(/(\d{5})(\d)/,"$1-$2");
-        i.value = v;
     }
 </script>
 
