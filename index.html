@@ -16,14 +16,12 @@
         }
 
         * { box-sizing: border-box; }
-
         body { 
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
             margin: 0; background-color: var(--background-body); color: var(--text-main); 
             scroll-behavior: smooth; -webkit-tap-highlight-color: transparent;
         }
 
-        /* HEADER */
         header { 
             background-color: var(--primary-color); color: white; padding: 1rem; 
             display: flex; flex-direction: column; align-items: center;
@@ -33,58 +31,40 @@
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 15px; }
         nav a { text-decoration: none; color: #ccc; font-weight: 500; font-size: 0.9rem; }
 
-        /* HERO */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1400&q=80');
-            background-size: cover; background-position: center; height: 180px; color: white; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px;
+            background-size: cover; background-position: center; height: 160px; color: white; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
 
-        /* VITRINE */
         .section-title { text-align: center; margin: 30px 0 15px; font-size: 1.5rem; color: #1a1a1a; }
         .vitrine { display: grid; grid-template-columns: 1fr; padding: 15px; gap: 20px; max-width: 1200px; margin: 0 auto; }
 
-        /* NOVO CARROSSEL */
+        /* CARROSSEL E CARDS */
         .produto-card {
             background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             padding: 15px; text-align: center; display: flex; flex-direction: column; position: relative;
         }
 
-        .carrossel-container { position: relative; width: 100%; overflow: hidden; border-radius: 10px; margin-bottom: 10px; }
-        
-        .carrossel-slide {
-            display: flex; transition: transform 0.4s ease-in-out; width: 100%;
-        }
-        
-        .carrossel-slide img {
-            width: 100%; flex-shrink: 0; height: 250px; object-fit: contain; background: #fff; cursor: pointer;
-        }
+        .carrossel-container { position: relative; width: 100%; overflow: hidden; border-radius: 10px; }
+        .carrossel-slide { display: flex; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); width: 100%; }
+        .carrossel-slide img { width: 100%; flex-shrink: 0; height: 250px; object-fit: contain; cursor: pointer; padding: 10px; }
 
-        /* Setas do Carrossel */
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(0,0,0,0.3); color: white; border: none; border-radius: 50%;
-            width: 30px; height: 30px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            z-index: 10;
+            background: rgba(0,0,0,0.2); color: white; border: none; border-radius: 50%;
+            width: 35px; height: 35px; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center;
         }
-        .prev { left: 5px; }
-        .next { right: 5px; }
+        .prev { left: 5px; } .next { right: 5px; }
 
-        /* Pontinhos (Dots) */
-        .dots-container { display: flex; justify-content: center; gap: 5px; margin-top: 5px; }
-        .dot { width: 8px; height: 8px; background: #ccc; border-radius: 50%; transition: 0.3s; }
-        .dot.active { background: var(--accent-color); transform: scale(1.2); }
+        .dots-container { display: flex; justify-content: center; gap: 6px; margin: 10px 0; }
+        .dot { width: 7px; height: 7px; background: #ddd; border-radius: 50%; transition: 0.3s; }
+        .dot.active { background: var(--accent-color); width: 15px; border-radius: 4px; }
 
-        /* PREÇOS E BOTÕES */
-        .preco { color: var(--accent-color); font-size: 1.5rem; font-weight: bold; margin: 5px 0; }
-        .btn-comprar {
-            display: block; background-color: var(--whatsapp-color); color: white;
-            padding: 15px; text-decoration: none; border-radius: 10px; font-weight: bold; margin-top: 10px;
-        }
-        .btn-dados {
-            display: block; background-color: #007bff; color: white;
-            padding: 12px; border-radius: 10px; font-weight: bold; margin-top: 10px; cursor: pointer; border: none;
-        }
+        .preco { color: var(--accent-color); font-size: 1.6rem; font-weight: bold; margin: 5px 0; }
+        .parcelas { color: #888; font-size: 0.85rem; margin-bottom: 12px; }
+        .btn-comprar { display: block; background-color: var(--whatsapp-color); color: white; padding: 12px; text-decoration: none; border-radius: 8px; font-weight: bold; margin-bottom: 8px; }
+        .btn-dados { display: block; background-color: #007bff; color: white; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; border: none; width: 100%; }
 
         /* MODAIS */
         .modal, .modal-checkout {
@@ -93,18 +73,16 @@
             align-items: center; justify-content: center;
         }
         .modal-checkout { z-index: 3000; overflow-y: auto; align-items: flex-start; background-color: rgba(0,0,0,0.7); }
-        .form-container {
-            background: white; padding: 20px; border-radius: 15px; width: 95%; max-width: 500px; margin: 30px auto;
-        }
+        .form-container { background: white; padding: 20px; border-radius: 15px; width: 95%; max-width: 500px; margin: 30px auto; text-align: left; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 4px; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; outline: none; }
+        
+        #area-pix { display: none; text-align: center; padding: 15px; border: 2px dashed var(--accent-color); border-radius: 10px; background: #f0fff4; margin-bottom: 10px; }
+        #imgExpandida { max-width: 95%; max-height: 85%; border-radius: 10px; }
 
-        #imgExpandida { max-width: 90%; max-height: 80%; }
-
-        @media (min-width: 600px) {
-            .vitrine { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (min-width: 1000px) {
-            .vitrine { grid-template-columns: repeat(3, 1fr); }
-        }
+        @media (min-width: 600px) { .vitrine { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1000px) { .vitrine { grid-template-columns: repeat(3, 1fr); } }
     </style>
 </head>
 <body>
@@ -115,48 +93,88 @@
         <ul>
             <li><a href="#home">Início</a></li>
             <li><a href="#smartphones">Smartphones</a></li>
+            <li><a href="#acessorios">Acessórios</a></li>
         </ul>
     </nav>
 </header>
 
 <section class="hero" id="home">
-    <h2>Promoções da Semana</h2>
+    <h2>Tecnologia de Ponta</h2>
 </section>
 
+<h2 class="section-title" id="smartphones">Smartphones</h2>
 <div class="vitrine">
-    <!-- PRODUTO 1 -->
-    <div class="produto-card" id="p1">
+    <!-- iPHONE 17 PRO -->
+    <div class="produto-card" id="iphone17pro">
         <div class="carrossel-container">
-            <button class="nav-btn prev" onclick="moveSlide('p1', -1)">&#10094;</button>
+            <button class="nav-btn prev" onclick="moveSlide('iphone17pro', -1)">&#10094;</button>
             <div class="carrossel-slide">
                 <img src="iphone-17pro.jpeg" onclick="abrirGaleria(this.src)">
                 <img src="iphone-17pro1.jpeg" onclick="abrirGaleria(this.src)">
                 <img src="iphone-17pro2.jpeg" onclick="abrirGaleria(this.src)">
             </div>
-            <button class="nav-btn next" onclick="moveSlide('p1', 1)">&#10095;</button>
+            <button class="nav-btn next" onclick="moveSlide('iphone17pro', 1)">&#10095;</button>
         </div>
-        <div class="dots-container" id="dots-p1"></div>
+        <div class="dots-container" id="dots-iphone17pro"></div>
         <h3>iPhone 17 Pro 256GB</h3>
-        <div class="preco">R$ 7.899,00</div>
-        <a href="https://wa.me/5527992985369" class="btn-comprar">WhatsApp</a>
-        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 Pro 256GB')">Comprar Online</button>
+        <p class="preco">R$ 7.899,00</p>
+        <p class="parcelas">ou 12x de R$ 759,90</p>
+        <a href="https://wa.me/5527992985369?text=Quero o iPhone 17 Pro" class="btn-comprar">WhatsApp</a>
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 Pro 256GB')">Comprar Agora</button>
     </div>
 
-    <!-- PRODUTO 2 -->
-    <div class="produto-card" id="p2">
+    <!-- iPHONE 17 -->
+    <div class="produto-card" id="iphone17">
         <div class="carrossel-container">
-            <button class="nav-btn prev" onclick="moveSlide('p2', -1)">&#10094;</button>
+            <button class="nav-btn prev" onclick="moveSlide('iphone17', -1)">&#10094;</button>
             <div class="carrossel-slide">
                 <img src="iphone 17.avif" onclick="abrirGaleria(this.src)">
                 <img src="iphone 17-1.avif" onclick="abrirGaleria(this.src)">
             </div>
-            <button class="nav-btn next" onclick="moveSlide('p2', 1)">&#10095;</button>
+            <button class="nav-btn next" onclick="moveSlide('iphone17', 1)">&#10095;</button>
         </div>
-        <div class="dots-container" id="dots-p2"></div>
+        <div class="dots-container" id="dots-iphone17"></div>
         <h3>iPhone 17 256GB</h3>
         <div class="preco">R$ 6.399,00</div>
-        <a href="https://wa.me/5527992985369" class="btn-comprar">WhatsApp</a>
-        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 256GB')">Comprar Online</button>
+        <p class="parcelas">ou 12x de R$ 599,99</p>
+        <a href="https://wa.me/5527992985369?text=Quero o iPhone 17" class="btn-comprar">WhatsApp</a>
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 17 256GB')">Comprar Agora</button>
+    </div>
+
+    <!-- iPHONE 16 -->
+    <div class="produto-card" id="iphone16">
+        <div class="carrossel-container">
+            <button class="nav-btn prev" onclick="moveSlide('iphone16', -1)">&#10094;</button>
+            <div class="carrossel-slide">
+                <img src="iphone-16.avif" onclick="abrirGaleria(this.src)">
+            </div>
+            <button class="nav-btn next" onclick="moveSlide('iphone16', 1)">&#10095;</button>
+        </div>
+        <div class="dots-container" id="dots-iphone16"></div>
+        <h3>iPhone 16 256GB</h3>
+        <div class="preco">R$ 5.799,00</div>
+        <p class="parcelas">ou 12x de R$ 605,50</p>
+        <a href="https://wa.me/5527992985369?text=Quero o iPhone 16" class="btn-comprar">WhatsApp</a>
+        <button class="btn-dados" onclick="abrirCheckout('iPhone 16 256GB')">Comprar Agora</button>
+    </div>
+</div>
+
+<h2 class="section-title" id="acessorios">Acessórios</h2>
+<div class="vitrine">
+    <div class="produto-card" id="capa">
+        <div class="carrossel-container">
+            <button class="nav-btn prev" onclick="moveSlide('capa', -1)">&#10094;</button>
+            <div class="carrossel-slide">
+                <img src="capa-magsafe-iphone-17pro.webp" onclick="abrirGaleria(this.src)">
+            </div>
+            <button class="nav-btn next" onclick="moveSlide('capa', 1)">&#10095;</button>
+        </div>
+        <div class="dots-container" id="dots-capa"></div>
+        <h3>Capa MagSafe Premium</h3>
+        <div class="preco">R$ 105,90</div>
+        <p class="parcelas">ou 3x de R$ 36,63</p>
+        <a href="https://wa.me/5527992985369?text=Quero a capa MagSafe" class="btn-comprar">WhatsApp</a>
+        <button class="btn-dados" onclick="abrirCheckout('Capa MagSafe Premium')">Comprar Agora</button>
     </div>
 </div>
 
@@ -165,69 +183,125 @@
     <img id="imgExpandida">
 </div>
 
-<!-- MODAL CHECKOUT (Simplificado para o exemplo, mantenha o seu anterior aqui) -->
+<!-- MODAL CHECKOUT -->
 <div id="modalCheckout" class="modal-checkout">
     <div class="form-container">
-        <h2 id="titulo-checkout">Finalizar Pedido</h2>
-        <input type="text" id="nome_cliente" placeholder="Seu Nome" style="width:100%; padding:10px; margin:10px 0;">
-        <div id="area-pix" style="display:none; text-align:center;">
-             <div id="qrcode-container" style="display:flex; justify-content:center; margin-bottom:10px;"></div>
-             <button class="btn-dados" onclick="copiarPix()">Copiar Código PIX</button>
+        <h2 id="titulo-checkout" style="font-size:1.1rem; border-bottom:2px solid #007bff; padding-bottom:8px;">Finalizar Pedido</h2>
+        <div class="form-group"><label>Nome</label><input type="text" id="nome_cliente" placeholder="Nome Completo"></div>
+        <div style="display:flex; gap:10px;">
+            <div class="form-group" style="flex:1;"><label>CPF</label><input type="text" id="cpf_cliente" maxlength="14" oninput="mCPF(this)"></div>
+            <div class="form-group" style="flex:1;"><label>CEP</label><input type="text" id="cep_cliente" maxlength="9" oninput="mCEP(this)" onblur="buscarCEP()"></div>
         </div>
-        <button class="btn-comprar" style="width:100%; border:none;" onclick="processarPedido()">Confirmar</button>
-        <button onclick="fecharCheckout()" style="background:none; border:none; color:red; width:100%; margin-top:10px;">Voltar</button>
+        <div class="form-group"><label>Endereço Completo</label><input type="text" id="end_cliente" placeholder="Rua, número e bairro"></div>
+        <div class="form-group">
+            <label>Pagamento</label>
+            <select id="metodo_pag" onchange="togglePag()">
+                <option value="cartao">Cartão de Crédito</option>
+                <option value="pix">PIX (Desconto)</option>
+            </select>
+        </div>
+        <div id="area-cartao"><div class="form-group"><label>Parcelas</label><select id="parc_select"></select></div></div>
+        <div id="area-pix">
+            <div id="qrcode-container" style="display:flex; justify-content:center; margin-bottom:8px;"></div>
+            <input type="text" id="pix-copy" readonly style="font-size:0.7rem; background:#eee; margin-bottom:5px;">
+            <button class="btn-dados" style="background:#666;" onclick="copyPix()">Copiar Código PIX</button>
+        </div>
+        <div id="info-status" style="font-size:0.8rem; color:green; text-align:center; font-weight:bold; margin-bottom:10px;"></div>
+        <button class="btn-comprar" style="width:100%; border:none;" onclick="finalizar()">Confirmar Pedido</button>
+        <button onclick="fecharCheckout()" style="background:none; border:none; color:red; width:100%; cursor:pointer; margin-top:5px;">Cancelar</button>
     </div>
 </div>
 
 <script>
-    // LÓGICA DO CARROSSEL
-    const carrosseis = {
-        'p1': { current: 0, total: 3 },
-        'p2': { current: 0, total: 2 }
+    // DADOS DO CARROSSEL
+    const config = {
+        'iphone17pro': { current: 0, total: 3 },
+        'iphone17': { current: 0, total: 2 },
+        'iphone16': { current: 0, total: 1 },
+        'capa': { current: 0, total: 1 }
     };
 
-    function initDots() {
-        for (let id in carrosseis) {
+    function init() {
+        for (let id in config) {
             const container = document.getElementById(`dots-${id}`);
-            for (let i = 0; i < carrosseis[id].total; i++) {
-                const dot = document.createElement('div');
-                dot.className = `dot ${i === 0 ? 'active' : ''}`;
-                container.appendChild(dot);
+            container.innerHTML = "";
+            for (let i = 0; i < config[id].total; i++) {
+                const d = document.createElement('div');
+                d.className = `dot ${i === 0 ? 'active' : ''}`;
+                container.appendChild(d);
             }
         }
     }
 
     function moveSlide(id, step) {
-        const c = carrosseis[id];
+        const c = config[id];
         c.current = (c.current + step + c.total) % c.total;
-        
-        const slide = document.querySelector(`#${id} .carrossel-slide`);
-        slide.style.transform = `translateX(-${c.current * 100}%)`;
-        
-        // Atualiza dots
+        document.querySelector(`#${id} .carrossel-slide`).style.transform = `translateX(-${c.current * 100}%)`;
         const dots = document.querySelectorAll(`#dots-${id} .dot`);
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === c.current);
-        });
+        dots.forEach((d, i) => d.classList.toggle('active', i === c.current));
     }
 
-    // INICIALIZAÇÃO
-    initDots();
-
-    // FUNÇÕES DE IMAGEM
-    function abrirGaleria(src) {
-        document.getElementById('imgExpandida').src = src;
-        document.getElementById('modalGaleria').style.display = 'flex';
-    }
+    // IMAGEM
+    function abrirGaleria(src) { document.getElementById('imgExpandida').src = src; document.getElementById('modalGaleria').style.display = 'flex'; }
     function fecharGaleria() { document.getElementById('modalGaleria').style.display = 'none'; }
 
-    // FUNÇÕES DE CHECKOUT (Exemplo funcional rápido)
+    // CHECKOUT
+    let prodAtivo = "";
+    const precos = {"iPhone 17 Pro 256GB": "7899.00", "iPhone 17 256GB": "6399.00", "iPhone 16 256GB": "5799.00", "Capa MagSafe Premium": "105.90"};
+
     function abrirCheckout(prod) {
+        prodAtivo = prod;
         document.getElementById('titulo-checkout').innerText = prod;
         document.getElementById('modalCheckout').style.display = 'block';
+        const s = document.getElementById('parc_select'); s.innerHTML = "";
+        const max = prod.includes("Capa") ? 3 : 12;
+        for(let i=1; i<=max; i++) { let o = document.createElement('option'); o.value = i; o.text = `${i}x no Cartão`; s.appendChild(o); }
+        togglePag();
     }
+
     function fecharCheckout() { document.getElementById('modalCheckout').style.display = 'none'; }
-    function processarPedido() { alert('Pedido enviado!'); fecharCheckout(); }
+
+    function togglePag() {
+        const m = document.getElementById('metodo_pag').value;
+        document.getElementById('area-cartao').style.display = m === 'cartao' ? 'block' : 'none';
+        document.getElementById('area-pix').style.display = m === 'pix' ? 'block' : 'none';
+        if(m === 'pix') gerarPix();
+    }
+
+    async function buscarCEP() {
+        const cep = document.getElementById('cep_cliente').value.replace(/\D/g,"");
+        if(cep.length === 8) {
+            const r = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            const d = await r.json();
+            if(!d.erro) {
+                document.getElementById('end_cliente').value = `${d.logradouro}, ${d.bairro}, ${d.localidade}-${d.uf}`;
+                document.getElementById('info-status').innerText = "✅ Endereço localizado!";
+            }
+        }
+    }
+
+    function gerarPix() {
+        const v = precos[prodAtivo];
+        const pay = `00020101021126580014br.gov.bcb.pix01368ec0e358-4d5e-40c8-9660-afbe089c76f6520400005303986540${v.length}${v}5802BR5925ARTHUR BATISTA DA SILVA6008LINHARES62070503***6304`;
+        document.getElementById('qrcode-container').innerHTML = "";
+        new QRCode(document.getElementById("qrcode-container"), { text: pay, width: 140, height: 140 });
+        document.getElementById('pix-copy').value = pay;
+    }
+
+    function copyPix() { document.getElementById('pix-copy').select(); document.execCommand('copy'); alert("Copiado!"); }
+
+    function finalizar() {
+        const n = document.getElementById('nome_cliente').value;
+        if(!n) return alert("Preencha seu nome");
+        const m = document.getElementById('metodo_pag').value;
+        if(m === 'pix') window.location.href = `https://wa.me/5527992985369?text=Paguei via PIX: ${prodAtivo}. Nome: ${n}`;
+        else alert("Redirecionando para o Checkout Seguro...");
+    }
+
+    function mCPF(i){ i.value=i.value.replace(/\D/g,"").replace(/(\d{3})(\d)/,"$1.$2").replace(/(\d{3})(\d)/,"$1.$2").replace(/(\d{3})(\d{1,2})$/,"$1-$2"); }
+    function mCEP(i){ i.value=i.value.replace(/\D/g,"").replace(/(\d{5})(\d)/,"$1-$2"); }
+
+    window.onload = init;
 </script>
 
 </body>
