@@ -273,7 +273,7 @@
             <label>Método de Pagamento</label>
             <select id="metodo_pagamento" onchange="alternarPagamento()">
                 <option value="cartao">Cartão de Crédito (Até 12x)</option>
-                <option value="pix">PIX (Com Desconto)</option>
+                <option value="pix">PIX </option>
             </select>
         </div>
 
@@ -281,8 +281,18 @@
             <div class="form-group">
                 <label>Parcelas</label>
                 <select id="parcelas_pag">
-                    <option value="1">1x sem juros</option>
-                    <option value="12">Até 12x</option>
+                    <option value="1">1x</option>
+                    <option value="2">2x</option>
+                    <option value="3">3x</option>
+                    <option value="4">4x</option>
+                    <option value="5">5x</option>
+                    <option value="6">6x</option>
+                    <option value="7">7x</option>
+                    <option value="8">8x</option>
+                    <option value="9">9x</option>
+                    <option value="10">10x</option>
+                    <option value="11">11x</option>
+                    <option value="12">12x</option>
                 </select>
             </div>
         </div>
@@ -346,11 +356,11 @@
     function gerarCodigoPix() {
         const valor = precosLoja[produtoSelecionado];
         const chavePix = "8ec0e358-4d5e-40c8-9660-afbe089c76f6"; // COLOQUE SUA CHAVE AQUI
-        const nome = "BS SMART TECH";
+        const nome = "ARTHUR BATISTA DA SILVA";
         const cidade = "LINHARES";
 
         // Gerador simples de Payload Pix Estático
-        const payload = `00020101021126580014br.gov.bcb.pix0114${chavePix}520400005303986540${valor}5802BR5913${nome}6008${cidade}62070503***6304`;
+        const payload = `00020126580014BR.GOV.BCB.PIX0136${chavePix}520400005303986${valor}5802BR5923${nome}6008${cidade}62070503***630455FD`;
         
         document.getElementById('qrcode-container').innerHTML = "";
         new QRCode(document.getElementById("qrcode-container"), {
@@ -381,6 +391,8 @@
             // Lógica do cartão (Redirecionamento para seus links anteriores)
             alert("Redirecionando para pagamento seguro...");
             // Aqui entraria sua lógica de links: window.location.href = linksPagamento[produtoSelecionado][parcela];
+
+	
         }
     }
 
