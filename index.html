@@ -136,7 +136,7 @@
         <div class="dots-container" id="dots-iphone17pro"></div>
         <h3>iPhone 17 Pro 256GB</h3>
         <p class="preco">R$ 7.899,00</p>
-        <div class="parcelas-info">12x de R$ 759,90 no cartão</div>
+        <div class="parcelas-info">Até 12x no cartão de crédito</div>
         <button class="btn-comprar" onclick="abrirCheckout('iPhone 17 Pro 256GB', 7899.00)">
             <span class="material-icons">shopping_cart</span> COMPRAR AGORA
         </button>
@@ -155,7 +155,7 @@
         <div class="dots-container" id="dots-iphone17"></div>
         <h3>iPhone 17 256GB</h3>
         <p class="preco">R$ 6.399,00</p>
-        <div class="parcelas-info">12x de R$ 599,99 no cartão</div>
+        <div class="parcelas-info">Até 12x no cartão de crédito</div>
         <button class="btn-comprar" onclick="abrirCheckout('iPhone 17 256GB', 6399.00)">
             <span class="material-icons">shopping_cart</span> COMPRAR AGORA
         </button>
@@ -173,7 +173,7 @@
         <div class="dots-container" id="dots-iphone16"></div>
         <h3>iPhone 16 256GB</h3>
         <p class="preco">R$ 5.799,00</p>
-        <div class="parcelas-info">12x de R$ 549,90 no cartão</div>
+        <div class="parcelas-info"> Até 12x no cartão de crédito</div>
         <button class="btn-comprar" onclick="abrirCheckout('iPhone 16 256GB', 5799.00)">
             <span class="material-icons">shopping_cart</span> COMPRAR AGORA
         </button>
@@ -210,7 +210,7 @@
     <div class="form-group">
       <label>Método de pagamento</label>
       <select id="metodo_pagamento" onchange="alterarMetodo()">
-        <option value="cartao">Cartão de crédito (até 12x, taxas repassadas)</option>
+        <option value="cartao">Cartão de crédito (até 12x, com taxas)</option>
         <option value="pix">Pix (com desconto)</option>
       </select>
     </div>
@@ -275,7 +275,8 @@
   };
 
   const linksPix = {
-    "iPhone 17 Pro 256GB": "https://pay.infinitepay.io/00020101021226840014BR.GOV.BCB.PIX013683e7ba8c-a1b4-4542-aa9f-f40b5db288e90222Pagamento batista-arth52040000530398654077899.005802BR5923ARTHUR BATISTA DA SILVA6008LINHARES62290525QRCCULpstJ7FkHOrXbTIKrWbW630424B5",
+    "iPhone 17 Pro 256GB": "00020101021226840014BR.GOV.BCB.PIX013683e7ba8c-a1b4-4542-aa9f-f40b5db288e90222Pagamento batista-arth52040000530398654077899.005802BR5923ARTHUR BATISTA DA SILVA6008LINHARES62290525QRCCULpstJ7FkHOrXbTIKrWbW630424B5",
+
     "iPhone 17 256GB":     "https://pay.infinitepay.io/SEU_LINK_PIX_IPHONE17",
     "iPhone 16 256GB":     "https://pay.infinitepay.io/SEU_LINK_PIX_IPHONE16",
     "Capa MagSafe Premium":"https://pay.infinitepay.io/SEU_LINK_PIX_CAPA"
