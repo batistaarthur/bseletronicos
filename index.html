@@ -92,12 +92,6 @@
         .form-group input, .form-group select { width: 100%; padding: 12px; border: 1.5px solid #eee; border-radius: 10px; font-size: 1rem; outline: none; transition: 0.3s; }
         .form-group input:focus { border-color: #007bff; }
 
-        .btn-finalizar { 
-            width: 100%; background-color: var(--whatsapp-color); color: white; 
-            padding: 16px; border-radius: 10px; font-weight: bold; border: none; 
-            cursor: pointer; font-size: 1rem; margin-top: 10px;
-        }
-
         @media (min-width: 600px) { .vitrine { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 1000px) { .vitrine { grid-template-columns: repeat(3, 1fr); } }
     </style>
@@ -130,10 +124,9 @@
                 <img src="iphone-17pro.jpeg">
                 <img src="iphone-17pro1.jpeg">
                 <img src="iphone-17pro2.jpeg">
-		<img src="iphone-17pro3.jpeg">
-		<img src="iphone-17pro4.jpeg">
-		<img src="iphone-17pro5.jpeg">
-
+                <img src="iphone-17pro3.jpeg">
+                <img src="iphone-17pro4.jpeg">
+                <img src="iphone-17pro5.jpeg">
             </div>
             <button class="nav-btn next" onclick="moveSlide('iphone17pro', 1)"><span class="material-icons">chevron_right</span></button>
         </div>
@@ -141,7 +134,7 @@
         <h3>iPhone 17 Pro 256GB</h3>
         <p class="preco">R$ 7.899,00</p>
         <div class="parcelas-info">Até 12x no cartão de crédito</div>
-        <button class="btn-comprar" onclick="abrirCheckout('iPhone 17 Pro 256GB', 7899.00)">
+        <button class="btn-comprar" onclick="abrirCheckout('iPhone 17 Pro 256GB')">
             <span class="material-icons">shopping_cart</span> COMPRAR AGORA
         </button>
     </div>
@@ -153,12 +146,11 @@
             <div class="carrossel-wrapper">
                 <img src="iphone 17.avif">
                 <img src="iphone 17-1.avif">
-		<img src="iphone 17-2.avif">
-		<img src="iphone 17-3.avif">
-		<img src="iphone 17-4.avif">	
-		<img src="iphone 17-5.avif">
-		<img src="iphone 17-6.avif">
-
+                <img src="iphone 17-2.avif">
+                <img src="iphone 17-3.avif">
+                <img src="iphone 17-4.avif">    
+                <img src="iphone 17-5.avif">
+                <img src="iphone 17-6.avif">
             </div>
             <button class="nav-btn next" onclick="moveSlide('iphone17', 1)"><span class="material-icons">chevron_right</span></button>
         </div>
@@ -166,7 +158,7 @@
         <h3>iPhone 17 256GB</h3>
         <p class="preco">R$ 6.399,00</p>
         <div class="parcelas-info">Até 12x no cartão de crédito</div>
-        <button class="btn-comprar" onclick="abrirCheckout('iPhone 17 256GB', 6399.00)">
+        <button class="btn-comprar" onclick="abrirCheckout('iPhone 17 256GB')">
             <span class="material-icons">shopping_cart</span> COMPRAR AGORA
         </button>
     </div>
@@ -184,7 +176,7 @@
         <h3>iPhone 16 256GB</h3>
         <p class="preco">R$ 5.799,00</p>
         <div class="parcelas-info"> Até 12x no cartão de crédito</div>
-        <button class="btn-comprar" onclick="abrirCheckout('iPhone 16 256GB', 5799.00)">
+        <button class="btn-comprar" onclick="abrirCheckout('iPhone 16 256GB')">
             <span class="material-icons">shopping_cart</span> COMPRAR AGORA
         </button>
     </div>
@@ -204,33 +196,50 @@
         <h3>Capa MagSafe Premium</h3>
         <p class="preco">R$ 105,90</p>
         <div class="parcelas-info">Até 12x no cartão</div>
-        <button class="btn-comprar" onclick="abrirCheckout('Capa MagSafe Premium', 105.90)">
+        <button class="btn-comprar" onclick="abrirCheckout('Capa MagSafe Premium')">
             <span class="material-icons">shopping_cart</span> COMPRAR AGORA
         </button>
     </div>
 </div>
 
-<!-- MODAL CHECKOUT SIMPLES -->
+<!-- MODAL CHECKOUT COMPLETO COM QR CODE PIX -->
 <div id="modalCheckout" class="modal-checkout">
   <div class="form-container">
     <h2 id="titulo-checkout">Detalhes da compra</h2>
-    
     <p id="resumo-valor" style="font-weight:bold; margin:10px 0 15px;"></p>
 
-    <div class="form-group">
-      <label>Método de pagamento</label>
-      <select id="metodo_pagamento" onchange="alterarMetodo()">
-        <option value="cartao">Cartão de crédito (até 12x, com taxas)</option>
-        <option value="pix">Pix (com desconto)</option>
-      </select>
+    <!-- ÁREA DE ESCOLHA (Cartão ou Pix) -->
+    <div id="area-escolha-pagamento">
+      <div class="form-group">
+        <label>Método de pagamento</label>
+        <select id="metodo_pagamento">
+          <option value="cartao">Cartão de crédito (até 12x, com taxas)</option>
+          <option value="pix">Pix (com desconto)</option>
+        </select>
+      </div>
+      <button onclick="processarPagamento()" style="width:100%; padding:12px; border:none; border-radius:10px; background:#007bff; color:#fff; font-weight:bold; cursor:pointer;">
+        Gerar Pagamento
+      </button>
     </div>
 
-    <button onclick="irParaPagamento()" style="width:100%; padding:12px; border:none; border-radius:10px; background:#007bff; color:#fff; font-weight:bold; margin-bottom:10px; cursor:pointer;">
-      Ir para pagamento seguro InfinitePay
-    </button>
+    <!-- ÁREA DO PIX (Escondida até o cliente clicar em Gerar) -->
+    <div id="area-pix" style="display:none; text-align:center; padding-top:10px; border-top: 1px solid #eee;">
+      <p style="color:var(--accent-color); font-weight:bold; margin: 0 0 10px 0;">Escaneie o QR Code abaixo:</p>
+      
+      <!-- O QR Code será gerado automaticamente aqui -->
+      <img id="qrcode-pix" src="" alt="QR Code Pix" style="width:180px; height:180px; margin: 0 auto; border-radius: 10px; border: 2px solid #f4f7f6;">
+      
+      <p style="font-size: 0.8rem; margin: 15px 0 5px; color: #555;">Ou copie o código Pix:</p>
+      <input type="text" id="codigo-pix-input" readonly style="width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; margin-bottom:10px; font-size:12px; color: #777; background: #f9f9f9;">
+      
+      <button onclick="copiarPix()" style="width:100%; padding:12px; background:#1a1a1a; color:#fff; font-weight:bold; border-radius:10px; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;">
+        <span class="material-icons">content_copy</span> COPIAR CÓDIGO PIX
+      </button>
+    </div>
 
-    <button onclick="enviarComprovanteWhatsApp()" style="width:100%; padding:12px; border:none; border-radius:10px; background:#25D366; color:#fff; font-weight:bold; margin-bottom:10px; cursor:pointer;">
-      Já paguei – enviar comprovante no WhatsApp
+    <!-- BOTÕES FIXOS -->
+    <button onclick="enviarComprovanteWhatsApp()" style="width:100%; padding:12px; border:none; border-radius:10px; background:var(--whatsapp-color); color:#fff; font-weight:bold; margin-top:15px; cursor:pointer;">
+      Já paguei – Enviar comprovante no WhatsApp
     </button>
 
     <button onclick="fecharCheckout()" style="width:100%; padding:10px; border:none; border-radius:10px; background:none; color:#999; font-size:0.8rem; cursor:pointer;">
@@ -276,7 +285,7 @@
     "Capa MagSafe Premium":"105,90"
   };
 
-  // LINKS INFINITEPAY – COLE AQUI
+  // LINKS INFINITEPAY
   const linksCartao = {
     "iPhone 17 Pro 256GB": "https://link.infinitepay.io/batista-arthur-80l/VC1D-koFiQwTsGK-7899,00",
     "iPhone 17 256GB":     "https://link.infinitepay.io/batista-arthur-80l/VC1D-KcX8AqZdq3-6399,00",
@@ -286,21 +295,23 @@
 
   const linksPix = {
     "iPhone 17 Pro 256GB": "00020101021226840014BR.GOV.BCB.PIX013683e7ba8c-a1b4-4542-aa9f-f40b5db288e90222Pagamento batista-arth52040000530398654077899.005802BR5923ARTHUR BATISTA DA SILVA6008LINHARES62290525QRCCULpstJ7FkHOrXbTIKrWbW630424B5",
-
-    "iPhone 17 256GB":     "https://pay.infinitepay.io/SEU_LINK_PIX_IPHONE17",
-    "iPhone 16 256GB":     "https://pay.infinitepay.io/SEU_LINK_PIX_IPHONE16",
-    "Capa MagSafe Premium":"https://pay.infinitepay.io/SEU_LINK_PIX_CAPA"
+    "iPhone 17 256GB":     "COLE_AQUI_O_CODIGO_COPIA_E_COLA_DO_IPHONE17",
+    "iPhone 16 256GB":     "COLE_AQUI_O_CODIGO_COPIA_E_COLA_DO_IPHONE16",
+    "Capa MagSafe Premium":"COLE_AQUI_O_CODIGO_COPIA_E_COLA_DA_CAPA"
   };
 
   let produtoAtivo = "";
-  let metodoAtivo = "cartao";
 
   function abrirCheckout(produto) {
     produtoAtivo = produto;
-    metodoAtivo = "cartao";
     document.getElementById('titulo-checkout').innerText = produto;
     document.getElementById('resumo-valor').innerText = "Valor: R$ " + (precos[produto] || "");
+    
+    // Reseta o visual do modal para a escolha inicial
     document.getElementById('metodo_pagamento').value = "cartao";
+    document.getElementById('area-escolha-pagamento').style.display = 'block';
+    document.getElementById('area-pix').style.display = 'none';
+    
     document.getElementById('modalCheckout').style.display = 'block';
   }
 
@@ -308,32 +319,47 @@
     document.getElementById('modalCheckout').style.display = 'none';
   }
 
-  function alterarMetodo() {
-    metodoAtivo = document.getElementById('metodo_pagamento').value;
+  function processarPagamento() {
+    const metodoAtivo = document.getElementById('metodo_pagamento').value;
+
+    if (metodoAtivo === "cartao") {
+      const link = linksCartao[produtoAtivo];
+      if (!link || link.includes("SEU_LINK_CARTAO")) {
+        alert("Link do cartão ainda não configurado para este produto.");
+        return;
+      }
+      window.open(link, "_blank");
+
+    } else if (metodoAtivo === "pix") {
+      const codigoPix = linksPix[produtoAtivo];
+      if (!codigoPix || codigoPix.includes("COLE_AQUI")) {
+        alert("Chave Pix ainda não configurada para este produto.");
+        return;
+      }
+
+      // Esconde a área de escolha e revela o QR Code
+      document.getElementById('area-escolha-pagamento').style.display = 'none';
+      document.getElementById('area-pix').style.display = 'block';
+
+      // Gera a imagem do QR Code
+      const qrcodeUrl = `https://quickchart.io/qr?text=${encodeURIComponent(codigoPix)}&size=200&margin=2`;
+      document.getElementById('qrcode-pix').src = qrcodeUrl;
+      
+      // Preenche o campo de input
+      document.getElementById('codigo-pix-input').value = codigoPix;
+    }
   }
 
-  function irParaPagamento() {
-    if (!produtoAtivo) {
-      alert("Nenhum produto selecionado.");
-      return;
-    }
+  function copiarPix() {
+    const inputPix = document.getElementById('codigo-pix-input');
+    inputPix.select();
+    inputPix.setSelectionRange(0, 99999);
 
-    let link;
-    if (metodoAtivo === "pix") {
-      link = linksPix[produtoAtivo];
-      if (!link || link.includes("SEU_LINK_PIX")) {
-        alert("Pix ainda não configurado para este produto.");
-        return;
-      }
-    } else {
-      link = linksCartao[produtoAtivo];
-      if (!link || link.includes("SEU_LINK_CARTAO")) {
-        alert("Cartão ainda não configurado para este produto.");
-        return;
-      }
-    }
-
-    window.open(link, "_blank");
+    navigator.clipboard.writeText(inputPix.value).then(() => {
+      alert("✅ Código Pix copiado com sucesso!\n\nAbra o app do seu banco, escolha 'Pix Copia e Cola' e realize o pagamento.");
+    }).catch(() => {
+      alert("❌ Erro ao copiar. Por favor, selecione e copie o código manualmente no campo.");
+    });
   }
 
   function enviarComprovanteWhatsApp() {
@@ -343,7 +369,9 @@
     }
 
     const valor = precos[produtoAtivo] || "";
+    const metodoAtivo = document.getElementById('metodo_pagamento').value;
     const metodoTexto = metodoAtivo === "pix" ? "PIX" : "Cartão de crédito";
+    
     const mensagem = 
       `Olá BS Smart Tech!%0A%0A` +
       `*Comprovante de pagamento*%0A` +
