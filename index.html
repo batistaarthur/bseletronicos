@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -96,6 +98,13 @@
         @media (min-width: 1000px) { .vitrine { grid-template-columns: repeat(3, 1fr); } }
     </style>
 </head>
+
+	<!-- Modal para Ampliar a Imagem -->
+	<div id="modalImagem" class="modal-checkout" onclick="fecharImagem()" style="display:none; justify-content:center; align-items:center; background-color: rgba(0,0,0,0.9);">
+  	  <span style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+  	  <img id="imgZoom" src="" style="max-width:90%; max-height:80%; border-radius:10px; box-shadow: 0 0 20px rgba(0,0,0,0.5);">
+	</div>
+
 <body>
 
 <header>
@@ -265,9 +274,32 @@
         const dot = document.createElement('div');
         dot.className = `dot ${i === 0 ? 'active' : ''}`;
         dots.appendChild(dot);
+
+	function initCarrossel() {
+    for (let id in config) {
+        // ... seu código de dots atual ...
+
+        // Adicione estas linhas abaixo para ativar o clique:
+        const imagens = document.querySelectorAll(`#${id} .carrossel-wrapper img`);
+        imagens.forEach(img => {
+            img.onclick = function() { abrirImagem(this.src); };
+        });
+    }
+ }
       }
     }
   }
+
+	function abrirImagem(src) {
+    const modal = document.getElementById('modalImagem');
+    const img = document.getElementById('imgZoom');
+    modal.style.display = 'flex'; // Usamos flex para centralizar a imagem
+    img.src = src;
+}
+
+function fecharImagem() {
+    document.getElementById('modalImagem').style.display = 'none';
+}
 
   function moveSlide(id, step) {
     const c = config[id];
