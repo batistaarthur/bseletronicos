@@ -262,10 +262,22 @@
 </div>
 
 
-<!-- MODAL PARA AMPLIAR IMAGEM (NOVO) -->
+<!-- MODAL PARA AMPLIAR IMAGEM (ATUALIZADO COM SETAS) -->
 <div id="modalImagem" class="modal-checkout" onclick="fecharImagem()">
     <span style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
-    <img id="imgZoom" src="" style="max-width:90%; max-height:80%; border-radius:10px; box-shadow: 0 0 20px rgba(0,0,0,0.5);">
+    
+    <!-- Seta Esquerda -->
+    <button class="nav-btn prev" onclick="mudarImagemZoom(-1, event)" style="left: 20px; z-index: 3010; width: 45px; height: 45px;">
+        <span class="material-icons">chevron_left</span>
+    </button>
+    
+    <!-- Imagem Ampliada -->
+    <img id="imgZoom" src="" style="max-width:90%; max-height:80%; border-radius:10px; box-shadow: 0 0 20px rgba(0,0,0,0.5);" onclick="event.stopPropagation()">
+    
+    <!-- Seta Direita -->
+    <button class="nav-btn next" onclick="mudarImagemZoom(1, event)" style="right: 20px; z-index: 3010; width: 45px; height: 45px;">
+        <span class="material-icons">chevron_right</span>
+    </button>
 </div>
 
 <!-- MODAL CHECKOUT COMPLETO COM QR CODE PIX -->
@@ -317,6 +329,10 @@
     'iphone17promax': { current: 0, total: 9 },
   };
 
+  // Variáveis para rastrear o produto e índice que estão ativos no zoom global
+  let produtoZoomAtivo = "";
+  let indexZoomAtivo = 0;
+
   function initCarrossel() {
     for (let id in config) {
       const dots = document.getElementById(`dots-${id}`);
@@ -327,23 +343,45 @@
         dots.appendChild(dot);
       }
       
-      // ATIVA O CLIQUE PARA ZOOM NAS IMAGENS
+      // ATIVA O CLIQUE PARA ZOOM NAS IMAGENS PASSANDO ID E ÍNDICE
       const imagens = document.querySelectorAll(`#${id} .carrossel-wrapper img`);
-      imagens.forEach(img => {
-          img.onclick = function() { abrirImagem(this.src); };
+      imagens.forEach((img, index) => {
+          img.onclick = function() { abrirImagem(id, index); };
       });
     }
   }
 
-  function abrirImagem(src) {
+  function abrirImagem(id, index) {
+      produtoZoomAtivo = id;
+      indexZoomAtivo = index;
       const modal = document.getElementById('modalImagem');
       const img = document.getElementById('imgZoom');
       modal.style.display = 'flex';
-      img.src = src;
+      
+      const listaImagens = document.querySelectorAll(`#${id} .carrossel-wrapper img`);
+      img.src = listaImagens[index].src;
   }
 
   function fecharImagem() {
       document.getElementById('modalImagem').style.display = 'none';
+  }
+
+  // Nova função para navegar pelas fotos com o zoom aberto
+  function mudarImagemZoom(step, event) {
+      if (event) event.stopPropagation(); // Impede o fechamento do modal ao clicar na seta
+      
+      const c = config[produtoZoomAtivo];
+      indexZoomAtivo = (indexZoomAtivo + step + c.total) % c.total;
+      
+      const listaImagens = document.querySelectorAll(`#${produtoZoomAtivo} .carrossel-wrapper img`);
+      const img = document.getElementById('imgZoom');
+      img.src = listaImagens[indexZoomAtivo].src;
+      
+      // Sincroniza o carrossel de trás e os "dots" com a foto que o usuário está vendo no zoom
+      c.current = indexZoomAtivo;
+      document.querySelector(`#${produtoZoomAtivo} .carrossel-wrapper`).style.transform = `translateX(-${c.current * 100}%)`;
+      const dots = document.querySelectorAll(`#dots-${produtoZoomAtivo} .dot`);
+      dots.forEach((d, i) => d.classList.toggle('active', i === c.current));
   }
 
   function moveSlide(id, step) {
